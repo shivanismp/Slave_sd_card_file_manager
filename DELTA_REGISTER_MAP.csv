@@ -1,0 +1,37 @@
+Direction,Delta internal register,Existing local register,Meaning
+ESP -> HMI,$0,Input 0,Machine state feedback
+ESP -> HMI,$1,Input 1,Auto-power feedback
+ESP -> HMI,$2,Input 2,Actual power percentage
+ESP -> HMI,$3,$3 / Input 3,Line 1 voltage
+ESP -> HMI,$4,Input 4,Line 1 current
+ESP -> HMI,$5,Input 5,Line 2 voltage
+ESP -> HMI,$6,Input 6,Line 2 current
+ESP -> HMI,$7,Input 7,Line 3 voltage
+ESP -> HMI,$8,Input 8,Line 3 current
+ESP -> HMI,$9,Input 9,Average voltage
+ESP -> HMI,$10,Input 10,Average current
+ESP -> HMI,$11,Input 11,PWM frequency
+ESP -> HMI,$12,Input 12,Average kW
+ESP -> HMI,$13,Input 13,Average PF
+ESP -> HMI,$14,Input 14,Error bit field
+ESP -> HMI,$15,Input 15,Melter temperature
+ESP -> HMI,$18,Input 18,Chiller temperature
+ESP -> HMI,$19,Input 19,IGBT plate temperature
+ESP -> HMI,$20,Input 20,Coil temperature
+ESP -> HMI,$21,Input 21,Communication status
+ESP -> HMI,$22,Input 22,Local set temperature
+ESP -> HMI,$23,Input 23,Local auto-power
+HMI -> ESP,$300,Holding 0,Machine trigger
+HMI -> ESP,$301,Holding 1,Control mode
+HMI -> ESP,$302,Holding 2,Frequency minimum
+HMI -> ESP,$303,Holding 3,Frequency maximum
+HMI -> ESP,$304,Holding 4,POT minimum
+HMI -> ESP,$305,Holding 5,POT maximum
+HMI -> ESP,$306,Holding 6,CT minimum
+HMI -> ESP,$307,Holding 7,CT maximum
+HMI -> ESP,$308,Holding 8,PT minimum
+HMI -> ESP,$309,Holding 9,PT maximum
+HMI -> ESP,$310,Holding 10,Auto-power percentage
+HMI -> ESP,$311,Holding 11,Melter set temperature
+HMI -> ESP,$312,Holding 12,PID auto-tune
+ESP -> HMI,$313-$338,Holding 13-38,Display and bar ranges

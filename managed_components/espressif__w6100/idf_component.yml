@@ -1,0 +1,12 @@
+dependencies:
+  espressif/wiznet_common:
+    require: public
+    version: ^1.0.0
+  idf: '>=5.3'
+description: W6100 Ethernet Driver
+repository: git://github.com/espressif/esp-eth-drivers.git
+repository_info:
+  commit_sha: bfedf0d54a2b228d51fe82cfc6d62632a827c75c
+  path: w6100
+url: https://github.com/espressif/esp-eth-drivers/tree/master/w6100
+version: 1.0.0

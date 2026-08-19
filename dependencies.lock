@@ -1,0 +1,46 @@
+dependencies:
+  espressif/w6100:
+    component_hash: f0a03e304e5b4cef45b35d6459dff0e98f9652a6a2c77305556b7eefb114fbfe
+    dependencies:
+    - name: espressif/wiznet_common
+      registry_url: https://components.espressif.com
+      require: private
+      version: ^1.0.0
+    - name: idf
+      require: private
+      version: '>=5.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.0.0
+  espressif/wiznet_common:
+    component_hash: 57414f4b8ce11295c03030da7ff3ef90184e07b3ba1e8985b5edb2461e9be780
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.3'
+    source:
+      registry_url: https://components.espressif.com
+      type: service
+    version: 1.0.0
+  idf:
+    source:
+      type: idf
+    version: 5.5.4
+  joltwallet/littlefs:
+    component_hash: fab83a8a57de01b05441557d78e9d10c755413a1836af4b2762b539add0c14b1
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.22.2
+direct_dependencies:
+- espressif/w6100
+- idf
+- joltwallet/littlefs
+manifest_hash: a655a2c46de511c06119b2300e4740860252e1721c723f1158d8cbf552f616ae
+target: esp32c6
+version: 2.0.0
