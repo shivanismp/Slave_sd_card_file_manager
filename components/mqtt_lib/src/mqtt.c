@@ -1,5 +1,6 @@
-#include <esp_app_desc.h>
 #include "mqtt.h"
+
+#include <esp_app_desc.h>
 
 #include <string.h>
 #include <stdio.h>
@@ -13,6 +14,8 @@
 #include "freertos/event_groups.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
+#include "esp_app_desc.h"
+#include "ethernet.h"
 
 static const char *TAG_MQTT = "MQTT_AWS";
 
@@ -61,10 +64,17 @@ static size_t s_published_count = 0;
 static char s_data_observer_topic[MQTT_MAX_TOPIC_LEN];
 static mqtt_data_observer_t s_data_observer = NULL;
 static void *s_data_observer_context = NULL;
+static mqtt_connection_observer_t s_connection_observer = NULL;
+static void *s_connection_observer_context = NULL;
 static mqtt_update_busy_fn_t s_ota_busy = NULL;
 static mqtt_update_request_fn_t s_ota_request = NULL;
 static mqtt_update_busy_fn_t s_nextion_busy = NULL;
 static mqtt_update_request_fn_t s_nextion_request = NULL;
+
+static char s_last_will_topic[MQTT_MAX_TOPIC_LEN];
+static char s_last_will_payload[160];
+static int s_last_will_qos = 1;
+static int s_last_will_retain = 1;
 
 static void mqtt_record_published_msg_id(int msg_id);
 static bool mqtt_consume_published_msg_id(int msg_id);
@@ -227,6 +237,40 @@ bool mqtt_publish_text_ex(const char *topic, const char *payload, int qos, int r
 bool mqtt_publish_text(const char *topic, const char *payload, int qos, int retain)
 {
     return mqtt_publish_text_ex(topic, payload, qos, retain, NULL);
+}
+
+bool mqtt_configure_last_will(const char *topic,
+                              const char *payload,
+                              int qos,
+                              int retain)
+{
+    if (s_client != NULL || topic == NULL || payload == NULL ||
+        topic[0] == '\0' || payload[0] == '\0' ||
+        strlen(topic) >= sizeof(s_last_will_topic) ||
+        strlen(payload) >= sizeof(s_last_will_payload) ||
+        qos < 0 || qos > 2)
+    {
+        return false;
+    }
+
+    strlcpy(s_last_will_topic, topic, sizeof(s_last_will_topic));
+    strlcpy(s_last_will_payload, payload, sizeof(s_last_will_payload));
+    s_last_will_qos = qos;
+    s_last_will_retain = (retain != 0) ? 1 : 0;
+    return true;
+}
+
+bool mqtt_register_connection_observer(mqtt_connection_observer_t observer,
+                                       void *context)
+{
+    if (observer == NULL || s_connection_observer != NULL)
+    {
+        return false;
+    }
+
+    s_connection_observer = observer;
+    s_connection_observer_context = context;
+    return true;
 }
 
 bool mqtt_publish_binary_ex(const char *topic,
@@ -467,7 +511,18 @@ static void mqtt_event_handler(void *handler_args,
     case MQTT_EVENT_CONNECTED:
     {
         ESP_LOGI(TAG_MQTT, "AWS IoT MQTT connected");
-        mqtt_publish_text("M2F7L65X2U/MACHINE_STATUS", "1", 1, 0);
+
+        // char payload[64];
+        // snprintf(payload, sizeof(payload), "{\"state\":\"online\",\"version\":\"%s\"}", esp_app_get_description()->version);
+
+        // esp_mqtt_client_publish(event->client,
+        //                          "CSLD94MTZ2/MACHINE_STATUS",
+        //                          payload,
+        //                          strlen(payload),
+        //                          1,
+        //                          0);
+
+
         for (size_t i = 0; i < g_mqtt_topics.count; i++)
         {
             if (g_mqtt_topics.topics[i][0] == '\0')
@@ -477,36 +532,36 @@ static void mqtt_event_handler(void *handler_args,
             ESP_LOGI(TAG_MQTT, "Subscribed: %s", g_mqtt_topics.topics[i]);
         }
 
-        if (mqtt_topic_ota_cmd[0] != '\0')
-        {
-            esp_mqtt_client_subscribe(event->client, mqtt_topic_ota_cmd, 1);
-            ESP_LOGI(TAG_MQTT, "Subscribed OTA CMD: %s", mqtt_topic_ota_cmd);
-        }
+        // if (mqtt_topic_ota_cmd[0] != '\0')
+        // {
+        //     esp_mqtt_client_subscribe(event->client, mqtt_topic_ota_cmd, 1);
+        //     ESP_LOGI(TAG_MQTT, "Subscribed OTA CMD: %s", mqtt_topic_ota_cmd);
+        // }
 
-        if (mqtt_topic_ota_status[0] != '\0')
-        {
-            char online_payload[160];
-            snprintf(online_payload, sizeof(online_payload),
-                     "{\"state\":\"online\",\"version\":\"%s\"}",
-                     esp_app_get_description()->version);
+        // if (mqtt_topic_ota_status[0] != '\0')
+        // {
+        //     char online_payload[160];
+        //     snprintf(online_payload, sizeof(online_payload),
+        //              "{\"state\":\"online\",\"version\":\"%s\"}",
+        //              esp_app_get_description()->version);
 
-            mqtt_publish_text(mqtt_topic_ota_status, online_payload, 1, 0);
-        }
+        //     mqtt_publish_text(mqtt_topic_ota_status, online_payload, 1, 0);
+        // }
 
-        if (mqtt_topic_nx_update_cmd[0] != '\0')
-        {
-            esp_mqtt_client_subscribe(event->client, mqtt_topic_nx_update_cmd, 1);
-            ESP_LOGI(TAG_MQTT, "Subscribed NX CMD: %s", mqtt_topic_nx_update_cmd);
-        }
+        // if (mqtt_topic_nx_update_cmd[0] != '\0')
+        // {
+        //     esp_mqtt_client_subscribe(event->client, mqtt_topic_nx_update_cmd, 1);
+        //     ESP_LOGI(TAG_MQTT, "Subscribed NX CMD: %s", mqtt_topic_nx_update_cmd);
+        // }
 
-        if (mqtt_topic_nx_update_status[0] != '\0')
-        {
-            char nx_online_payload[160];
-            snprintf(nx_online_payload, sizeof(nx_online_payload),
-                     "{\"state\":\"online\",\"version\":\"ready\"}");
+        // if (mqtt_topic_nx_update_status[0] != '\0')
+        // {
+        //     char nx_online_payload[160];
+        //     snprintf(nx_online_payload, sizeof(nx_online_payload),
+        //              "{\"state\":\"online\",\"version\":\"ready\"}");
 
-            mqtt_publish_text(mqtt_topic_nx_update_status, nx_online_payload, 1, 0);
-        }
+        //     mqtt_publish_text(mqtt_topic_nx_update_status, nx_online_payload, 1, 0);
+        // }
 
         if (s_data_observer != NULL && s_data_observer_topic[0] != '\0')
         {
@@ -521,13 +576,37 @@ static void mqtt_event_handler(void *handler_args,
         /* Publish/worker tasks may proceed after all subscriptions are sent. */
         xEventGroupSetBits(s_mqtt_ev, MQTT_CONNECTED_BIT);
 
+        if (s_connection_observer != NULL)
+        {
+            s_connection_observer(true, s_connection_observer_context);
+        }
+
         break;
     }
 
     case MQTT_EVENT_DISCONNECTED:
         ESP_LOGW(TAG_MQTT, "AWS IoT MQTT disconnected");
         xEventGroupClearBits(s_mqtt_ev, MQTT_CONNECTED_BIT);
+
+        if (s_connection_observer != NULL)
+        {
+            s_connection_observer(false, s_connection_observer_context);
+        }
         break;
+
+    // case MQTT_EVENT_DISCONNECTED:
+    // ESP_LOGE(TAG_MQTT,
+    //          "MQTT disconnected: ethernet_link=%d ethernet_ip=%d",
+    //          ethernet_is_link_up(),
+    //          ethernet_has_ip());
+
+    // xEventGroupClearBits(s_mqtt_ev, MQTT_CONNECTED_BIT);
+
+    // if (s_connection_observer != NULL)
+    // {
+    //     s_connection_observer(false, s_connection_observer_context);
+    // }
+    // break;
 
     case MQTT_EVENT_ERROR:
     {
@@ -545,7 +624,10 @@ static void mqtt_event_handler(void *handler_args,
     }
 
     case MQTT_EVENT_DATA:
-
+        // printf("MQTT_EVENT_DATA: topic=%.*s, data=%.*s\n",
+        //        event->topic_len, event->topic,
+        //        event->data_len, event->data);
+               
         mqtt_handle_modbus_request(event);
         mqtt_handle_ota_request(event);
         mqtt_handle_nx_update_request(event);
@@ -592,46 +674,67 @@ void mqtt_start_tls(void)
         configASSERT(s_puback_mutex != NULL);
     }
 
-    if (mqtt_topic_ota_cmd[0] == '\0')
-    {
-        snprintf(mqtt_topic_ota_cmd, sizeof(mqtt_topic_ota_cmd),
-                 "%s/OTA_CMD", mqtt_serial_no);
-    }
+    // if (mqtt_topic_ota_cmd[0] == '\0')
+    // {
+    //     snprintf(mqtt_topic_ota_cmd, sizeof(mqtt_topic_ota_cmd),
+    //              "%s/OTA_CMD", mqtt_serial_no);
+    // }
 
-    if (mqtt_topic_ota_status[0] == '\0')
-    {
-        snprintf(mqtt_topic_ota_status, sizeof(mqtt_topic_ota_status),
-                 "%s/OTA_STATUS", mqtt_serial_no);
-    }
+    // if (mqtt_topic_ota_status[0] == '\0')
+    // {
+    //     snprintf(mqtt_topic_ota_status, sizeof(mqtt_topic_ota_status),
+    //              "%s/OTA_STATUS", mqtt_serial_no);
+    // }
 
-    if (mqtt_topic_nx_update_cmd[0] == '\0')
-    {
-        snprintf(mqtt_topic_nx_update_cmd, sizeof(mqtt_topic_nx_update_cmd),
-                 "%s/NX_UPDATE_CMD", mqtt_serial_no);
-    }
+    // if (mqtt_topic_nx_update_cmd[0] == '\0')
+    // {
+    //     snprintf(mqtt_topic_nx_update_cmd, sizeof(mqtt_topic_nx_update_cmd),
+    //              "%s/NX_UPDATE_CMD", mqtt_serial_no);
+    // }
 
-    if (mqtt_topic_nx_update_status[0] == '\0')
-    {
-        snprintf(mqtt_topic_nx_update_status, sizeof(mqtt_topic_nx_update_status),
-                 "%s/NX_UPDATE_STATUS", mqtt_serial_no);
-    }
+    // if (mqtt_topic_nx_update_status[0] == '\0')
+    // {
+    //     snprintf(mqtt_topic_nx_update_status, sizeof(mqtt_topic_nx_update_status),
+    //              "%s/NX_UPDATE_STATUS", mqtt_serial_no);
+    // }
 
     char uri[160];
     snprintf(uri, sizeof(uri), "mqtts://%s:8883", mqtt_aws_endpoint);
+
+    // char payload[64];
+    // snprintf(payload, sizeof(payload), "{\"state\":\"offline\",\"version\":\"%s\"}", 
+    //                                             esp_app_get_description()->version);
+
+    
 
     esp_mqtt_client_config_t cfg = {
         .broker.address.uri = uri,
 
         .network.disable_auto_reconnect = false,
         .network.reconnect_timeout_ms = 5000,
+        // .network.reconnect_timeout_ms = 10000,
         .network.timeout_ms = 10000,
 
         .session.protocol_ver = MQTT_PROTOCOL_V_3_1_1,
-        .session.keepalive = 60,
+        // .session.keepalive = 60,
+        .session.keepalive = 15,
         .session.disable_clean_session = true,
         .session.message_retransmit_timeout = 5000,
+        .session.last_will.topic = (s_last_will_topic[0] != '\0') ? s_last_will_topic : NULL,
+        .session.last_will.msg = (s_last_will_payload[0] != '\0') ? s_last_will_payload : NULL,
+        // .session.last_will.topic = "CSLD94MTZ2/MACHINE_STATUS",
+        // .session.last_will.msg = (const char *)payload,
+        // .session.last_will.msg_len = (int)strlen(payload),
+        .session.last_will.msg_len = 0,
+        .session.last_will.qos = s_last_will_qos,
+        .session.last_will.retain = s_last_will_retain,
+
+        // .session.last_will.qos = 1,
+        // .session.last_will.retain = 1,
+        // .session.last_will.retain = 0,
 
         .credentials.client_id = mqtt_serial_no,
+        // .credentials.client_id = "bfdgfkgsdklgflksdglkwdgslkglwdglkj5",
 
         .broker.verification.certificate = aws_root_ca,
 

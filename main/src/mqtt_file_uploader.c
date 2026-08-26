@@ -1,3 +1,4 @@
+#include "global.h"
 #include "mqtt_file_uploader.h"
 
 #include "mqtt.h"
@@ -24,7 +25,8 @@
 static const char *TAG = "MQTT_FILE_UPLOAD";
 
 #define MQTT_FILE_PROTOCOL_VERSION          1U
-#define MQTT_FILE_CHUNK_DATA_BYTES          1024U
+// #define MQTT_FILE_CHUNK_DATA_BYTES          1024U
+#define MQTT_FILE_CHUNK_DATA_BYTES          512U
 #define MQTT_FILE_FRAME_HEADER_BYTES        12U
 #define MQTT_FILE_ACK_JSON_BYTES            512U
 #define MQTT_FILE_NAME_BYTES                64U
@@ -35,7 +37,10 @@ static const char *TAG = "MQTT_FILE_UPLOAD";
 #define MQTT_FILE_BACKEND_FINAL_TIMEOUT_MS  30000U
 #define MQTT_FILE_RETRY_PERIOD_MS           10000U
 #define MQTT_FILE_IDLE_SCAN_PERIOD_MS       2000U
-#define MQTT_FILE_TASK_STACK_BYTES          (8U * 1024U)
+#define MQTT_FILE_CHUNK_GAP_MS              100U
+#define MQTT_FILE_CONNECTION_SETTLE_MS      3000U
+// #define MQTT_FILE_TASK_STACK_BYTES          (8U * 1024U)
+// #define MQTT_FILE_TASK_STACK_BYTES          (16U * 4095U)
 
 typedef struct
 {
@@ -219,6 +224,12 @@ static bool mqtt_file_measure(const char *path,
             crc = mqtt_file_crc32_update(crc, buffer, count);
             total += (uint32_t)count;
         }
+
+        /*
+        * SD and W6100 may share CPU/SPI resources.
+        * Give Ethernet and MQTT time to run.
+        */
+        vTaskDelay(pdMS_TO_TICKS(2));
 
         if (count < sizeof(buffer))
         {
@@ -512,6 +523,9 @@ static bool mqtt_file_send_contents(const mqtt_file_info_t *info)
         }
 
         offset += (uint32_t)count;
+
+        /* Allow MQTT, TLS and W6100 tasks to run. */
+        vTaskDelay(pdMS_TO_TICKS(MQTT_FILE_CHUNK_GAP_MS));
     }
 
     if (ferror(file) || offset != info->size)
@@ -656,18 +670,85 @@ static bool mqtt_file_upload_one(const mqtt_file_info_t *info)
     return mqtt_file_mark_sent(info);
 }
 
+// static void mqtt_file_uploader_task(void *argument)
+// {
+//     (void)argument;
+//     bool legacy_migration_done = false;
+
+//     while (true)
+//     {
+//         if (!sdcard_is_mounted())
+//         {
+//             (void)ulTaskNotifyTake(
+//                 pdTRUE,
+//                 pdMS_TO_TICKS(MQTT_FILE_IDLE_SCAN_PERIOD_MS));
+//             continue;
+//         }
+
+//         if (sdcard_mkdirs(MQTT_FILE_PENDING_DIR) != ESP_OK ||
+//             sdcard_mkdirs(MQTT_FILE_SENT_DIR) != ESP_OK)
+//         {
+//             (void)ulTaskNotifyTake(
+//                 pdTRUE,
+//                 pdMS_TO_TICKS(MQTT_FILE_RETRY_PERIOD_MS));
+//             continue;
+//         }
+
+//         if (!legacy_migration_done)
+//         {
+//             mqtt_file_migrate_legacy_root_files();
+//             legacy_migration_done = true;
+//         }
+
+//         if (!mqtt_is_connected())
+//         {
+//             (void)ulTaskNotifyTake(
+//                 pdTRUE,
+//                 pdMS_TO_TICKS(MQTT_FILE_IDLE_SCAN_PERIOD_MS));
+//             continue;
+//         }
+
+
+//         mqtt_file_info_t info;
+//         if (!mqtt_file_find_next_pending(&info))
+//         {
+//             (void)ulTaskNotifyTake(
+//                 pdTRUE,
+//                 pdMS_TO_TICKS(MQTT_FILE_IDLE_SCAN_PERIOD_MS));
+//             continue;
+//         }
+
+//         if (mqtt_file_upload_one(&info))
+//         {
+//             /* Scan for the next pending file after a short pause. */
+//             vTaskDelay(pdMS_TO_TICKS(500));
+
+//             continue;
+//         }
+
+//         (void)ulTaskNotifyTake(
+//             pdTRUE,
+//             pdMS_TO_TICKS(MQTT_FILE_RETRY_PERIOD_MS));
+//     }
+// }
+
 static void mqtt_file_uploader_task(void *argument)
 {
     (void)argument;
+
     bool legacy_migration_done = false;
+    bool mqtt_was_connected = false;
 
     while (true)
     {
         if (!sdcard_is_mounted())
         {
+            mqtt_was_connected = false;
+
             (void)ulTaskNotifyTake(
                 pdTRUE,
                 pdMS_TO_TICKS(MQTT_FILE_IDLE_SCAN_PERIOD_MS));
+
             continue;
         }
 
@@ -677,6 +758,7 @@ static void mqtt_file_uploader_task(void *argument)
             (void)ulTaskNotifyTake(
                 pdTRUE,
                 pdMS_TO_TICKS(MQTT_FILE_RETRY_PERIOD_MS));
+
             continue;
         }
 
@@ -686,27 +768,83 @@ static void mqtt_file_uploader_task(void *argument)
             legacy_migration_done = true;
         }
 
+        /*
+         * MQTT is currently disconnected.
+         */
         if (!mqtt_is_connected())
         {
+            mqtt_was_connected = false;
+
             (void)ulTaskNotifyTake(
                 pdTRUE,
                 pdMS_TO_TICKS(MQTT_FILE_IDLE_SCAN_PERIOD_MS));
+
             continue;
         }
 
+        /*
+         * MQTT has just connected or reconnected.
+         * Wait once before starting file transfer.
+         */
+        if (!mqtt_was_connected)
+        {
+            ESP_LOGI(TAG,
+                     "MQTT connected; waiting %u ms before file upload",
+                     MQTT_FILE_CONNECTION_SETTLE_MS);
+
+            vTaskDelay(
+                pdMS_TO_TICKS(MQTT_FILE_CONNECTION_SETTLE_MS));
+
+            /*
+             * MQTT may have disconnected during the delay.
+             */
+            if (!mqtt_is_connected())
+            {
+                mqtt_was_connected = false;
+                continue;
+            }
+
+            mqtt_was_connected = true;
+
+            ESP_LOGI(TAG,
+                     "MQTT connection stable; uploader can start");
+        }
+
         mqtt_file_info_t info;
+
         if (!mqtt_file_find_next_pending(&info))
         {
             (void)ulTaskNotifyTake(
                 pdTRUE,
                 pdMS_TO_TICKS(MQTT_FILE_IDLE_SCAN_PERIOD_MS));
+
             continue;
         }
 
+        ESP_LOGI(TAG,
+                 "Starting upload: %s, size=%" PRIu32
+                 ", CRC32=%08" PRIX32,
+                 info.name,
+                 info.size,
+                 info.crc32);
+
         if (mqtt_file_upload_one(&info))
         {
-            /* Immediately scan for the next pending file. */
+            /*
+             * Give MQTT, telemetry and Ethernet some time
+             * before scanning and uploading the next file.
+             */
+            vTaskDelay(pdMS_TO_TICKS(500));
             continue;
+        }
+
+        /*
+         * Upload failed. If MQTT disconnected, the next loop
+         * will reset mqtt_was_connected and wait after reconnect.
+         */
+        if (!mqtt_is_connected())
+        {
+            mqtt_was_connected = false;
         }
 
         (void)ulTaskNotifyTake(
@@ -714,6 +852,8 @@ static void mqtt_file_uploader_task(void *argument)
             pdMS_TO_TICKS(MQTT_FILE_RETRY_PERIOD_MS));
     }
 }
+
+
 
 esp_err_t mqtt_file_uploader_start(void)
 {
@@ -755,9 +895,9 @@ esp_err_t mqtt_file_uploader_start(void)
 
     BaseType_t task_result = xTaskCreate(mqtt_file_uploader_task,
                                          "mqtt_file_upload",
-                                         MQTT_FILE_TASK_STACK_BYTES,
+                                         mqtt_file_uploader_task_stack_size_bytes,
                                          NULL,
-                                         4,
+                                         mqtt_file_uploader_task_priority,
                                          &s_uploader_task);
     if (task_result != pdPASS)
     {

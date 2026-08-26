@@ -97,8 +97,7 @@ static TaskHandle_t s_machine_sd_archive_task_handle = NULL;
 static volatile uint32_t s_machine_sd_threshold_kb =
     MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT;
 static uint32_t s_machine_sd_next_segment = 1U;
-static uint8_t s_machine_sd_copy_buffer[
-    MODBUS_LOCAL_BIN_SD_COPY_BUFFER_SIZE];
+static uint8_t s_machine_sd_copy_buffer[MODBUS_LOCAL_BIN_SD_COPY_BUFFER_SIZE];
 static bool s_machine_pending_already_archived = false;
 static bool s_machine_sd_missing_logged = false;
 
@@ -770,13 +769,13 @@ static void modbus_store_local_machine_record_if_changed(const hmi_data_t *snap)
 
     modbus_build_local_machine_record(snap, current);
 
-    // if (s_machine_last_record_valid &&
-    //     memcmp(current + MODBUS_LOCAL_BIN_INPUT_DATA_OFFSET,
-    //            s_machine_last_record + MODBUS_LOCAL_BIN_INPUT_DATA_OFFSET,
-    //            MODBUS_LOCAL_BIN_INPUT_DATA_SIZE) == 0)
-    // {
-    //     return;
-    // }
+    if (s_machine_last_record_valid &&
+        memcmp(current + MODBUS_LOCAL_BIN_INPUT_DATA_OFFSET,
+               s_machine_last_record + MODBUS_LOCAL_BIN_INPUT_DATA_OFFSET,
+               MODBUS_LOCAL_BIN_INPUT_DATA_SIZE) == 0)
+    {
+        return;
+    }
 
     int64_t now_us = esp_timer_get_time();
     if (now_us < s_machine_write_retry_after_us)
@@ -928,7 +927,6 @@ uint16_t modbus_crc16(const uint8_t *buf, uint16_t len)
     }
     return crc;
 }
-
 
 bool modbus_write_and_verify_single_reg(uint8_t slave_id, uint16_t value, uint16_t reg_addr)
 {
@@ -1149,7 +1147,6 @@ bool send_max_pt_to_modbus(uint16_t value)
     return modbus_write_and_verify_single_reg(MODBUS_SLAVE_ID_CONTROL_CARD, value, HOLD_REG_ADDR_CFG_MAX_PT_VAL);
 }
 
-
 bool modbus_read_input_regs_11_22(void)
 {
     const bool dummy_data_enabled = true;
@@ -1218,7 +1215,6 @@ bool modbus_read_input_regs_11_22(void)
             // printf("pwm_freq Value: %hd\n", hmi_data.pwm_freq);
             // printf("pwm_freq Value: %u\n", (unsigned)hmi_data.pwm_freq);
 
-
             /* Reg 21 */
             hmi_data.avg_kw = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
             i += 2;
@@ -1274,12 +1270,12 @@ static void modbus_master_temp_ctrl_step(hmi_data_t *snap)
     measured_temp_c = snap->melter_temp;
     setpoint_c = snap->melter_set_temp;
     power_fb_pct = (float)snap->auto_power_percent_fb;
-    
+
     control_enable =
-    (snap->machine_state_fb == ON) ||
-    (snap->machine_state_fb == TEMP_CUT_ON) ||
-    (snap->machine_state_fb == TEMP_CUT_OFF);
-    
+        (snap->machine_state_fb == ON) ||
+        (snap->machine_state_fb == TEMP_CUT_ON) ||
+        (snap->machine_state_fb == TEMP_CUT_OFF);
+
     // adaptive_temp_pid_step(&g_adapt_pid,
     //                     measured_temp_c,
     //                     setpoint_c,
@@ -1288,11 +1284,11 @@ static void modbus_master_temp_ctrl_step(hmi_data_t *snap)
     //                     dt_s,
     //                     &power_cmd_pct,
     //                     &local_temp_cut_cmd);
-                        
-                        /* Apply controller output into snapshot only */
-                        snap->auto_power_percent = (uint16_t)(power_cmd_pct + 0.5f);
-                        
-                        /*
+
+    /* Apply controller output into snapshot only */
+    snap->auto_power_percent = (uint16_t)(power_cmd_pct + 0.5f);
+
+    /*
      * Local overlay:
      * TEMP_CUT_ON means force machine state to TEMP_CUT_ON and zero power.
      * Otherwise, if machine is running in thermal mode, keep it ON.
@@ -1314,7 +1310,6 @@ static void modbus_master_temp_ctrl_step(hmi_data_t *snap)
 }
 #endif
 
-
 #ifdef _MACHINE_TIMER_CNTRL_
 static void hmi_timer_update_state(bool state)
 {
@@ -1335,22 +1330,22 @@ static void hmi_timer_update_state(bool state)
         /* rising edge only */
         if (!hmi_data.timer_prev_on)
         {
-            hmi_data.timer_deadline_us  = now_us + ((uint64_t)set_total_ms * 1000ULL);
+            hmi_data.timer_deadline_us = now_us + ((uint64_t)set_total_ms * 1000ULL);
             hmi_data.timer_remaining_ms = set_total_ms;
-            hmi_data.timer_sec          = (uint16_t)(set_total_ms / 1000U);
-            hmi_data.timer_ms           = (uint16_t)(set_total_ms % 1000U);
-            hmi_data.timer_running      = true;
-            hmi_data.timer_prev_on      = true;
+            hmi_data.timer_sec = (uint16_t)(set_total_ms / 1000U);
+            hmi_data.timer_ms = (uint16_t)(set_total_ms % 1000U);
+            hmi_data.timer_running = true;
+            hmi_data.timer_prev_on = true;
         }
     }
     else
     {
         hmi_data.timer_remaining_ms = set_total_ms;
-        hmi_data.timer_sec          = (uint16_t)(set_total_ms / 1000U);
-        hmi_data.timer_ms           = (uint16_t)(set_total_ms % 1000U);
-        hmi_data.timer_deadline_us  = 0U;
-        hmi_data.timer_running      = false;
-        hmi_data.timer_prev_on      = false;
+        hmi_data.timer_sec = (uint16_t)(set_total_ms / 1000U);
+        hmi_data.timer_ms = (uint16_t)(set_total_ms % 1000U);
+        hmi_data.timer_deadline_us = 0U;
+        hmi_data.timer_running = false;
+        hmi_data.timer_prev_on = false;
     }
 
     hmi_data_unlock();
@@ -1387,7 +1382,7 @@ static void modbus_send_timer_expired_off_if_needed(void)
         if (hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
         {
             hmi_data.timer_expired_off_pending = false;
-            hmi_data.machine_state             = OFF;
+            hmi_data.machine_state = OFF;
             hmi_data_unlock();
         }
 
@@ -1411,7 +1406,6 @@ bool control_card_poll_once(void)
     if (!hmi_data_get_snapshot(&snap, HMI_DATA_SNAPSHOT_TIMEOUT))
         return false;
 
-
     vTaskDelay(pdMS_TO_TICKS(5));
     if (!modbus_read_input_regs_11_22())
     {
@@ -1432,7 +1426,7 @@ bool control_card_poll_once(void)
         {
             hmi_data.machine_state_fb = snap.machine_state_fb;
 
-            #ifdef _MACHINE_TIMER_CNTRL_
+#ifdef _MACHINE_TIMER_CNTRL_
 
             if (hmi_data.timer_finish_wait_off_ack &&
                 (hmi_data.machine_state_fb == OFF || hmi_data.machine_state_fb == IDLE))
@@ -1441,15 +1435,15 @@ bool control_card_poll_once(void)
                 hmi_data.timer_finish_count++;
             }
 
-            #endif
+#endif
 
             hmi_data_unlock();
         }
 
-        #ifdef _MACHINE_TIMER_CNTRL_
+#ifdef _MACHINE_TIMER_CNTRL_
         bool state = (snap.machine_state_fb == ON || snap.machine_state_fb == TEMP_CUT_OFF);
         hmi_timer_update_state(state);
-        #endif
+#endif
 
         switch (snap.machine_state_fb)
         {
@@ -1492,24 +1486,23 @@ bool control_card_poll_once(void)
             break;
         }
 
-        #ifdef _MACHINE_TEMPERATURE_CNTRL_
+#ifdef _MACHINE_TEMPERATURE_CNTRL_
         ESP_LOGI(TAG_MODBUS_MASTER,
                  "[CONTROL CARD] State sync: fb=%d local=%d temp=%u set=%u",
                  snap.machine_state_fb,
                  snap.machine_state,
                  snap.melter_temp,
                  snap.melter_set_temp);
-        #endif
+#endif
 
-        #ifdef _MACHINE_TIMER_CNTRL_
+#ifdef _MACHINE_TIMER_CNTRL_
         ESP_LOGI(TAG_MODBUS_MASTER,
                  "[CONTROL CARD] State sync: fb=%d local=%d timer=%u job=%u",
                  snap.machine_state_fb,
                  snap.machine_state,
                  snap.timer_ms,
                  snap.job_counter);
-        #endif
-
+#endif
     }
     else
     {
@@ -1575,9 +1568,9 @@ bool control_card_poll_once(void)
         }
         // modbus_check_discrete_input_flag = false;
     }
-    #ifdef _MACHINE_TIMER_CNTRL_
+#ifdef _MACHINE_TIMER_CNTRL_
     modbus_send_timer_expired_off_if_needed();
-    #endif
+#endif
 
     return true;
 }
@@ -1621,7 +1614,7 @@ bool sensor_card_poll_once(void)
 
             switch (i)
             {
-            #ifdef _MACHINE_TEMPERATURE_CNTRL_
+#ifdef _MACHINE_TEMPERATURE_CNTRL_
             case REG_ADDR_TC:
             {
                 melter_temp_sum -= melter_temp_buffer[melter_temp_index];
@@ -1644,7 +1637,7 @@ bool sensor_card_poll_once(void)
                 }
                 break;
             }
-            #endif
+#endif
 
             case REG_ADDR_RTD_1:
                 if (hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
@@ -1801,12 +1794,10 @@ void modbus_master_task(void *arg)
 
         /* 2) Poll control card => refresh hmi_data feedback */
         control_card_poll_once();
-        // vTaskDelay(pdMS_TO_TICKS(5));
         vTaskDelay(pdMS_TO_TICKS(2));
 
         /* 3) Poll sensor card => refresh hmi_data feedback */
         sensor_card_poll_once();
-        // vTaskDelay(pdMS_TO_TICKS(5));
         vTaskDelay(pdMS_TO_TICKS(2));
 
         /* 4) Rebuild unified slave readback banks from latest runtime */
@@ -2020,17 +2011,13 @@ void app_modbus_master(void)
                  UART_PIN_NO_CHANGE);
     uart_set_mode(MODBUS_1_UART_PORT_NUM, UART_MODE_RS485_HALF_DUPLEX);
 
-    
-    #ifdef _MACHINE_TEMPERATURE_CNTRL_
+#ifdef _MACHINE_TEMPERATURE_CNTRL_
     // Read Melter Set Temp from file
     if (file_read_melter_set_temp())
     {
         modbus_write_and_verify_single_reg(MODBUS_SLAVE_ID_SENSOR_CARD, hmi_data.melter_set_temp, TEMP_CNTRL_MULTISPAN_CARD_SET_TEMP_ADDR);
-        // xSemaphoreTake(g_modbus_slave_mutex, portMAX_DELAY);
-        // slave_holding_regs[HOLD_ADDR_BAR_MELTER_TEMP_MAX] = hmi_data.melter_set_temp;
-        // xSemaphoreGive(g_modbus_slave_mutex);
     }
-    #endif
+#endif
 
     // // AUTO TUNE START
     // modbus_write_and_verify_single_reg(MODBUS_SLAVE_ID_SENSOR_CARD, 1, 62);
@@ -2063,9 +2050,9 @@ void app_modbus_master(void)
             BaseType_t archive_task_created = xTaskCreate(
                 modbus_local_bin_sd_archive_task,
                 "bin_sd_archive",
-                4096,
+                modbus_local_bin_sd_archive_task_stack_size_bytes,
                 NULL,
-                3,
+                modbus_local_bin_sd_archive_task_priority,
                 &s_machine_sd_archive_task_handle);
 
             if (archive_task_created != pdPASS)
@@ -2077,5 +2064,5 @@ void app_modbus_master(void)
         }
     }
 
-    xTaskCreate(modbus_master_task, "modbus_master_task", 4096 * 4, NULL, 8, NULL);
+    xTaskCreate(modbus_master_task, "modbus_master_task", modbus_master_task_stack_size_bytes, NULL, modbus_master_task_priority, NULL);
 }

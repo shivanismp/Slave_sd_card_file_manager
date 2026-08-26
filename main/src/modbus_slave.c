@@ -2082,9 +2082,9 @@ void app_modbus_slave(void)
 
     // +2 priority set (Preious - 10) to ensure that the Modbus HMI master task runs before the Modbus slave task.
     xTaskCreate(modbus_hmi_master_task,
-                "delta_hmi_master",
-                4096 * 4,
+                "modbus_hmi_master_task",
+                modbus_hmi_master_task_stack_size_bytes,
                 NULL,
-                8,
+                modbus_hmi_master_task_priority,
                 NULL);
 }

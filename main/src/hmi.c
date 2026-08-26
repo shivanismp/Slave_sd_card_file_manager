@@ -2,11 +2,14 @@
 #include "hmi.h"
 #include "esp_log_tags.h"
 #include "ethernet.h"
+#include "wifi_mgr.h"
 
 #include "esp_log.h"
 
-#define MODBUS_NETWORK_STATE_DISCONNECTED 0U
-#define MODBUS_NETWORK_STATE_FULL         4U
+#define MODBUS_NETWORK_STATE_DISCONNECTED   0U
+#define MODBUS_NETWORK_STATE_FULL           4U
+#define MODBUS_NETWORK_LAN_STATE_CONNECTED  5U
+
 
 static SemaphoreHandle_t g_hmi_data_mutex = NULL;
 
@@ -106,10 +109,36 @@ bool file_read_melter_set_temp(void)
     return true;
 }
 
+// static uint8_t hmi_get_network_state(void)
+// {
+//     if (ethernet_has_ip())
+//         return MODBUS_NETWORK_STATE_FULL;
+
+//     return MODBUS_NETWORK_STATE_DISCONNECTED;
+// }
+
+// static uint8_t hmi_get_network_state(void)
+// {
+//     if (ethernet_has_ip() ||
+//         wifi_mgr_is_connected())
+//     {
+//         return MODBUS_NETWORK_STATE_FULL;
+//     }
+
+//     return MODBUS_NETWORK_STATE_DISCONNECTED;
+// }
+
+
 static uint8_t hmi_get_network_state(void)
 {
     if (ethernet_has_ip())
+    {
+        return MODBUS_NETWORK_LAN_STATE_CONNECTED;
+    }
+    else if(wifi_mgr_is_connected())
+    {
         return MODBUS_NETWORK_STATE_FULL;
+    }
 
     return MODBUS_NETWORK_STATE_DISCONNECTED;
 }
@@ -151,8 +180,8 @@ void app_hmi(void)
 
     xTaskCreate(update_network_icon_task_modbus,
                 "update_network_icon_modbus",
-                4096,
+                update_network_icon_task_modbus_stack_size_bytes,
                 NULL,
-                5,
+                update_network_icon_task_modbus_priority,
                 NULL);
 }

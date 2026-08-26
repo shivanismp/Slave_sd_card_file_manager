@@ -38,6 +38,9 @@ typedef void (*mqtt_data_observer_t)(const char *topic,
                                      int current_data_offset,
                                      void *context);
 
+/* Called from the MQTT event task when the broker connection changes. */
+typedef void (*mqtt_connection_observer_t)(bool connected, void *context);
+
 typedef bool (*mqtt_update_busy_fn_t)(void);
 typedef bool (*mqtt_update_request_fn_t)(const char *json, size_t len);
 
@@ -58,7 +61,24 @@ void mqtt_start_tls(void);
 bool mqtt_is_started(void);
 bool mqtt_is_connected(void);
 void mqtt_force_reconnect(void);
+// bool mqtt_publish_text(const char *topic, const char *payload, int qos, int retain);
+
+
+/*
+ * Configure the broker Last Will before mqtt_start_tls().  The broker publishes
+ * this retained message if the client loses its network connection unexpectedly.
+ */
+bool mqtt_configure_last_will(const char *topic,
+                              const char *payload,
+                              int qos,
+                              int retain);
+
+/* Register one non-blocking application observer for MQTT connect/disconnect. */
+bool mqtt_register_connection_observer(mqtt_connection_observer_t observer,
+                                       void *context);
+
 bool mqtt_publish_text(const char *topic, const char *payload, int qos, int retain);
+
 
 /*
  * Extended publish helpers for workflows that must wait for broker ACK.

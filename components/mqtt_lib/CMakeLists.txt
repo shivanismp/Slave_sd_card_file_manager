@@ -4,4 +4,4 @@ idf_component_register(
 
     PRIV_INCLUDE_DIRS "../../main/inc"          
 
-    REQUIRES mqtt esp_app_format)
+    REQUIRES mqtt esp_app_format ethernet)

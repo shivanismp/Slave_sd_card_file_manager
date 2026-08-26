@@ -279,10 +279,10 @@ static bool make_full_path(fm_storage_t storage, const char *relative,
     return written > 0 && (size_t)written < full_size;
 }
 
-static const char *partition_label(void)
-{
-    return s_partition_label[0] ? s_partition_label : NULL;
-}
+// static const char *partition_label(void)
+// {
+//     return s_partition_label[0] ? s_partition_label : NULL;
+// }
 
 // static esp_err_t filesystem_info(fm_storage_t storage, uint64_t *total,
 //                                  uint64_t *used)

@@ -14,6 +14,8 @@
 
 #include "machine_type_select.h"
 
+#include "task_size_and_priorities.h"
+
 bool file_read_string(const char *path, char *out, size_t out_size);
 bool file_write_string(const char *path, const char *data);
 

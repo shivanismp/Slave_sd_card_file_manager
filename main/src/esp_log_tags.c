@@ -32,12 +32,16 @@ const char TAG_WIFI[] = "WIFI_HTTP";
 void init_log_levels(void)
 {
     esp_log_level_set("*", ESP_LOG_NONE);
+    // esp_log_level_set("MQTT_AWS", ESP_LOG_INFO);
+    // esp_log_level_set("RAM", ESP_LOG_INFO);
+
+
 
     // esp_log_level_set("APP", ESP_LOG_INFO);
 
     // esp_log_level_set(TAG_SDCARD, ESP_LOG_INFO);
 
-    // esp_log_level_set("ETH_W6100", ESP_LOG_INFO);
+    esp_log_level_set("ETH_W6100", ESP_LOG_INFO);
 
     // esp_log_level_set("mbedtls", ESP_LOG_INFO);
 

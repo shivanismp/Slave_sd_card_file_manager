@@ -1,4 +1,6 @@
 #include <esp_app_desc.h>
+#include <strings.h>
+
 #include "global.h"
 #include "file_io.h"
 #include "littlefs.h"
@@ -8,6 +10,12 @@
 #include "modbus_master.h"
 #include "mqtt.h"
 #include "mqtt_file_uploader.h"
+#include "machine_presence.h"
+#include "wifi.h"
+
+#include "wifi_mgr.h"
+#include "web_cfg.h"
+#include "esp_system.h"
 
 #include "ota_mgr.h"
 #include "nextion_update.h"
@@ -27,6 +35,8 @@
 
 #include <driver/gpio.h>
 
+#include "esp_heap_caps.h"
+
 char hmi_head_text[50];
 char machine_model[50];
 char machine_capacity[50];
@@ -38,6 +48,331 @@ static volatile bool mqtt_topics_read_ok = false;
 
 #define EXT_WD_PIN GPIO_NUM_0
 #define EXT_WD_FEED_INTERVAL_MS 500
+#define WIFI_SETUP_PASSWORD "shapet@1995"
+
+typedef enum
+{
+    ACTIVE_NETWORK_NONE = 0,
+    ACTIVE_NETWORK_ETHERNET,
+    ACTIVE_NETWORK_WIFI
+} active_network_t;
+
+static void call_functions_on_network_connect(bool network_changed)
+{
+    static bool sntp_started = false;
+
+    /*
+     * SNTP does not depend on MQTT configuration.
+     * Start it once whenever any network first becomes available.
+     */
+    if (!sntp_started)
+    {
+        ESP_LOGI("APP", "Starting SNTP");
+
+        app_time_init_sntp();
+        sntp_started = true;
+    }
+
+    /*
+     * AWS TLS certificate validation requires valid system time.
+     */
+    if (!app_time_is_valid())
+    {
+        ESP_LOGW("APP", "Waiting for valid system time");
+        return;
+    }
+
+    if (!(mqtt_read_certs_ok &&
+          mqtt_serial_read_ok &&
+          mqtt_aws_endpoint_read_ok &&
+          mqtt_topics_read_ok))
+    {
+        ESP_LOGE("APP", "MQTT configuration is incomplete");
+        return;
+    }
+
+    if (!mqtt_is_started())
+    {
+        ESP_LOGI("APP", "Starting MQTT");
+
+        mqtt_start_tls();
+    }
+    else if (network_changed || !mqtt_is_connected())
+    {
+        /*
+         * A TCP/MQTT connection cannot automatically migrate between
+         * Ethernet and Wi-Fi, so reconnect it after a route change.
+         */
+        ESP_LOGI("APP", "Reconnecting MQTT after network change");
+
+        mqtt_force_reconnect();
+    }
+}
+
+static const char *get_wifi_ap_prefix(void)
+{
+    if (strcasecmp(hmi_head_text,
+                   "Prime-Melt Series") == 0)
+    {
+        return "Prime-Melt";
+    }
+
+    if (strcasecmp(hmi_head_text,
+                   "Industrial") == 0)
+    {
+        return "PowerHeat";
+    }
+
+    ESP_LOGW("NET_MANAGER",
+             "Unknown head text '%s'; using PowerHeat",
+             hmi_head_text);
+
+    return "PowerHeat";
+}
+
+static void network_manager_task(void *p)
+{
+    (void)p;
+
+    active_network_t active_network = ACTIVE_NETWORK_NONE;
+
+    char ap[20];
+    char random_suffix[7] = {0};
+
+    /*
+     * Initialise the Wi-Fi manager.
+     *
+     * wifi_mgr_init() must tolerate ESP_ERR_INVALID_STATE when the
+     * default ESP event loop already exists.
+     */
+    wifi_mgr_init();
+
+    /*
+     * Generate a six-digit random suffix.
+     */
+    for (size_t i = 0; i < 6; i++)
+    {
+        random_suffix[i] =
+            (char)('0' + (esp_random() % 10U));
+    }
+
+    /*
+     * Final SoftAP name example:
+     *
+     */
+    const char *wifi_ap_prefix =
+        get_wifi_ap_prefix();
+
+    snprintf(ap,
+             sizeof(ap),
+             "%s-%s",
+             wifi_ap_prefix,
+             random_suffix);
+
+    ESP_LOGI("NET_MANAGER",
+             "Head text: %s | Generated Wi-Fi SSID: %s",
+             hmi_head_text,
+             ap);
+    /*
+     * Copy the actual ESP32 SoftAP credentials into hmi_data so
+     * that they can be transferred to the Delta HMI.
+     */
+    if (hmi_data_lock(100))
+    {
+        snprintf((char *)hmi_data.wifi_ap_ssid,
+                 sizeof(hmi_data.wifi_ap_ssid),
+                 "%s",
+                 ap);
+
+        snprintf((char *)hmi_data.wifi_ap_pass,
+                 sizeof(hmi_data.wifi_ap_pass),
+                 "%s",
+                 WIFI_SETUP_PASSWORD);
+
+        hmi_data_unlock();
+
+        ESP_LOGI("NET_MANAGER",
+                 "Delta HMI Wi-Fi SSID: %s",
+                 ap);
+
+        ESP_LOGI("NET_MANAGER",
+                 "Delta HMI Wi-Fi password: %s",
+                 WIFI_SETUP_PASSWORD);
+    }
+    else
+    {
+        ESP_LOGW("NET_MANAGER",
+                 "Could not update Wi-Fi credentials in HMI data");
+    }
+
+    /*
+     * Start the ESP32 configuration SoftAP immediately.
+     *
+     * The Wi-Fi manager should configure AP+STA mode so the setup
+     * access point and the router connection can operate together.
+     */
+    wifi_mgr_start_softap(
+        ap,
+        WIFI_SETUP_PASSWORD);
+
+    /*
+     * Start the Wi-Fi configuration webpage.
+     */
+    web_cfg_start();
+
+    ESP_LOGI("NET_MANAGER",
+             "Network manager started");
+
+    ESP_LOGI("NET_MANAGER",
+             "Ethernet has first priority");
+
+    while (true)
+    {
+        const bool ethernet_link =
+            ethernet_is_link_up();
+
+        const bool ethernet_ip =
+            ethernet_link && ethernet_has_ip();
+
+        const bool wifi_ip =
+            wifi_mgr_is_connected();
+
+        active_network_t new_network;
+
+        /*
+         * Select the preferred internet interface.
+         *
+         * Ethernet always has priority whenever it has an IP.
+         */
+        if (ethernet_ip)
+        {
+            new_network = ACTIVE_NETWORK_ETHERNET;
+        }
+        else if (wifi_ip)
+        {
+            new_network = ACTIVE_NETWORK_WIFI;
+        }
+        else
+        {
+            new_network = ACTIVE_NETWORK_NONE;
+        }
+
+        /*
+         * Detect a change between Ethernet, Wi-Fi and disconnected.
+         */
+        if (new_network != active_network)
+        {
+            active_network = new_network;
+
+            switch (active_network)
+            {
+            case ACTIVE_NETWORK_ETHERNET:
+            {
+                ESP_LOGI("NET_MANAGER",
+                         "Active internet: Ethernet");
+
+                /*
+                 * Force MQTT to recreate its socket so that it
+                 * uses the preferred Ethernet route.
+                 */
+                call_functions_on_network_connect(true);
+                break;
+            }
+
+            case ACTIVE_NETWORK_WIFI:
+            {
+                ESP_LOGI("NET_MANAGER",
+                         "Active internet: Wi-Fi");
+
+                /*
+                 * Force MQTT to recreate its socket using Wi-Fi.
+                 */
+                call_functions_on_network_connect(true);
+                break;
+            }
+
+            case ACTIVE_NETWORK_NONE:
+            default:
+            {
+                ESP_LOGW("NET_MANAGER",
+                         "No internet connection available");
+                break;
+            }
+            }
+        }
+
+        /*
+         * Ethernet is fully connected.
+         *
+         * Do not attempt a new router Wi-Fi connection. The
+         * PowerHeat SoftAP remains available for configuration.
+         */
+        if (ethernet_ip)
+        {
+            call_functions_on_network_connect(false);
+
+            vTaskDelay(pdMS_TO_TICKS(500));
+            continue;
+        }
+
+        /*
+         * Ethernet is unavailable, but station Wi-Fi is already
+         * connected to a router.
+         */
+        if (wifi_ip)
+        {
+            call_functions_on_network_connect(false);
+
+            vTaskDelay(pdMS_TO_TICKS(500));
+            continue;
+        }
+
+        /*
+         * Ethernet is unavailable and a Wi-Fi station connection
+         * attempt is already running.
+         */
+        if (wifi_mgr_is_connecting())
+        {
+            ESP_LOGI("NET_MANAGER",
+                     "Wi-Fi connection already in progress");
+
+            vTaskDelay(pdMS_TO_TICKS(500));
+            continue;
+        }
+
+        /*
+         * Ethernet has lost its link/IP and router Wi-Fi is not
+         * connected. Immediately try the best saved network.
+         */
+        ESP_LOGW("NET_MANAGER",
+                 "Ethernet unavailable; connecting saved Wi-Fi");
+
+        bool connected =
+            wifi_mgr_try_connect_best_known(12000);
+
+        if (connected)
+        {
+            ESP_LOGI("NET_MANAGER",
+                     "Wi-Fi fallback connected");
+
+            /*
+             * On the next iteration, wifi_mgr_is_connected() will
+             * select Wi-Fi and reconnect MQTT.
+             */
+            vTaskDelay(pdMS_TO_TICKS(100));
+            continue;
+        }
+
+        /*
+         * The PowerHeat SoftAP and configuration webpage are already
+         * running, so the user can configure another router network.
+         */
+        ESP_LOGW("NET_MANAGER",
+                 "No saved Wi-Fi network could be connected");
+
+        vTaskDelay(pdMS_TO_TICKS(3000));
+    }
+}
 
 static void init_external_watchdog(void)
 {
@@ -53,21 +388,6 @@ static void init_external_watchdog(void)
 
     /* Establish a known initial state */
     ESP_ERROR_CHECK(gpio_set_level(EXT_WD_PIN, 0));
-}
-
-static bool system_time_is_valid(void)
-{
-    time_t now = 0;
-    struct tm time_info = {0};
-
-    time(&now);
-    localtime_r(&now, &time_info);
-
-    /*
-     * tm_year counts from 1900.
-     * Accept any realistic year from 2024 onward.
-     */
-    return (time_info.tm_year + 1900) >= 2024;
 }
 
 static void load_or_restore_machine_info(void)
@@ -155,7 +475,6 @@ static void hmi_init_info(void)
 
     strcpy((char *)hmi_data.iot_id, (const char *)mqtt_serial_no);
     strcpy((char *)hmi_data.version, (const char *)app->version);
-
 }
 
 static void sd_card_init(void)
@@ -256,7 +575,7 @@ static void ethernet_services_task(void *arg)
         /*
          * Do not start AWS TLS until the clock is valid.
          */
-        if (!system_time_is_valid())
+        if (!app_time_is_valid())
         {
             ESP_LOGW("APP", "Waiting for valid system time before MQTT TLS");
 
@@ -294,19 +613,55 @@ static void wdt_task(void *arg)
     }
 }
 
+static void print_ram_usage(void)
+{
+    multi_heap_info_t info;
+
+    /*
+     * Internal byte-addressable RAM used by malloc(), MQTT,
+     * FreeRTOS tasks, TLS buffers, file uploader, etc.
+     */
+    heap_caps_get_info(
+        &info,
+        MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
+
+    size_t total_ram =
+        info.total_allocated_bytes +
+        info.total_free_bytes;
+
+    float used_percent = 0.0f;
+
+    if (total_ram > 0)
+    {
+        used_percent =
+            ((float)info.total_allocated_bytes * 100.0f) /
+            (float)total_ram;
+    }
+
+    ESP_LOGI("RAM",
+             "Total=%u bytes | Used=%u bytes (%.1f%%) | "
+             "Free=%u bytes | Minimum Free=%u bytes | "
+             "Largest Block=%u bytes",
+             (unsigned int)total_ram,
+             (unsigned int)info.total_allocated_bytes,
+             used_percent,
+             (unsigned int)info.total_free_bytes,
+             (unsigned int)info.minimum_free_bytes,
+             (unsigned int)info.largest_free_block);
+}
 
 void app_main(void)
 {
     init_log_levels();
 
-    html_file_manager_enabled = false;
+    html_file_manager_enabled = true;
 
     BaseType_t result = xTaskCreate(
         wdt_task,
         "external_wdt",
-        2048,
+        wdt_task_stack_size_bytes,
         NULL,
-        5,
+        wdt_task_priority,
         NULL);
 
     if (result != pdPASS)
@@ -388,13 +743,41 @@ void app_main(void)
         }
     }
 
-    ESP_LOGI("APP", "7. OTA first-boot validation");
-    ota_mark_running_app_valid_if_needed();
-    mqtt_register_update_handlers(
-        ota_is_in_progress,
-        ota_request_from_json,
-        nextion_update_is_in_progress,
-        nextion_update_request_from_json);
+    // ESP_LOGI("APP", "7. OTA first-boot validation");
+    // ota_mark_running_app_valid_if_needed();
+    // mqtt_register_update_handlers(
+    //     ota_is_in_progress,
+    //     ota_request_from_json,
+    //     nextion_update_is_in_progress,
+    //     nextion_update_request_from_json);
+
+    // Notify the machine presence (ONLINE / OFFLINE) service to the backend if the serial number is valid.
+    if (mqtt_serial_read_ok)
+    {
+        esp_err_t presence_err = machine_presence_init("MACHINE_STATUS");
+        if (presence_err != ESP_OK)
+        {
+            ESP_LOGE("APP", "Machine presence setup failed: %s",
+                     esp_err_to_name(presence_err));
+        }
+    }
+
+    /*
+     * Configure the retained ACTIVE message and the MQTT INACTIVE Last Will.
+     * This must happen before start_network_services() can call mqtt_start_tls().
+     */
+    // if (mqtt_serial_read_ok)
+    // {
+    //     if (!machine_status_init(mqtt_serial_no))
+    //     {
+    //         ESP_LOGE("APP", "Machine status initialization failed");
+    //     }
+    //     else
+    //     {
+    //         ESP_LOGI("APP", "Machine status initialized: %s",
+    //                  machine_status_get_topic());
+    //     }
+    // }
 
     mqtt_modbus_slave.modbus_slave_process_frame = modbus_slave_process_frame;
 
@@ -423,9 +806,9 @@ void app_main(void)
 
         xTaskCreate(event_log_task,
                     "event_log_task",
-                    4096,
+                    event_log_task_stack_size_bytes,
                     NULL,
-                    4,
+                    event_log_task_priority,
                     NULL);
 
         event_log_note_text("APP", "INFO", "Event logger started");
@@ -457,52 +840,44 @@ void app_main(void)
     }
 
     esp_err_t eth_err = ethernet_init();
+
     if (eth_err != ESP_OK)
     {
-        ESP_LOGE("ETH_W6100", "Ethernet init failed: %s", esp_err_to_name(eth_err));
+        ESP_LOGE("ETH_W6100",
+                 "Ethernet init failed: %s",
+                 esp_err_to_name(eth_err));
+
+        /*
+         * Continue running. The network manager will attempt Wi-Fi.
+         */
     }
     else
     {
-        /* ... after ethernet_init() succeeds ... */
-        esp_err_t net_err = ethernet_wait_for_ip(30000);
+        ESP_LOGI("ETH_W6100",
+                 "Ethernet driver initialized");
+    }
 
-        if (net_err == ESP_ERR_TIMEOUT)
-        {
-            ESP_LOGW("APP", "No DHCP lease after 30 seconds");
-            ethernet_log_status();
-            ethernet_log_dhcp_status();
+    /*
+     * Created this task—even when Ethernet initialization fails
+     * or Ethernet does not receive an IP.
+     */
+    BaseType_t network_task_result = xTaskCreate(
+        network_manager_task,
+        "network_manager",
+        network_manager_task_stack_size_bytes,
+        NULL,
+        network_manager_task_priority,
+        NULL);
 
-            /* One controlled retry. */
-            if (ethernet_restart_dhcp() == ESP_OK)
-            {
-                net_err = ethernet_wait_for_ip(30000);
-            }
-        }
-
-        if (net_err == ESP_OK)
-        {
-            ethernet_log_status();
-            BaseType_t task_created = xTaskCreate(
-                ethernet_services_task,
-                "eth_services",
-                6144,
-                NULL,
-                3,
-                NULL);
-
-            if (task_created != pdPASS)
-            {
-                ESP_LOGE("APP", "Failed to create Ethernet services task");
-            }
-            else
-            {
-                ESP_LOGI("APP", "Ethernet services task created");
-            }
-        }
+    if (network_task_result != pdPASS)
+    {
+        ESP_LOGE("APP",
+                 "Failed to create network manager task");
     }
 
     while (1)
     {
-        vTaskDelay(pdMS_TO_TICKS(10));
+        print_ram_usage();
+        vTaskDelay(pdMS_TO_TICKS(1000));
     }
 }

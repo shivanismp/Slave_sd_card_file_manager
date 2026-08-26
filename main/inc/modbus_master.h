@@ -10,6 +10,8 @@
 #include <esp_timer.h>
 
 #include "hmi.h"
+// #define MANAGE_MODBUS_PRIORITY 8
+
 
 // UART and Modbus config
 #define MODBUS_1_UART_PORT_NUM UART_NUM_1
@@ -43,7 +45,7 @@
  * One KB is 1024 bytes. The runtime setter can change this value at any time.
  */
 // #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  10U
-#define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  5U
+#define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  10U
 #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_MIN      1U
 #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_MAX      4096U
 #define MODBUS_LOCAL_BIN_SD_CHECK_PERIOD_MS       1000U
@@ -211,6 +213,7 @@
 // --------------------------------------------------
 
 extern volatile bool modbus_busy_flag;
+
 extern volatile bool modbus_check_discrete_input_flag;
 
 // /**
