@@ -1,4 +1,4 @@
-# Install script for directory: D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main
+# Install script for directory: D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

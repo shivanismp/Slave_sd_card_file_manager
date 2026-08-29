@@ -39,11 +39,11 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/bootloader/esp-idf/esp_hw_support/port/esp32c6/cmake_install.cmake")
+  include("D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/bootloader/esp-idf/esp_hw_support/port/esp32c6/cmake_install.cmake")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/bootloader/esp-idf/esp_hw_support/lowpower/cmake_install.cmake")
+  include("D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/bootloader/esp-idf/esp_hw_support/lowpower/cmake_install.cmake")
 endif()
 

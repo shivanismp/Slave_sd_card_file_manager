@@ -9,6 +9,9 @@
 #define HMI_DATA_LOCK_SHORT_TIMEOUT   1
 #define HMI_DATA_SNAPSHOT_TIMEOUT     1
 
+/* Raw input registers 0..10 read from the control card. */
+#define HMI_CONTROL_CARD_RAW_INPUT_COUNT  11U
+
 typedef enum
 {
     IDLE = 0,
@@ -61,6 +64,13 @@ typedef struct
     volatile uint16_t avg_a;
     volatile uint16_t avg_kw;
     volatile uint16_t avg_pf;
+
+    /*
+     * Exact control-card FC04 values for input registers 0..10.
+     * These are exposed by the MQTT virtual Modbus slave at addresses 26..36.
+     */
+    volatile uint16_t
+        control_card_raw_input[HMI_CONTROL_CARD_RAW_INPUT_COUNT];
 
     uint16_t wifi_rssi_state;
 

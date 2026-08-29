@@ -2,12 +2,12 @@
     "version":            "1.2",
     "project_name":       "hmi_file_manager_integrated_MAIN_WORKING",
     "project_version":    "3.0.0",
-    "project_path":       "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING",
+    "project_path":       "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy",
     "idf_path":           "C:/esp/v5.5.4/esp-idf",
-    "build_dir":          "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build",
-    "config_file":        "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/sdkconfig",
+    "build_dir":          "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build",
+    "config_file":        "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/sdkconfig",
     "config_defaults":    "",
-    "bootloader_elf":     "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/bootloader/bootloader.elf",
+    "bootloader_elf":     "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/bootloader/bootloader.elf",
     "app_elf":            "hmi_file_manager_integrated_MAIN_WORKING.elf",
     "app_bin":            "hmi_file_manager_integrated_MAIN_WORKING.bin",
     "build_type":         "flash_app",
@@ -21,12 +21,12 @@
     "monitor_toolprefix": "riscv32-esp-elf-",
     "c_compiler":         "C:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20260121/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe",
     "config_environment" : {
-        "COMPONENT_KCONFIGS" : "C:/esp/v5.5.4/esp-idf/components/app_trace/Kconfig;C:/esp/v5.5.4/esp-idf/components/bt/Kconfig;C:/esp/v5.5.4/esp-idf/components/console/Kconfig;C:/esp/v5.5.4/esp-idf/components/driver/Kconfig;C:/esp/v5.5.4/esp-idf/components/efuse/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp-tls/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_adc/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_coex/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_common/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_ana_cmpr/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_bitscrambler/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_cam/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_dac/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_isp/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_jpeg/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_ledc/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_pcnt/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_sdm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_spi/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_touch_sens/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_tsens/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_twai/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_uart/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_eth/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_event/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_hid/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_http_client/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_http_server/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_https_ota/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_https_server/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_hw_support/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_lcd/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_mm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_netif/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_partition/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_phy/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_pm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_psram/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_ringbuf/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_rom/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_security/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_system/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_timer/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_wifi/Kconfig;C:/esp/v5.5.4/esp-idf/components/espcoredump/Kconfig;C:/esp/v5.5.4/esp-idf/components/fatfs/Kconfig;C:/esp/v5.5.4/esp-idf/components/freertos/Kconfig;C:/esp/v5.5.4/esp-idf/components/hal/Kconfig;C:/esp/v5.5.4/esp-idf/components/heap/Kconfig;C:/esp/v5.5.4/esp-idf/components/ieee802154/Kconfig;C:/esp/v5.5.4/esp-idf/components/log/Kconfig;C:/esp/v5.5.4/esp-idf/components/lwip/Kconfig;C:/esp/v5.5.4/esp-idf/components/mbedtls/Kconfig;C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/Kconfig;C:/esp/v5.5.4/esp-idf/components/newlib/Kconfig;C:/esp/v5.5.4/esp-idf/components/nvs_flash/Kconfig;C:/esp/v5.5.4/esp-idf/components/nvs_sec_provider/Kconfig;C:/esp/v5.5.4/esp-idf/components/openthread/Kconfig;C:/esp/v5.5.4/esp-idf/components/protocomm/Kconfig;C:/esp/v5.5.4/esp-idf/components/pthread/Kconfig;C:/esp/v5.5.4/esp-idf/components/soc/Kconfig;C:/esp/v5.5.4/esp-idf/components/spi_flash/Kconfig;C:/esp/v5.5.4/esp-idf/components/spiffs/Kconfig;C:/esp/v5.5.4/esp-idf/components/tcp_transport/Kconfig;C:/esp/v5.5.4/esp-idf/components/ulp/Kconfig;C:/esp/v5.5.4/esp-idf/components/unity/Kconfig;C:/esp/v5.5.4/esp-idf/components/usb/Kconfig;C:/esp/v5.5.4/esp-idf/components/vfs/Kconfig;C:/esp/v5.5.4/esp-idf/components/wear_levelling/Kconfig;C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/Kconfig;D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs/Kconfig",
+        "COMPONENT_KCONFIGS" : "C:/esp/v5.5.4/esp-idf/components/app_trace/Kconfig;C:/esp/v5.5.4/esp-idf/components/bt/Kconfig;C:/esp/v5.5.4/esp-idf/components/console/Kconfig;C:/esp/v5.5.4/esp-idf/components/driver/Kconfig;C:/esp/v5.5.4/esp-idf/components/efuse/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp-tls/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_adc/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_coex/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_common/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_ana_cmpr/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_bitscrambler/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_cam/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_dac/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_isp/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_jpeg/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_ledc/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_pcnt/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_sdm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_spi/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_touch_sens/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_tsens/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_twai/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_uart/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_eth/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_event/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_hid/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_http_client/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_http_server/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_https_ota/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_https_server/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_hw_support/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_lcd/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_mm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_netif/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_partition/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_phy/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_pm/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_psram/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_ringbuf/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_rom/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_security/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_system/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_timer/Kconfig;C:/esp/v5.5.4/esp-idf/components/esp_wifi/Kconfig;C:/esp/v5.5.4/esp-idf/components/espcoredump/Kconfig;C:/esp/v5.5.4/esp-idf/components/fatfs/Kconfig;C:/esp/v5.5.4/esp-idf/components/freertos/Kconfig;C:/esp/v5.5.4/esp-idf/components/hal/Kconfig;C:/esp/v5.5.4/esp-idf/components/heap/Kconfig;C:/esp/v5.5.4/esp-idf/components/ieee802154/Kconfig;C:/esp/v5.5.4/esp-idf/components/log/Kconfig;C:/esp/v5.5.4/esp-idf/components/lwip/Kconfig;C:/esp/v5.5.4/esp-idf/components/mbedtls/Kconfig;C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/Kconfig;C:/esp/v5.5.4/esp-idf/components/newlib/Kconfig;C:/esp/v5.5.4/esp-idf/components/nvs_flash/Kconfig;C:/esp/v5.5.4/esp-idf/components/nvs_sec_provider/Kconfig;C:/esp/v5.5.4/esp-idf/components/openthread/Kconfig;C:/esp/v5.5.4/esp-idf/components/protocomm/Kconfig;C:/esp/v5.5.4/esp-idf/components/pthread/Kconfig;C:/esp/v5.5.4/esp-idf/components/soc/Kconfig;C:/esp/v5.5.4/esp-idf/components/spi_flash/Kconfig;C:/esp/v5.5.4/esp-idf/components/spiffs/Kconfig;C:/esp/v5.5.4/esp-idf/components/tcp_transport/Kconfig;C:/esp/v5.5.4/esp-idf/components/ulp/Kconfig;C:/esp/v5.5.4/esp-idf/components/unity/Kconfig;C:/esp/v5.5.4/esp-idf/components/usb/Kconfig;C:/esp/v5.5.4/esp-idf/components/vfs/Kconfig;C:/esp/v5.5.4/esp-idf/components/wear_levelling/Kconfig;C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/Kconfig;D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs/Kconfig",
         "COMPONENT_KCONFIGS_PROJBUILD" : "C:/esp/v5.5.4/esp-idf/components/bootloader/Kconfig.projbuild;C:/esp/v5.5.4/esp-idf/components/esp_app_format/Kconfig.projbuild;C:/esp/v5.5.4/esp-idf/components/esp_rom/Kconfig.projbuild;C:/esp/v5.5.4/esp-idf/components/esp_tee/Kconfig.projbuild;C:/esp/v5.5.4/esp-idf/components/esptool_py/Kconfig.projbuild;C:/esp/v5.5.4/esp-idf/components/partition_table/Kconfig.projbuild"
     },
     "common_component_reqs": [ "cxx", "newlib", "freertos", "esp_hw_support", "heap", "log", "soc", "hal", "esp_rom", "esp_common", "esp_system", "riscv" ],
     "build_components" : [ "app_trace", "app_update", "bootloader", "bootloader_support", "bt", "cmock", "console", "cxx", "driver", "efuse", "esp-tls", "esp_adc", "esp_app_format", "esp_bootloader_format", "esp_coex", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_cam", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_isp", "esp_driver_jpeg", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_ppa", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_touch_sens", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_eth", "esp_event", "esp_gdbstub", "esp_hal_ieee802154", "esp_hid", "esp_http_client", "esp_http_server", "esp_https_ota", "esp_https_server", "esp_hw_support", "esp_lcd", "esp_local_ctrl", "esp_mm", "esp_netif", "esp_netif_stack", "esp_partition", "esp_phy", "esp_pm", "esp_psram", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_tee", "esp_timer", "esp_vfs_console", "esp_wifi", "espcoredump", "espressif__w6100", "espressif__wiznet_common", "esptool_py", "ethernet", "fatfs", "file_manager", "freertos", "hal", "heap", "hmi_runtime", "http_parser", "idf_test", "ieee802154", "joltwallet__littlefs", "json", "log", "lwip", "machine_presence", "main", "mbedtls", "mqtt", "mqtt_lib", "newlib", "nvs_flash", "nvs_sec_provider", "openthread", "ota_mgr", "partition_table", "protobuf-c", "protocomm", "pthread", "riscv", "rt", "sdcard", "sdmmc", "soc", "spi_flash", "spiffs", "tcp_transport", "ulp", "unity", "usb", "vfs", "wear_levelling", "wifi_lib", "wifi_provisioning", "wpa_supplicant", "" ],
-    "build_component_paths" : [ "C:/esp/v5.5.4/esp-idf/components/app_trace", "C:/esp/v5.5.4/esp-idf/components/app_update", "C:/esp/v5.5.4/esp-idf/components/bootloader", "C:/esp/v5.5.4/esp-idf/components/bootloader_support", "C:/esp/v5.5.4/esp-idf/components/bt", "C:/esp/v5.5.4/esp-idf/components/cmock", "C:/esp/v5.5.4/esp-idf/components/console", "C:/esp/v5.5.4/esp-idf/components/cxx", "C:/esp/v5.5.4/esp-idf/components/driver", "C:/esp/v5.5.4/esp-idf/components/efuse", "C:/esp/v5.5.4/esp-idf/components/esp-tls", "C:/esp/v5.5.4/esp-idf/components/esp_adc", "C:/esp/v5.5.4/esp-idf/components/esp_app_format", "C:/esp/v5.5.4/esp-idf/components/esp_bootloader_format", "C:/esp/v5.5.4/esp-idf/components/esp_coex", "C:/esp/v5.5.4/esp-idf/components/esp_common", "C:/esp/v5.5.4/esp-idf/components/esp_driver_ana_cmpr", "C:/esp/v5.5.4/esp-idf/components/esp_driver_bitscrambler", "C:/esp/v5.5.4/esp-idf/components/esp_driver_cam", "C:/esp/v5.5.4/esp-idf/components/esp_driver_dac", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s", "C:/esp/v5.5.4/esp-idf/components/esp_driver_isp", "C:/esp/v5.5.4/esp-idf/components/esp_driver_jpeg", "C:/esp/v5.5.4/esp-idf/components/esp_driver_ledc", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm", "C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio", "C:/esp/v5.5.4/esp-idf/components/esp_driver_pcnt", "C:/esp/v5.5.4/esp-idf/components/esp_driver_ppa", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdio", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdm", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdmmc", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdspi", "C:/esp/v5.5.4/esp-idf/components/esp_driver_spi", "C:/esp/v5.5.4/esp-idf/components/esp_driver_touch_sens", "C:/esp/v5.5.4/esp-idf/components/esp_driver_tsens", "C:/esp/v5.5.4/esp-idf/components/esp_driver_twai", "C:/esp/v5.5.4/esp-idf/components/esp_driver_uart", "C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag", "C:/esp/v5.5.4/esp-idf/components/esp_eth", "C:/esp/v5.5.4/esp-idf/components/esp_event", "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub", "C:/esp/v5.5.4/esp-idf/components/esp_hal_ieee802154", "C:/esp/v5.5.4/esp-idf/components/esp_hid", "C:/esp/v5.5.4/esp-idf/components/esp_http_client", "C:/esp/v5.5.4/esp-idf/components/esp_http_server", "C:/esp/v5.5.4/esp-idf/components/esp_https_ota", "C:/esp/v5.5.4/esp-idf/components/esp_https_server", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support", "C:/esp/v5.5.4/esp-idf/components/esp_lcd", "C:/esp/v5.5.4/esp-idf/components/esp_local_ctrl", "C:/esp/v5.5.4/esp-idf/components/esp_mm", "C:/esp/v5.5.4/esp-idf/components/esp_netif", "C:/esp/v5.5.4/esp-idf/components/esp_netif_stack", "C:/esp/v5.5.4/esp-idf/components/esp_partition", "C:/esp/v5.5.4/esp-idf/components/esp_phy", "C:/esp/v5.5.4/esp-idf/components/esp_pm", "C:/esp/v5.5.4/esp-idf/components/esp_psram", "C:/esp/v5.5.4/esp-idf/components/esp_ringbuf", "C:/esp/v5.5.4/esp-idf/components/esp_rom", "C:/esp/v5.5.4/esp-idf/components/esp_security", "C:/esp/v5.5.4/esp-idf/components/esp_system", "C:/esp/v5.5.4/esp-idf/components/esp_tee", "C:/esp/v5.5.4/esp-idf/components/esp_timer", "C:/esp/v5.5.4/esp-idf/components/esp_vfs_console", "C:/esp/v5.5.4/esp-idf/components/esp_wifi", "C:/esp/v5.5.4/esp-idf/components/espcoredump", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__w6100", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__wiznet_common", "C:/esp/v5.5.4/esp-idf/components/esptool_py", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ethernet", "C:/esp/v5.5.4/esp-idf/components/fatfs", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/file_manager", "C:/esp/v5.5.4/esp-idf/components/freertos", "C:/esp/v5.5.4/esp-idf/components/hal", "C:/esp/v5.5.4/esp-idf/components/heap", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/hmi_runtime", "C:/esp/v5.5.4/esp-idf/components/http_parser", "C:/esp/v5.5.4/esp-idf/components/idf_test", "C:/esp/v5.5.4/esp-idf/components/ieee802154", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs", "C:/esp/v5.5.4/esp-idf/components/json", "C:/esp/v5.5.4/esp-idf/components/log", "C:/esp/v5.5.4/esp-idf/components/lwip", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/machine_presence", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main", "C:/esp/v5.5.4/esp-idf/components/mbedtls", "C:/esp/v5.5.4/esp-idf/components/mqtt", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/mqtt_lib", "C:/esp/v5.5.4/esp-idf/components/newlib", "C:/esp/v5.5.4/esp-idf/components/nvs_flash", "C:/esp/v5.5.4/esp-idf/components/nvs_sec_provider", "C:/esp/v5.5.4/esp-idf/components/openthread", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ota_mgr", "C:/esp/v5.5.4/esp-idf/components/partition_table", "C:/esp/v5.5.4/esp-idf/components/protobuf-c", "C:/esp/v5.5.4/esp-idf/components/protocomm", "C:/esp/v5.5.4/esp-idf/components/pthread", "C:/esp/v5.5.4/esp-idf/components/riscv", "C:/esp/v5.5.4/esp-idf/components/rt", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/sdcard", "C:/esp/v5.5.4/esp-idf/components/sdmmc", "C:/esp/v5.5.4/esp-idf/components/soc", "C:/esp/v5.5.4/esp-idf/components/spi_flash", "C:/esp/v5.5.4/esp-idf/components/spiffs", "C:/esp/v5.5.4/esp-idf/components/tcp_transport", "C:/esp/v5.5.4/esp-idf/components/ulp", "C:/esp/v5.5.4/esp-idf/components/unity", "C:/esp/v5.5.4/esp-idf/components/usb", "C:/esp/v5.5.4/esp-idf/components/vfs", "C:/esp/v5.5.4/esp-idf/components/wear_levelling", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/wifi_lib", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant", "" ],
+    "build_component_paths" : [ "C:/esp/v5.5.4/esp-idf/components/app_trace", "C:/esp/v5.5.4/esp-idf/components/app_update", "C:/esp/v5.5.4/esp-idf/components/bootloader", "C:/esp/v5.5.4/esp-idf/components/bootloader_support", "C:/esp/v5.5.4/esp-idf/components/bt", "C:/esp/v5.5.4/esp-idf/components/cmock", "C:/esp/v5.5.4/esp-idf/components/console", "C:/esp/v5.5.4/esp-idf/components/cxx", "C:/esp/v5.5.4/esp-idf/components/driver", "C:/esp/v5.5.4/esp-idf/components/efuse", "C:/esp/v5.5.4/esp-idf/components/esp-tls", "C:/esp/v5.5.4/esp-idf/components/esp_adc", "C:/esp/v5.5.4/esp-idf/components/esp_app_format", "C:/esp/v5.5.4/esp-idf/components/esp_bootloader_format", "C:/esp/v5.5.4/esp-idf/components/esp_coex", "C:/esp/v5.5.4/esp-idf/components/esp_common", "C:/esp/v5.5.4/esp-idf/components/esp_driver_ana_cmpr", "C:/esp/v5.5.4/esp-idf/components/esp_driver_bitscrambler", "C:/esp/v5.5.4/esp-idf/components/esp_driver_cam", "C:/esp/v5.5.4/esp-idf/components/esp_driver_dac", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s", "C:/esp/v5.5.4/esp-idf/components/esp_driver_isp", "C:/esp/v5.5.4/esp-idf/components/esp_driver_jpeg", "C:/esp/v5.5.4/esp-idf/components/esp_driver_ledc", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm", "C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio", "C:/esp/v5.5.4/esp-idf/components/esp_driver_pcnt", "C:/esp/v5.5.4/esp-idf/components/esp_driver_ppa", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdio", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdm", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdmmc", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdspi", "C:/esp/v5.5.4/esp-idf/components/esp_driver_spi", "C:/esp/v5.5.4/esp-idf/components/esp_driver_touch_sens", "C:/esp/v5.5.4/esp-idf/components/esp_driver_tsens", "C:/esp/v5.5.4/esp-idf/components/esp_driver_twai", "C:/esp/v5.5.4/esp-idf/components/esp_driver_uart", "C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag", "C:/esp/v5.5.4/esp-idf/components/esp_eth", "C:/esp/v5.5.4/esp-idf/components/esp_event", "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub", "C:/esp/v5.5.4/esp-idf/components/esp_hal_ieee802154", "C:/esp/v5.5.4/esp-idf/components/esp_hid", "C:/esp/v5.5.4/esp-idf/components/esp_http_client", "C:/esp/v5.5.4/esp-idf/components/esp_http_server", "C:/esp/v5.5.4/esp-idf/components/esp_https_ota", "C:/esp/v5.5.4/esp-idf/components/esp_https_server", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support", "C:/esp/v5.5.4/esp-idf/components/esp_lcd", "C:/esp/v5.5.4/esp-idf/components/esp_local_ctrl", "C:/esp/v5.5.4/esp-idf/components/esp_mm", "C:/esp/v5.5.4/esp-idf/components/esp_netif", "C:/esp/v5.5.4/esp-idf/components/esp_netif_stack", "C:/esp/v5.5.4/esp-idf/components/esp_partition", "C:/esp/v5.5.4/esp-idf/components/esp_phy", "C:/esp/v5.5.4/esp-idf/components/esp_pm", "C:/esp/v5.5.4/esp-idf/components/esp_psram", "C:/esp/v5.5.4/esp-idf/components/esp_ringbuf", "C:/esp/v5.5.4/esp-idf/components/esp_rom", "C:/esp/v5.5.4/esp-idf/components/esp_security", "C:/esp/v5.5.4/esp-idf/components/esp_system", "C:/esp/v5.5.4/esp-idf/components/esp_tee", "C:/esp/v5.5.4/esp-idf/components/esp_timer", "C:/esp/v5.5.4/esp-idf/components/esp_vfs_console", "C:/esp/v5.5.4/esp-idf/components/esp_wifi", "C:/esp/v5.5.4/esp-idf/components/espcoredump", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__w6100", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__wiznet_common", "C:/esp/v5.5.4/esp-idf/components/esptool_py", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ethernet", "C:/esp/v5.5.4/esp-idf/components/fatfs", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/file_manager", "C:/esp/v5.5.4/esp-idf/components/freertos", "C:/esp/v5.5.4/esp-idf/components/hal", "C:/esp/v5.5.4/esp-idf/components/heap", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/hmi_runtime", "C:/esp/v5.5.4/esp-idf/components/http_parser", "C:/esp/v5.5.4/esp-idf/components/idf_test", "C:/esp/v5.5.4/esp-idf/components/ieee802154", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs", "C:/esp/v5.5.4/esp-idf/components/json", "C:/esp/v5.5.4/esp-idf/components/log", "C:/esp/v5.5.4/esp-idf/components/lwip", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/machine_presence", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main", "C:/esp/v5.5.4/esp-idf/components/mbedtls", "C:/esp/v5.5.4/esp-idf/components/mqtt", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/mqtt_lib", "C:/esp/v5.5.4/esp-idf/components/newlib", "C:/esp/v5.5.4/esp-idf/components/nvs_flash", "C:/esp/v5.5.4/esp-idf/components/nvs_sec_provider", "C:/esp/v5.5.4/esp-idf/components/openthread", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ota_mgr", "C:/esp/v5.5.4/esp-idf/components/partition_table", "C:/esp/v5.5.4/esp-idf/components/protobuf-c", "C:/esp/v5.5.4/esp-idf/components/protocomm", "C:/esp/v5.5.4/esp-idf/components/pthread", "C:/esp/v5.5.4/esp-idf/components/riscv", "C:/esp/v5.5.4/esp-idf/components/rt", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/sdcard", "C:/esp/v5.5.4/esp-idf/components/sdmmc", "C:/esp/v5.5.4/esp-idf/components/soc", "C:/esp/v5.5.4/esp-idf/components/spi_flash", "C:/esp/v5.5.4/esp-idf/components/spiffs", "C:/esp/v5.5.4/esp-idf/components/tcp_transport", "C:/esp/v5.5.4/esp-idf/components/ulp", "C:/esp/v5.5.4/esp-idf/components/unity", "C:/esp/v5.5.4/esp-idf/components/usb", "C:/esp/v5.5.4/esp-idf/components/vfs", "C:/esp/v5.5.4/esp-idf/components/wear_levelling", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/wifi_lib", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant", "" ],
     "build_component_info" : {
         "app_trace": {
             "alias": "idf::app_trace",
@@ -39,7 +39,7 @@
             "priv_reqs": [ "esp_driver_gptimer", "esp_driver_gpio", "esp_driver_uart" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/app_trace/libapp_trace.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/app_trace/libapp_trace.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/app_trace/app_trace.c", "C:/esp/v5.5.4/esp-idf/components/app_trace/app_trace_util.c", "C:/esp/v5.5.4/esp-idf/components/app_trace/host_file_io.c", "C:/esp/v5.5.4/esp-idf/components/app_trace/port/port_uart.c" ],
             "include_dirs": [ "include" ]
         },
@@ -54,7 +54,7 @@
             "priv_reqs": [ "esptool_py", "efuse", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/app_update/libapp_update.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/app_update/libapp_update.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/app_update/esp_ota_ops.c", "C:/esp/v5.5.4/esp-idf/components/app_update/esp_ota_app_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -84,7 +84,7 @@
             "priv_reqs": [ "spi_flash", "mbedtls", "efuse", "heap", "esp_bootloader_format", "esp_app_format" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/bootloader_support/libbootloader_support.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/bootloader_support/libbootloader_support.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_common.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_common_loader.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_clock_init.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_mem.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_random.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_efuse.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/flash_encrypt.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/secure_boot.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_random_esp32c6.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/bootloader_flash/src/flash_qio_mode.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32c6.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_utility.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/flash_partitions.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/esp_image_format.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/bootloader_sha.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/esp32c6/bootloader_ecdsa.c", "C:/esp/v5.5.4/esp-idf/components/bootloader_support/src/esp32c6/secure_boot_secure_features.c" ],
             "include_dirs": [ "include", "bootloader_flash/include" ]
         },
@@ -114,7 +114,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/cmock/libcmock.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/cmock/libcmock.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/cmock/CMock/src/cmock.c" ],
             "include_dirs": [ "CMock/src" ]
         },
@@ -129,7 +129,7 @@
             "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/console/libconsole.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/console/libconsole.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/console/commands.c", "C:/esp/v5.5.4/esp-idf/components/console/esp_console_common.c", "C:/esp/v5.5.4/esp-idf/components/console/esp_console_repl_internal.c", "C:/esp/v5.5.4/esp-idf/components/console/split_argv.c", "C:/esp/v5.5.4/esp-idf/components/console/linenoise/linenoise.c", "C:/esp/v5.5.4/esp-idf/components/console/esp_console_repl_chip.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_cmd.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_date.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_dbl.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_dstr.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_end.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_file.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_hashtable.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_int.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_lit.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_rem.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_rex.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_str.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/arg_utils.c", "C:/esp/v5.5.4/esp-idf/components/console/argtable3/argtable3.c" ],
             "include_dirs": [ "C:/esp/v5.5.4/esp-idf/components/console" ]
         },
@@ -144,7 +144,7 @@
             "priv_reqs": [ "esp_system", "pthread" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/cxx/libcxx.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/cxx/libcxx.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/cxx/cxx_exception_stubs.cpp", "C:/esp/v5.5.4/esp-idf/components/cxx/cxx_guards.cpp", "C:/esp/v5.5.4/esp-idf/components/cxx/cxx_init.cpp" ],
             "include_dirs": []
         },
@@ -159,7 +159,7 @@
             "priv_reqs": [ "efuse", "esp_timer", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/driver/libdriver.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/driver/libdriver.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/adc_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/adc_dma_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/timer_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/i2c/i2c.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/i2s_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/mcpwm_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/pcnt_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/rmt_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/sigma_delta_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/deprecated/rtc_temperature_legacy.c", "C:/esp/v5.5.4/esp-idf/components/driver/twai/twai.c" ],
             "include_dirs": [ "deprecated", "i2c/include", "touch_sensor/include", "twai/include" ]
         },
@@ -174,7 +174,7 @@
             "priv_reqs": [ "bootloader_support", "soc", "spi_flash", "esp_system", "esp_partition", "esp_app_format" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/efuse/libefuse.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/efuse/libefuse.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/efuse/esp32c6/esp_efuse_table.c", "C:/esp/v5.5.4/esp-idf/components/efuse/esp32c6/esp_efuse_fields.c", "C:/esp/v5.5.4/esp-idf/components/efuse/esp32c6/esp_efuse_rtc_calib.c", "C:/esp/v5.5.4/esp-idf/components/efuse/esp32c6/esp_efuse_utility.c", "C:/esp/v5.5.4/esp-idf/components/efuse/src/esp_efuse_api.c", "C:/esp/v5.5.4/esp-idf/components/efuse/src/esp_efuse_fields.c", "C:/esp/v5.5.4/esp-idf/components/efuse/src/esp_efuse_utility.c", "C:/esp/v5.5.4/esp-idf/components/efuse/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c", "C:/esp/v5.5.4/esp-idf/components/efuse/src/esp_efuse_startup.c" ],
             "include_dirs": [ "include", "esp32c6/include" ]
         },
@@ -189,7 +189,7 @@
             "priv_reqs": [ "http_parser", "esp_timer", "lwip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp-tls/libesp-tls.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp-tls/libesp-tls.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp-tls/esp_tls.c", "C:/esp/v5.5.4/esp-idf/components/esp-tls/esp-tls-crypto/esp_tls_crypto.c", "C:/esp/v5.5.4/esp-idf/components/esp-tls/esp_tls_error_capture.c", "C:/esp/v5.5.4/esp-idf/components/esp-tls/esp_tls_platform_port.c", "C:/esp/v5.5.4/esp-idf/components/esp-tls/esp_tls_mbedtls.c" ],
             "include_dirs": [ "C:/esp/v5.5.4/esp-idf/components/esp-tls", "esp-tls-crypto" ]
         },
@@ -204,7 +204,7 @@
             "priv_reqs": [ "esp_driver_gpio", "efuse", "esp_pm", "esp_ringbuf", "esp_mm", "driver" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_adc/libesp_adc.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_adc/libesp_adc.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_oneshot.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_cali.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_cali_curve_fitting.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/deprecated/esp_adc_cal_common_legacy.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_continuous.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_monitor.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/gdma/adc_dma.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/adc_filter.c", "C:/esp/v5.5.4/esp-idf/components/esp_adc/esp32c6/curve_fitting_coefficients.c" ],
             "include_dirs": [ "include", "interface", "esp32c6/include", "deprecated/include" ]
         },
@@ -219,7 +219,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_app_format/libesp_app_format.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_app_format/libesp_app_format.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_app_format/esp_app_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -234,7 +234,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_bootloader_format/esp_bootloader_desc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -249,7 +249,7 @@
             "priv_reqs": [ "esp_timer", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_coex/libesp_coex.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_coex/libesp_coex.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_coex/src/coexist.c", "C:/esp/v5.5.4/esp-idf/components/esp_coex/src/lib_printf.c", "C:/esp/v5.5.4/esp-idf/components/esp_coex/esp32c6/esp_coex_adapter.c", "C:/esp/v5.5.4/esp-idf/components/esp_coex/src/coexist_debug_diagram.c", "C:/esp/v5.5.4/esp-idf/components/esp_coex/src/coexist_debug.c" ],
             "include_dirs": [ "include" ]
         },
@@ -264,7 +264,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_common/libesp_common.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_common/libesp_common.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_common/src/esp_err_to_name.c" ],
             "include_dirs": [ "include" ]
         },
@@ -309,7 +309,7 @@
             "priv_reqs": [ "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_cam/libesp_driver_cam.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_cam/libesp_driver_cam.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_cam/esp_cam_ctlr.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_cam/dvp_share_ctrl.c" ],
             "include_dirs": [ "include", "interface" ]
         },
@@ -339,7 +339,7 @@
             "priv_reqs": [ "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_gpio/libesp_driver_gpio.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/gpio.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/gpio_glitch_filter_ops.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/rtc_io.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/dedic_gpio.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/gpio_pin_glitch_filter.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/gpio_flex_glitch_filter.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gpio/src/gpio_etm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -354,7 +354,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_gptimer/libesp_driver_gptimer.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer/src/gptimer.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer/src/gptimer_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_gptimer/src/gptimer_etm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -369,7 +369,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_pm", "esp_ringbuf" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_i2c/libesp_driver_i2c.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c/i2c_master.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c/i2c_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2c/i2c_slave.c" ],
             "include_dirs": [ "include" ]
         },
@@ -384,7 +384,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_pm", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_i2s/libesp_driver_i2s.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/i2s_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/i2s_std.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/i2s_pdm.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/i2s_tdm.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/i2s_etm.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_i2s/i2s_platform.c" ],
             "include_dirs": [ "include" ]
         },
@@ -429,7 +429,7 @@
             "priv_reqs": [ "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_ledc/libesp_driver_ledc.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_ledc/libesp_driver_ledc.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_ledc/src/ledc.c" ],
             "include_dirs": [ "include" ]
         },
@@ -444,7 +444,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_mcpwm/libesp_driver_mcpwm.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_mcpwm/libesp_driver_mcpwm.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_cap.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_cmpr.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_com.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_fault.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_gen.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_oper.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_sync.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_timer.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_mcpwm/src/mcpwm_etm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -459,7 +459,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio", "esp_mm", "esp_driver_bitscrambler" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_parlio/libesp_driver_parlio.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_parlio/libesp_driver_parlio.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio/src/parlio_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio/src/parlio_tx.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_parlio/src/parlio_rx.c" ],
             "include_dirs": [ "include" ]
         },
@@ -474,7 +474,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_pcnt/libesp_driver_pcnt.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_pcnt/libesp_driver_pcnt.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_pcnt/src/pulse_cnt.c" ],
             "include_dirs": [ "include" ]
         },
@@ -504,7 +504,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio", "esp_driver_bitscrambler", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_rmt/libesp_driver_rmt.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_rmt/libesp_driver_rmt.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_encoder.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_encoder_bytes.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_encoder_copy.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_encoder_simple.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_rx.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_rmt/src/rmt_tx.c" ],
             "include_dirs": [ "include" ]
         },
@@ -519,7 +519,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_ringbuf" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_sdio/libesp_driver_sdio.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_sdio/libesp_driver_sdio.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdio/src/sdio_slave.c" ],
             "include_dirs": [ "include" ]
         },
@@ -534,7 +534,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_sdm/libesp_driver_sdm.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_sdm/libesp_driver_sdm.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdm/src/sdm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -564,7 +564,7 @@
             "priv_reqs": [ "esp_timer", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_sdspi/libesp_driver_sdspi.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdspi/src/sdspi_crc.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdspi/src/sdspi_host.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_sdspi/src/sdspi_transaction.c" ],
             "include_dirs": [ "include" ]
         },
@@ -579,7 +579,7 @@
             "priv_reqs": [ "esp_timer", "esp_mm", "esp_driver_gpio", "spi_flash", "esp_psram" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_spi/libesp_driver_spi.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_spi/libesp_driver_spi.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_spi/src/gpspi/spi_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_spi/src/gpspi/spi_master.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_spi/src/gpspi/spi_slave.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_spi/src/gpspi/spi_slave_hd.c" ],
             "include_dirs": [ "include" ]
         },
@@ -609,7 +609,7 @@
             "priv_reqs": [ "efuse" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_tsens/libesp_driver_tsens.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_tsens/libesp_driver_tsens.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_tsens/src/temperature_sensor.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_tsens/src/temperature_sensor_etm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -624,7 +624,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_twai/libesp_driver_twai.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_twai/libesp_driver_twai.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_twai/esp_twai.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_twai/esp_twai_onchip.c" ],
             "include_dirs": [ "include" ]
         },
@@ -639,7 +639,7 @@
             "priv_reqs": [ "esp_pm", "esp_driver_gpio", "esp_ringbuf", "esp_mm", "esp_psram" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_uart/libesp_driver_uart.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_uart/libesp_driver_uart.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_uart/src/uart.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_uart/src/uart_wakeup.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_uart/src/uhci.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_uart/src/uart_vfs.c" ],
             "include_dirs": [ "include" ]
         },
@@ -654,7 +654,7 @@
             "priv_reqs": [ "esp_driver_gpio", "esp_ringbuf", "esp_pm", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c", "C:/esp/v5.5.4/esp-idf/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c" ],
             "include_dirs": [ "include" ]
         },
@@ -669,7 +669,7 @@
             "priv_reqs": [ "log", "esp_timer", "esp_driver_spi", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_eth/libesp_eth.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_eth/libesp_eth.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_eth/src/esp_eth.c", "C:/esp/v5.5.4/esp-idf/components/esp_eth/src/phy/esp_eth_phy_802_3.c", "C:/esp/v5.5.4/esp-idf/components/esp_eth/src/esp_eth_netif_glue.c" ],
             "include_dirs": [ "include" ]
         },
@@ -684,7 +684,7 @@
             "priv_reqs": [ "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_event/libesp_event.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_event/libesp_event.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_event/default_event_loop.c", "C:/esp/v5.5.4/esp-idf/components/esp_event/esp_event.c", "C:/esp/v5.5.4/esp-idf/components/esp_event/esp_event_private.c" ],
             "include_dirs": [ "include" ]
         },
@@ -699,7 +699,7 @@
             "priv_reqs": [ "soc", "esp_rom", "esp_system" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_gdbstub/libesp_gdbstub.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_gdbstub/libesp_gdbstub.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/src/gdbstub.c", "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/src/gdbstub_transport.c", "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/src/packet.c", "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/src/port/riscv/gdbstub_riscv.c", "C:/esp/v5.5.4/esp-idf/components/esp_gdbstub/src/port/riscv/rv_decode.c" ],
             "include_dirs": [ "include" ]
         },
@@ -714,7 +714,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_hal_ieee802154/libesp_hal_ieee802154.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_hal_ieee802154/libesp_hal_ieee802154.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_hal_ieee802154/esp32c6/ieee802154_periph.c" ],
             "include_dirs": [ "include", "esp32c6/include" ]
         },
@@ -729,7 +729,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_hid/libesp_hid.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_hid/libesp_hid.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_hid/src/esp_hidd.c", "C:/esp/v5.5.4/esp-idf/components/esp_hid/src/esp_hidh.c", "C:/esp/v5.5.4/esp-idf/components/esp_hid/src/esp_hid_common.c" ],
             "include_dirs": [ "include" ]
         },
@@ -744,7 +744,7 @@
             "priv_reqs": [ "tcp_transport", "http_parser" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_http_client/libesp_http_client.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_http_client/libesp_http_client.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_http_client/esp_http_client.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_client/lib/http_auth.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_client/lib/http_header.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_client/lib/http_utils.c" ],
             "include_dirs": [ "include" ]
         },
@@ -759,7 +759,7 @@
             "priv_reqs": [ "mbedtls", "lwip", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_http_server/libesp_http_server.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_http_server/libesp_http_server.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/httpd_main.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/httpd_parse.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/httpd_sess.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/httpd_txrx.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/httpd_uri.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/httpd_ws.c", "C:/esp/v5.5.4/esp-idf/components/esp_http_server/src/util/ctrl_sock.c" ],
             "include_dirs": [ "include" ]
         },
@@ -774,7 +774,7 @@
             "priv_reqs": [ "log", "app_update" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_https_ota/libesp_https_ota.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_https_ota/libesp_https_ota.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_https_ota/src/esp_https_ota.c" ],
             "include_dirs": [ "include" ]
         },
@@ -789,7 +789,7 @@
             "priv_reqs": [ "lwip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_https_server/libesp_https_server.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_https_server/libesp_https_server.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_https_server/src/https_server.c" ],
             "include_dirs": [ "include" ]
         },
@@ -804,7 +804,7 @@
             "priv_reqs": [ "efuse", "spi_flash", "bootloader_support", "esp_security", "hal", "esp_driver_gpio", "esp_timer", "esp_pm", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_hw_support/libesp_hw_support.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_hw_support/libesp_hw_support.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/cpu.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/esp_cpu_intr.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/esp_memory_utils.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/cpu_region_protect.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/esp_clk.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/clk_ctrl_os.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/hw_random.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/intr_alloc.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/mac_addr.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/periph_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/revision.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/rtc_module.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/regi2c_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/esp_gpio_reserve.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sar_periph_ctrl_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/io_mux.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/esp_clk_tree.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/esp_dma_utils.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/gdma_link.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/spi_bus_lock.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/clk_utils.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp_clk_tree_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/spi_share_hw_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/adc_share_hw_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_retention.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_modem.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_modes.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_console.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_mspi.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_usb.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_gpio.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_event.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_system_peripheral.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/gdma.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/deprecated/gdma_legacy.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/gdma_sleep_retention.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/gdma_etm.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/esp_async_memcpy.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/dma/async_memcpy_gdma.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/systimer.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/esp_etm.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/pau_regdma.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/regdma_link.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/modem_clock.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/mspi_timing_tuning/mspi_timing_tuning.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/sleep_wake_stub.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/esp_clock_output.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/power_supply/brownout.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/rtc_clk_init.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/rtc_clk.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/pmu_param.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/pmu_init.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/pmu_sleep.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/rtc_time.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/chip_info.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/ocode_init.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/port/esp32c6/sar_periph_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/lowpower/port/esp32c6/sleep_cpu.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/lowpower/port/esp32c6/sleep_cpu_asm.S", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/lowpower/port/esp32c6/sleep_clock.c", "C:/esp/v5.5.4/esp-idf/components/esp_hw_support/lowpower/port/esp32c6/sleep_modem_state.c" ],
             "include_dirs": [ "include", "include/soc", "include/soc/esp32c6", "dma/include", "ldo/include", "debug_probe/include", "mspi_timing_tuning/include", "mspi_timing_tuning/tuning_scheme_impl/include", "power_supply/include" ]
         },
@@ -819,7 +819,7 @@
             "priv_reqs": [ "esp_mm", "esp_psram", "esp_pm", "esp_driver_i2s" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_lcd/libesp_lcd.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_lcd/libesp_lcd.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_lcd/src/esp_lcd_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/src/esp_lcd_panel_io.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/src/esp_lcd_panel_nt35510.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/src/esp_lcd_panel_ssd1306.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/src/esp_lcd_panel_st7789.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/src/esp_lcd_panel_ops.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/i2c/esp_lcd_panel_io_i2c_v1.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/i2c/esp_lcd_panel_io_i2c_v2.c", "C:/esp/v5.5.4/esp-idf/components/esp_lcd/spi/esp_lcd_panel_io_spi.c" ],
             "include_dirs": [ "include", "interface" ]
         },
@@ -834,7 +834,7 @@
             "priv_reqs": [ "protobuf-c", "esp_netif" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_local_ctrl/libesp_local_ctrl.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_local_ctrl/libesp_local_ctrl.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_local_ctrl/src/esp_local_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/esp_local_ctrl/src/esp_local_ctrl_handler.c", "C:/esp/v5.5.4/esp-idf/components/esp_local_ctrl/proto-c/esp_local_ctrl.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/esp_local_ctrl/src/esp_local_ctrl_transport_httpd.c" ],
             "include_dirs": [ "include" ]
         },
@@ -849,7 +849,7 @@
             "priv_reqs": [ "heap", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_mm/libesp_mm.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_mm/libesp_mm.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_mm/esp_mmu_map.c", "C:/esp/v5.5.4/esp-idf/components/esp_mm/port/esp32c6/ext_mem_layout.c", "C:/esp/v5.5.4/esp-idf/components/esp_mm/esp_cache_msync.c", "C:/esp/v5.5.4/esp-idf/components/esp_mm/esp_cache_utils.c", "C:/esp/v5.5.4/esp-idf/components/esp_mm/heap_align_hw.c" ],
             "include_dirs": [ "include" ]
         },
@@ -864,7 +864,7 @@
             "priv_reqs": [ "esp_netif_stack" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_netif/libesp_netif.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_netif/libesp_netif.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_netif/esp_netif_handlers.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/esp_netif_objects.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/esp_netif_defaults.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/lwip/esp_netif_lwip.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/lwip/esp_netif_sntp.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/lwip/esp_netif_lwip_defaults.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/lwip/netif/wlanif.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/lwip/netif/ethernetif.c", "C:/esp/v5.5.4/esp-idf/components/esp_netif/lwip/netif/esp_pbuf_ref.c" ],
             "include_dirs": [ "include" ]
         },
@@ -894,7 +894,7 @@
             "priv_reqs": [ "esp_system", "spi_flash", "partition_table", "bootloader_support", "app_update" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_partition/libesp_partition.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_partition/libesp_partition.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_partition/partition.c", "C:/esp/v5.5.4/esp-idf/components/esp_partition/partition_target.c" ],
             "include_dirs": [ "include" ]
         },
@@ -909,7 +909,7 @@
             "priv_reqs": [ "nvs_flash", "esp_driver_gpio", "efuse", "esp_timer", "esp_wifi" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_phy/libesp_phy.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_phy/libesp_phy.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_phy/src/phy_override.c", "C:/esp/v5.5.4/esp-idf/components/esp_phy/src/lib_printf.c", "C:/esp/v5.5.4/esp-idf/components/esp_phy/src/phy_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_phy/src/phy_init.c", "C:/esp/v5.5.4/esp-idf/components/esp_phy/esp32c6/phy_init_data.c", "C:/esp/v5.5.4/esp-idf/components/esp_phy/src/btbb_init.c" ],
             "include_dirs": [ "include", "esp32c6/include" ]
         },
@@ -924,7 +924,7 @@
             "priv_reqs": [ "esp_system", "esp_driver_gpio", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_pm/libesp_pm.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_pm/libesp_pm.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_pm/pm_locks.c", "C:/esp/v5.5.4/esp-idf/components/esp_pm/pm_trace.c", "C:/esp/v5.5.4/esp-idf/components/esp_pm/pm_impl.c" ],
             "include_dirs": [ "include" ]
         },
@@ -939,7 +939,7 @@
             "priv_reqs": [ "heap", "spi_flash", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_psram/libesp_psram.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_psram/libesp_psram.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_psram/system_layer/esp_psram_mspi.c" ],
             "include_dirs": [ "include" ]
         },
@@ -954,7 +954,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_ringbuf/libesp_ringbuf.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_ringbuf/libesp_ringbuf.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_ringbuf/ringbuf.c" ],
             "include_dirs": [ "include" ]
         },
@@ -969,7 +969,7 @@
             "priv_reqs": [ "soc", "hal" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_rom/libesp_rom.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_rom/libesp_rom.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_sys.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_print.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_crc.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_uart.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_spiflash.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_efuse.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_gpio.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_hp_regi2c_esp32c6.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_tlsf.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_multi_heap.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_systimer.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_wdt.c", "C:/esp/v5.5.4/esp-idf/components/esp_rom/patches/esp_rom_usb_serial.c" ],
             "include_dirs": [ "include", "esp32c6/include", "esp32c6/include/esp32c6", "esp32c6" ]
         },
@@ -984,7 +984,7 @@
             "priv_reqs": [ "efuse", "esp_hw_support", "esp_system", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_security/libesp_security.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_security/libesp_security.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_security/src/init.c", "C:/esp/v5.5.4/esp-idf/components/esp_security/src/esp_hmac.c", "C:/esp/v5.5.4/esp-idf/components/esp_security/src/esp_ds.c", "C:/esp/v5.5.4/esp-idf/components/esp_security/src/esp_dpa_protection.c", "C:/esp/v5.5.4/esp-idf/components/esp_security/src/esp_crypto_lock.c", "C:/esp/v5.5.4/esp-idf/components/esp_security/src/esp_crypto_periph_clk.c" ],
             "include_dirs": [ "include" ]
         },
@@ -999,7 +999,7 @@
             "priv_reqs": [ "spi_flash", "esp_timer", "esp_mm", "bootloader_support", "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_system/libesp_system.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_system/libesp_system.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_system/esp_err.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/crosscore_int.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/esp_ipc.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/esp_system_console.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/freertos_hooks.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/int_wdt.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/panic.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/esp_system.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/startup.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/startup_funcs.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/system_time.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/stack_check.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/ubsan.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/xt_wdt.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/task_wdt/task_wdt.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/task_wdt/task_wdt_impl_timergroup.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/systick_etm.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/hw_stack_guard.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/cpu_start.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/panic_handler.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/esp_system_chip.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/image_process.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/arch/riscv/expression_with_stack.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/arch/riscv/panic_arch.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/arch/riscv/debug_helpers.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/arch/riscv/debug_stubs.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/soc/esp32c6/clk.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/soc/esp32c6/reset_reason.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/soc/esp32c6/system_internal.c", "C:/esp/v5.5.4/esp-idf/components/esp_system/port/soc/esp32c6/cache_err_int.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1029,7 +1029,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_timer/libesp_timer.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_timer/libesp_timer.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/esp_timer.c", "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/esp_timer_init.c", "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/ets_timer_legacy.c", "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/system_time.c", "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/esp_timer_impl_common.c", "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/esp_timer_impl_systimer.c", "C:/esp/v5.5.4/esp-idf/components/esp_timer/src/esp_timer_etm.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1044,7 +1044,7 @@
             "priv_reqs": [ "vfs", "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_vfs_console/libesp_vfs_console.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_vfs_console/libesp_vfs_console.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_vfs_console/vfs_console.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1059,7 +1059,7 @@
             "priv_reqs": [ "esptool_py", "esp_pm", "esp_timer", "nvs_flash", "wpa_supplicant", "hal", "lwip", "esp_coex" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/esp_wifi/libesp_wifi.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/esp_wifi/libesp_wifi.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/lib_printf.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/mesh_event.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/smartconfig.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/wifi_init.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/wifi_default.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/wifi_netif.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/wifi_default_ap.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/esp32c6/esp_adapter.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/regulatory/esp_wifi_regulatory.c", "C:/esp/v5.5.4/esp-idf/components/esp_wifi/src/smartconfig_ack.c" ],
             "include_dirs": [ "include", "include/local", "wifi_apps/include", "wifi_apps/nan_app/include" ]
         },
@@ -1074,7 +1074,7 @@
             "priv_reqs": [ "esp_partition", "spi_flash", "bootloader_support", "mbedtls", "esp_rom", "soc", "esp_system", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/espcoredump/libespcoredump.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/espcoredump/libespcoredump.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_init.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_common.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_flash.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_uart.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_elf.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_binary.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_sha.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/core_dump_crc.c", "C:/esp/v5.5.4/esp-idf/components/espcoredump/src/port/riscv/core_dump_port.c" ],
             "include_dirs": [ "include", "include/port/riscv" ]
         },
@@ -1082,30 +1082,30 @@
             "alias": "idf::espressif__w6100",
             "target": "___idf_espressif__w6100",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__w6100",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__w6100",
             "type": "LIBRARY",
             "lib": "__idf_espressif__w6100",
             "reqs": [ "espressif__wiznet_common" ],
             "priv_reqs": [ "esp_eth" ],
             "managed_reqs": [ "espressif__wiznet_common" ],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/espressif__w6100/libespressif__w6100.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__w6100/src/esp_eth_mac_w6100.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__w6100/src/esp_eth_phy_w6100.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/espressif__w6100/libespressif__w6100.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__w6100/src/esp_eth_mac_w6100.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__w6100/src/esp_eth_phy_w6100.c" ],
             "include_dirs": [ "include" ]
         },
         "espressif__wiznet_common": {
             "alias": "idf::espressif__wiznet_common",
             "target": "___idf_espressif__wiznet_common",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__wiznet_common",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__wiznet_common",
             "type": "LIBRARY",
             "lib": "__idf_espressif__wiznet_common",
             "reqs": [],
             "priv_reqs": [ "esp_driver_spi", "esp_driver_gpio", "esp_eth", "esp_timer" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/espressif__wiznet_common/libespressif__wiznet_common.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__wiznet_common/src/wiznet_spi.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__wiznet_common/src/wiznet_mac_common.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__wiznet_common/src/wiznet_phy_common.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/espressif__wiznet_common/libespressif__wiznet_common.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__wiznet_common/src/wiznet_spi.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__wiznet_common/src/wiznet_mac_common.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__wiznet_common/src/wiznet_phy_common.c" ],
             "include_dirs": [ "include" ]
         },
         "esptool_py": {
@@ -1127,15 +1127,15 @@
             "alias": "idf::ethernet",
             "target": "___idf_ethernet",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ethernet",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ethernet",
             "type": "LIBRARY",
             "lib": "__idf_ethernet",
             "reqs": [ "driver", "esp_netif", "esp_eth", "espressif__w6100", "esp_driver_spi" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/ethernet/libethernet.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ethernet/src/ethernet.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/ethernet/libethernet.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ethernet/src/ethernet.c" ],
             "include_dirs": [ "inc" ]
         },
         "fatfs": {
@@ -1149,7 +1149,7 @@
             "priv_reqs": [ "vfs", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/fatfs/libfatfs.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/fatfs/libfatfs.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/fatfs/diskio/diskio.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/diskio/diskio_rawflash.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/diskio/diskio_wl.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/src/ff.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/src/ffunicode.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/port/freertos/ffsystem.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/diskio/diskio_sdmmc.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/vfs/vfs_fat.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/vfs/vfs_fat_sdmmc.c", "C:/esp/v5.5.4/esp-idf/components/fatfs/vfs/vfs_fat_spiflash.c" ],
             "include_dirs": [ "diskio", "src", "vfs" ]
         },
@@ -1157,15 +1157,15 @@
             "alias": "idf::file_manager",
             "target": "___idf_file_manager",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/file_manager",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/file_manager",
             "type": "LIBRARY",
             "lib": "__idf_file_manager",
             "reqs": [ "spiffs", "vfs", "fatfs", "esp_http_server", "joltwallet__littlefs" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/file_manager/libfile_manager.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/file_manager/file_manager.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/file_manager/sd_card_file_manager.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/file_manager/libfile_manager.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/file_manager/file_manager.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/file_manager/sd_card_file_manager.c" ],
             "include_dirs": [ "." ]
         },
         "freertos": {
@@ -1179,7 +1179,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/freertos/libfreertos.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/freertos/libfreertos.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/freertos/heap_idf.c", "C:/esp/v5.5.4/esp-idf/components/freertos/app_startup.c", "C:/esp/v5.5.4/esp-idf/components/freertos/port_common.c", "C:/esp/v5.5.4/esp-idf/components/freertos/port_systick.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/list.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/queue.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/tasks.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/timers.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/event_groups.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/stream_buffer.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/port.c", "C:/esp/v5.5.4/esp-idf/components/freertos/FreeRTOS-Kernel/portable/riscv/portasm.S", "C:/esp/v5.5.4/esp-idf/components/freertos/esp_additions/freertos_compatibility.c", "C:/esp/v5.5.4/esp-idf/components/freertos/esp_additions/idf_additions_event_groups.c", "C:/esp/v5.5.4/esp-idf/components/freertos/esp_additions/idf_additions.c" ],
             "include_dirs": [ "config/include", "config/include/freertos", "config/riscv/include", "FreeRTOS-Kernel/include", "FreeRTOS-Kernel/portable/riscv/include", "FreeRTOS-Kernel/portable/riscv/include/freertos", "esp_additions/include" ]
         },
@@ -1194,7 +1194,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/hal/libhal.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/hal/libhal.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/hal/hal_utils.c", "C:/esp/v5.5.4/esp-idf/components/hal/efuse_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/esp32c6/efuse_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/lp_timer_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/mmu_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/cache_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/color_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_flash_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_flash_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_flash_encrypt_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/esp32c6/clk_tree_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/uart_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/uart_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/gpio_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/rtc_io_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/timer_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/ledc_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/ledc_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/i2c_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/i2c_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/rmt_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/pcnt_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/mcpwm_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/uhci_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/twai_hal_v1.c", "C:/esp/v5.5.4/esp-idf/components/hal/gdma_hal_top.c", "C:/esp/v5.5.4/esp-idf/components/hal/gdma_hal_ahb_v1.c", "C:/esp/v5.5.4/esp-idf/components/hal/i2s_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/sdm_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/etm_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/parlio_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/adc_hal_common.c", "C:/esp/v5.5.4/esp-idf/components/hal/adc_oneshot_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/adc_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/ecc_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/mpi_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/sha_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/aes_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/esp32c6/modem_clock_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/esp32c6/pau_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/brownout_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_slave_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_slave_hal_iram.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_slave_hd_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/spi_flash_hal_gpspi.c", "C:/esp/v5.5.4/esp-idf/components/hal/sdio_slave_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/esp32c6/pmu_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/apm_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/hmac_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/ds_hal.c", "C:/esp/v5.5.4/esp-idf/components/hal/usb_serial_jtag_hal.c" ],
             "include_dirs": [ "platform_port/include", "esp32c6/include", "include" ]
         },
@@ -1209,7 +1209,7 @@
             "priv_reqs": [ "soc" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/heap/libheap.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/heap/libheap.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/heap/heap_caps_base.c", "C:/esp/v5.5.4/esp-idf/components/heap/heap_caps.c", "C:/esp/v5.5.4/esp-idf/components/heap/heap_caps_init.c", "C:/esp/v5.5.4/esp-idf/components/heap/multi_heap.c", "C:/esp/v5.5.4/esp-idf/components/heap/port/memory_layout_utils.c", "C:/esp/v5.5.4/esp-idf/components/heap/port/esp32c6/memory_layout.c" ],
             "include_dirs": [ "include", "tlsf" ]
         },
@@ -1217,15 +1217,15 @@
             "alias": "idf::hmi_runtime",
             "target": "___idf_hmi_runtime",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/hmi_runtime",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/hmi_runtime",
             "type": "LIBRARY",
             "lib": "__idf_hmi_runtime",
             "reqs": [ "driver" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/hmi_runtime/libhmi_runtime.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/hmi_runtime/hmi_runtime.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/hmi_runtime/libhmi_runtime.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/hmi_runtime/hmi_runtime.c" ],
             "include_dirs": [ "." ]
         },
         "http_parser": {
@@ -1239,7 +1239,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/http_parser/libhttp_parser.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/http_parser/libhttp_parser.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/http_parser/http_parser.c" ],
             "include_dirs": [ "." ]
         },
@@ -1269,7 +1269,7 @@
             "priv_reqs": [ "esp_phy", "esp_timer", "soc", "hal", "esp_pm", "esp_hal_ieee802154" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/ieee802154/libieee802154.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/ieee802154/libieee802154.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/ieee802154/esp_ieee802154.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_ack.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_dev.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_event.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_frame.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_pib.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_util.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_sec.c", "C:/esp/v5.5.4/esp-idf/components/ieee802154/driver/esp_ieee802154_timer.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1277,15 +1277,15 @@
             "alias": "idf::joltwallet__littlefs",
             "target": "___idf_joltwallet__littlefs",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs",
             "type": "LIBRARY",
             "lib": "__idf_joltwallet__littlefs",
             "reqs": [ "sdmmc", "esp_partition" ],
             "priv_reqs": [ "esptool_py", "spi_flash", "vfs" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/joltwallet__littlefs/libjoltwallet__littlefs.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs/src/littlefs/lfs.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs/src/littlefs/lfs_util.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs/src/esp_littlefs.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs/src/littlefs_esp_part.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs/src/lfs_config.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/joltwallet__littlefs/libjoltwallet__littlefs.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs/src/littlefs/lfs.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs/src/littlefs/lfs_util.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs/src/esp_littlefs.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs/src/littlefs_esp_part.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs/src/lfs_config.c" ],
             "include_dirs": [ "include" ]
         },
         "json": {
@@ -1299,7 +1299,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/json/libjson.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/json/libjson.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/json/cJSON/cJSON.c", "C:/esp/v5.5.4/esp-idf/components/json/cJSON/cJSON_Utils.c" ],
             "include_dirs": [ "cJSON" ]
         },
@@ -1314,7 +1314,7 @@
             "priv_reqs": [ "hal", "soc", "esp_hw_support" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/log/liblog.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/log/liblog.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/log/src/os/log_timestamp.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_timestamp_common.c", "C:/esp/v5.5.4/esp-idf/components/log/src/os/log_lock.c", "C:/esp/v5.5.4/esp-idf/components/log/src/buffer/log_buffers.c", "C:/esp/v5.5.4/esp-idf/components/log/src/os/util.c", "C:/esp/v5.5.4/esp-idf/components/log/src/util.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_format_text.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_print.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log.c", "C:/esp/v5.5.4/esp-idf/components/log/src/os/log_write.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_level/log_level.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_level/tag_log_level/tag_log_level.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c", "C:/esp/v5.5.4/esp-idf/components/log/src/log_level/tag_log_level/cache/log_binary_heap.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1329,7 +1329,7 @@
             "priv_reqs": [ "vfs" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/lwip/liblwip.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/lwip/liblwip.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/lwip/apps/sntp/sntp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/api_lib.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/api_msg.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/err.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/if_api.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/netbuf.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/netdb.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/netifapi.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/sockets.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/api/tcpip.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/apps/sntp/sntp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/apps/netbiosns/netbiosns.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/def.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/dns.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/inet_chksum.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/init.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ip.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/mem.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/memp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/netif.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/pbuf.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/raw.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/stats.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/sys.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/tcp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/tcp_in.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/tcp_out.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/timeouts.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/udp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/autoip.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/dhcp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/etharp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/icmp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/igmp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/ip4.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/ip4_napt.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/ip4_addr.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv4/ip4_frag.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/dhcp6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/ethip6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/icmp6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/inet6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/ip6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/ip6_addr.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/ip6_frag.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/mld6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/core/ipv6/nd6.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ethernet.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/bridgeif.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/bridgeif_fdb.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/slipif.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/auth.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/ccp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/chap-md5.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/chap-new.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/chap_ms.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/demand.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/eap.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/ecp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/eui64.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/fsm.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/ipcp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/ipv6cp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/lcp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/magic.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/mppe.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/multilink.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/ppp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/pppapi.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/pppcrypt.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/pppoe.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/pppol2tp.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/pppos.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/upap.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/utils.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/vj.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/hooks/tcp_isn_default.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/hooks/lwip_default_hooks.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/debug/lwip_debug.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/sockets_ext.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/freertos/sys_arch.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/if_index.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/acd_dhcp_check.c", "C:/esp/v5.5.4/esp-idf/components/lwip/port/esp32xx/vfs_lwip.c", "C:/esp/v5.5.4/esp-idf/components/lwip/apps/ping/esp_ping.c", "C:/esp/v5.5.4/esp-idf/components/lwip/apps/ping/ping.c", "C:/esp/v5.5.4/esp-idf/components/lwip/apps/ping/ping_sock.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/arc4.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/des.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/md4.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/md5.c", "C:/esp/v5.5.4/esp-idf/components/lwip/lwip/src/netif/ppp/polarssl/sha1.c", "C:/esp/v5.5.4/esp-idf/components/lwip/apps/dhcpserver/dhcpserver.c" ],
             "include_dirs": [ "include", "include/apps", "include/apps/sntp", "lwip/src/include", "port/include", "port/freertos/include/", "port/esp32xx/include", "port/esp32xx/include/arch", "port/esp32xx/include/sys" ]
         },
@@ -1337,30 +1337,30 @@
             "alias": "idf::machine_presence",
             "target": "___idf_machine_presence",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/machine_presence",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/machine_presence",
             "type": "LIBRARY",
             "lib": "__idf_machine_presence",
             "reqs": [ "mqtt_lib" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/machine_presence/libmachine_presence.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/machine_presence/machine_presence.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/machine_presence/libmachine_presence.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/machine_presence/machine_presence.c" ],
             "include_dirs": [ "." ]
         },
         "main": {
             "alias": "idf::main",
             "target": "___idf_main",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
             "reqs": [ "ota_mgr", "driver", "esp_timer", "esp_netif", "esp_event", "nvs_flash", "mqtt_lib", "json", "joltwallet__littlefs", "sdcard", "ethernet", "wifi_lib", "file_manager", "machine_presence" ],
             "priv_reqs": [ "espressif__w6100", "joltwallet__littlefs" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "espressif__w6100", "joltwallet__littlefs" ],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/main.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/global.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/file_io.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/modbus_master.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/hmi.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/esp_log_tags.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/littlefs.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/task_size_and_priorities.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/modbus_slave.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/date_time.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/event_log.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/modbus_slave_register.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main/src/mqtt_file_uploader.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/main/libmain.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/main.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/global.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/file_io.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/modbus_master.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/hmi.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/esp_log_tags.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/littlefs.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/task_size_and_priorities.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/modbus_slave.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/date_time.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/event_log.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/modbus_slave_register.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main/src/mqtt_file_uploader.c" ],
             "include_dirs": [ "./inc" ]
         },
         "mbedtls": {
@@ -1374,8 +1374,8 @@
             "priv_reqs": [ "soc", "esp_hw_support", "esp_pm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/mbedtls/libmbedtls.a",
-            "sources": [ "C:/esp/v5.5.4/esp-idf/components/mbedtls/esp_crt_bundle/esp_crt_bundle.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/x509_crt_bundle.S" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/mbedtls/libmbedtls.a",
+            "sources": [ "C:/esp/v5.5.4/esp-idf/components/mbedtls/esp_crt_bundle/esp_crt_bundle.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/x509_crt_bundle.S" ],
             "include_dirs": [ "port/include", "mbedtls/include", "mbedtls/library", "esp_crt_bundle/include" ]
         },
         "mqtt": {
@@ -1389,7 +1389,7 @@
             "priv_reqs": [ "esp_timer", "http_parser", "esp_hw_support", "heap" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/mqtt/libmqtt.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/mqtt/libmqtt.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/mqtt_client.c", "C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/lib/mqtt_msg.c", "C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/lib/mqtt_outbox.c", "C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/lib/platform_esp32_idf.c" ],
             "include_dirs": [ "C:/esp/v5.5.4/esp-idf/components/mqtt/esp-mqtt/include" ]
         },
@@ -1397,15 +1397,15 @@
             "alias": "idf::mqtt_lib",
             "target": "___idf_mqtt_lib",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/mqtt_lib",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/mqtt_lib",
             "type": "LIBRARY",
             "lib": "__idf_mqtt_lib",
             "reqs": [ "mqtt", "esp_app_format", "ethernet" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/mqtt_lib/libmqtt_lib.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/mqtt_lib/src/mqtt.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/mqtt_lib/libmqtt_lib.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/mqtt_lib/src/mqtt.c" ],
             "include_dirs": [ "inc" ]
         },
         "newlib": {
@@ -1419,7 +1419,7 @@
             "priv_reqs": [ "soc", "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/newlib/libnewlib.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/newlib/libnewlib.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/newlib/src/init.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/abort.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/assert.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/heap.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/locks.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/poll.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/pthread.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/random.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/getentropy.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/termios.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/stdatomic.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/time.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/sysconf.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/realpath.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/scandir.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/syscalls.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/reent_syscalls.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/port/esp_time_impl.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/port/riscv/memcpy.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/port/riscv/memmove.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/string/memcmp.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/port/riscv/strcpy.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/string/strncpy.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/string/strncmp.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/port/riscv/strcmp.S", "C:/esp/v5.5.4/esp-idf/components/newlib/src/flockfile.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/reent_init.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/newlib_init.c", "C:/esp/v5.5.4/esp-idf/components/newlib/src/port/esp_time_impl.c" ],
             "include_dirs": [ "platform_include" ]
         },
@@ -1434,7 +1434,7 @@
             "priv_reqs": [ "spi_flash", "newlib" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/nvs_flash/libnvs_flash.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/nvs_flash/libnvs_flash.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_api.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_cxx_api.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_item_hash_list.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_page.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_pagemanager.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_storage.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_handle_simple.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_handle_locked.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_partition.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_partition_lookup.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_partition_manager.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_types.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_platform.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_bootloader.c", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_encrypted_partition.cpp", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_bootloader_aes.c", "C:/esp/v5.5.4/esp-idf/components/nvs_flash/src/nvs_bootloader_xts_aes.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1449,7 +1449,7 @@
             "priv_reqs": [ "bootloader_support", "efuse", "esp_partition", "nvs_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/nvs_sec_provider/nvs_sec_provider.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1472,15 +1472,15 @@
             "alias": "idf::ota_mgr",
             "target": "___idf_ota_mgr",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ota_mgr",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ota_mgr",
             "type": "LIBRARY",
             "lib": "__idf_ota_mgr",
             "reqs": [ "esp_https_ota", "app_update", "esp_http_client", "esp-tls", "esp_app_format", "mqtt_lib", "json", "hmi_runtime" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/ota_mgr/libota_mgr.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ota_mgr/ota_mgr.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ota_mgr/nextion_update.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/ota_mgr/libota_mgr.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ota_mgr/ota_mgr.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ota_mgr/nextion_update.c" ],
             "include_dirs": [ "." ]
         },
         "partition_table": {
@@ -1509,7 +1509,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/protobuf-c/libprotobuf-c.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/protobuf-c/libprotobuf-c.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/protobuf-c/protobuf-c/protobuf-c/protobuf-c.c" ],
             "include_dirs": [ "protobuf-c" ]
         },
@@ -1524,7 +1524,7 @@
             "priv_reqs": [ "protobuf-c", "mbedtls", "console", "esp_http_server", "esp_driver_uart" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/protocomm/libprotocomm.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/protocomm/libprotocomm.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/protocomm/src/common/protocomm.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/proto-c/constants.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/proto-c/sec0.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/proto-c/sec1.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/proto-c/sec2.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/proto-c/session.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/transports/protocomm_console.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/transports/protocomm_httpd.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/security/security0.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/security/security1.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/security/security2.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/crypto/srp6a/esp_srp.c", "C:/esp/v5.5.4/esp-idf/components/protocomm/src/crypto/srp6a/esp_srp_mpi.c" ],
             "include_dirs": [ "include/common", "include/security", "include/transports", "include/crypto/srp6a", "proto-c" ]
         },
@@ -1539,7 +1539,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/pthread/libpthread.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/pthread/libpthread.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/pthread/pthread.c", "C:/esp/v5.5.4/esp-idf/components/pthread/pthread_cond_var.c", "C:/esp/v5.5.4/esp-idf/components/pthread/pthread_local_storage.c", "C:/esp/v5.5.4/esp-idf/components/pthread/pthread_rwlock.c", "C:/esp/v5.5.4/esp-idf/components/pthread/pthread_semaphore.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1554,7 +1554,7 @@
             "priv_reqs": [ "soc", "hal" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/riscv/libriscv.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/riscv/libriscv.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/riscv/instruction_decode.c", "C:/esp/v5.5.4/esp-idf/components/riscv/interrupt.c", "C:/esp/v5.5.4/esp-idf/components/riscv/rv_utils.c", "C:/esp/v5.5.4/esp-idf/components/riscv/vectors.S", "C:/esp/v5.5.4/esp-idf/components/riscv/interrupt_plic.c", "C:/esp/v5.5.4/esp-idf/components/riscv/vectors_intc.S" ],
             "include_dirs": [ "include" ]
         },
@@ -1569,7 +1569,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/rt/librt.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/rt/librt.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/rt/FreeRTOS_POSIX_mqueue.c", "C:/esp/v5.5.4/esp-idf/components/rt/FreeRTOS_POSIX_utils.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1577,15 +1577,15 @@
             "alias": "idf::sdcard",
             "target": "___idf_sdcard",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/sdcard",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/sdcard",
             "type": "LIBRARY",
             "lib": "__idf_sdcard",
             "reqs": [ "driver", "fatfs", "sdmmc", "esp_driver_spi", "esp_driver_sdspi" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/sdcard/libsdcard.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/sdcard/src/sdcard.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/sdcard/libsdcard.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/sdcard/src/sdcard.c" ],
             "include_dirs": [ "inc" ]
         },
         "sdmmc": {
@@ -1599,7 +1599,7 @@
             "priv_reqs": [ "soc", "esp_timer", "esp_mm" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/sdmmc/libsdmmc.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/sdmmc/libsdmmc.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/sdmmc/sdmmc_cmd.c", "C:/esp/v5.5.4/esp-idf/components/sdmmc/sdmmc_common.c", "C:/esp/v5.5.4/esp-idf/components/sdmmc/sdmmc_init.c", "C:/esp/v5.5.4/esp-idf/components/sdmmc/sdmmc_io.c", "C:/esp/v5.5.4/esp-idf/components/sdmmc/sdmmc_mmc.c", "C:/esp/v5.5.4/esp-idf/components/sdmmc/sdmmc_sd.c", "C:/esp/v5.5.4/esp-idf/components/sdmmc/sd_pwr_ctrl/sd_pwr_ctrl.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1614,7 +1614,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/soc/libsoc.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/soc/libsoc.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/soc/lldesc.c", "C:/esp/v5.5.4/esp-idf/components/soc/dport_access_common.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/interrupts.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/gpio_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/uart_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/adc_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/dedic_gpio_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/etm_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/gdma_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/spi_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/ledc_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/pcnt_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/rmt_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/sdm_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/i2s_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/i2c_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/temperature_sensor_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/timer_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/parlio_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/mcpwm_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/mpi_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/twai_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/wdt_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/rtc_io_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/sdio_slave_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/system_retention_periph.c", "C:/esp/v5.5.4/esp-idf/components/soc/esp32c6/power_supply_periph.c" ],
             "include_dirs": [ "include", "esp32c6", "esp32c6/include", "esp32c6/register" ]
         },
@@ -1629,7 +1629,7 @@
             "priv_reqs": [ "bootloader_support", "app_update", "soc", "esp_mm", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/spi_flash/libspi_flash.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/spi_flash/libspi_flash.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/spi_flash/flash_brownout_hook.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_drivers.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_generic.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_issi.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_mxic.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_gd.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_winbond.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_boya.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_mxic_opi.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_chip_th.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/memspi_host_driver.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/cache_utils.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/flash_mmap.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/flash_ops.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_wrap.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/esp_flash_api.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/esp_flash_spi_init.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_os_func_app.c", "C:/esp/v5.5.4/esp-idf/components/spi_flash/spi_flash_os_func_noos.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1644,7 +1644,7 @@
             "priv_reqs": [ "bootloader_support", "esptool_py", "vfs" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/spiffs/libspiffs.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/spiffs/libspiffs.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/spiffs/spiffs_api.c", "C:/esp/v5.5.4/esp-idf/components/spiffs/spiffs/src/spiffs_cache.c", "C:/esp/v5.5.4/esp-idf/components/spiffs/spiffs/src/spiffs_check.c", "C:/esp/v5.5.4/esp-idf/components/spiffs/spiffs/src/spiffs_gc.c", "C:/esp/v5.5.4/esp-idf/components/spiffs/spiffs/src/spiffs_hydrogen.c", "C:/esp/v5.5.4/esp-idf/components/spiffs/spiffs/src/spiffs_nucleus.c", "C:/esp/v5.5.4/esp-idf/components/spiffs/esp_spiffs.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1659,7 +1659,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/tcp_transport/libtcp_transport.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/tcp_transport/libtcp_transport.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/tcp_transport/transport.c", "C:/esp/v5.5.4/esp-idf/components/tcp_transport/transport_ssl.c", "C:/esp/v5.5.4/esp-idf/components/tcp_transport/transport_internal.c", "C:/esp/v5.5.4/esp-idf/components/tcp_transport/transport_socks_proxy.c", "C:/esp/v5.5.4/esp-idf/components/tcp_transport/transport_ws.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1689,7 +1689,7 @@
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/unity/libunity.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/unity/libunity.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/unity/unity/src/unity.c", "C:/esp/v5.5.4/esp-idf/components/unity/unity_compat.c", "C:/esp/v5.5.4/esp-idf/components/unity/unity_runner.c", "C:/esp/v5.5.4/esp-idf/components/unity/unity_utils_freertos.c", "C:/esp/v5.5.4/esp-idf/components/unity/unity_utils_cache.c", "C:/esp/v5.5.4/esp-idf/components/unity/unity_utils_memory.c", "C:/esp/v5.5.4/esp-idf/components/unity/unity_port_esp32.c", "C:/esp/v5.5.4/esp-idf/components/unity/port/esp/unity_utils_memory_esp.c" ],
             "include_dirs": [ "include", "unity/src" ]
         },
@@ -1719,7 +1719,7 @@
             "priv_reqs": [ "esp_timer", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_vfs_console" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/vfs/libvfs.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/vfs/libvfs.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/vfs/vfs.c", "C:/esp/v5.5.4/esp-idf/components/vfs/vfs_eventfd.c", "C:/esp/v5.5.4/esp-idf/components/vfs/vfs_semihost.c", "C:/esp/v5.5.4/esp-idf/components/vfs/nullfs.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1734,7 +1734,7 @@
             "priv_reqs": [ "spi_flash" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/wear_levelling/libwear_levelling.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/wear_levelling/libwear_levelling.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/wear_levelling/Partition.cpp", "C:/esp/v5.5.4/esp-idf/components/wear_levelling/SPI_Flash.cpp", "C:/esp/v5.5.4/esp-idf/components/wear_levelling/WL_Ext_Perf.cpp", "C:/esp/v5.5.4/esp-idf/components/wear_levelling/WL_Ext_Safe.cpp", "C:/esp/v5.5.4/esp-idf/components/wear_levelling/WL_Flash.cpp", "C:/esp/v5.5.4/esp-idf/components/wear_levelling/crc32.cpp", "C:/esp/v5.5.4/esp-idf/components/wear_levelling/wear_levelling.cpp" ],
             "include_dirs": [ "include" ]
         },
@@ -1742,15 +1742,15 @@
             "alias": "idf::wifi_lib",
             "target": "___idf_wifi_lib",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/wifi_lib",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/wifi_lib",
             "type": "LIBRARY",
             "lib": "__idf_wifi_lib",
             "reqs": [ "esp_wifi", "esp_netif", "esp_event", "esp_http_server", "esp_http_client" ],
             "priv_reqs": [],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/wifi_lib/libwifi_lib.a",
-            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/wifi_lib/src/wifi_cfg.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/wifi_lib/src/wifi_db.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/wifi_lib/src/wifi_mgr.c" ],
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/wifi_lib/libwifi_lib.a",
+            "sources": [ "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/wifi_lib/src/wifi_cfg.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/wifi_lib/src/wifi_db.c", "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/wifi_lib/src/wifi_mgr.c" ],
             "include_dirs": [ "inc" ]
         },
         "wifi_provisioning": {
@@ -1764,7 +1764,7 @@
             "priv_reqs": [ "protobuf-c", "bt", "json", "esp_timer", "esp_wifi" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/wifi_provisioning/libwifi_provisioning.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/wifi_provisioning/libwifi_provisioning.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/wifi_config.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/wifi_scan.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/wifi_ctrl.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/manager.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/handlers.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/scheme_console.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/proto-c/wifi_config.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/proto-c/wifi_scan.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/proto-c/wifi_ctrl.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/proto-c/wifi_constants.pb-c.c", "C:/esp/v5.5.4/esp-idf/components/wifi_provisioning/src/scheme_softap.c" ],
             "include_dirs": [ "include" ]
         },
@@ -1779,7 +1779,7 @@
             "priv_reqs": [ "mbedtls", "esp_timer", "esp_wifi" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/esp-idf/wpa_supplicant/libwpa_supplicant.a",
+            "file": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/esp-idf/wpa_supplicant/libwpa_supplicant.a",
             "sources": [ "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/port/os_xtensa.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/port/eloop.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/ap_config.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/ieee802_1x.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/wpa_auth.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/wpa_auth_ie.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/pmksa_cache_auth.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/sta_info.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/ieee802_11.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/ap/comeback_token.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/common/sae.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/common/dragonfly.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/common/wpa_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/bitfield.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/aes-siv.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha256-kdf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/ccmp.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/aes-gcm.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/crypto_ops.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/dh_group5.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/dh_groups.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/ms_funcs.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha1-tlsprf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha256-tlsprf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha384-tlsprf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha256-prf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha1-prf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha384-prf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/md4-internal.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/sha1-tprf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_common/eap_wsc_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/common/ieee802_11_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/chap.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_mschapv2.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_peap.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_peap_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_tls.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_tls_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_ttls.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/mschapv2.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_fast.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_fast_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/eap_peer/eap_fast_pac.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/rsn_supp/pmksa_cache.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/rsn_supp/wpa.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/rsn_supp/wpa_ie.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/base64.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/ext_password.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/uuid.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/wpabuf.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/wpa_debug.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/utils/json.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps_attr_build.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps_attr_parse.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps_attr_process.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps_dev_attr.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/wps/wps_enrollee.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/common/sae_pk.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_eap_client.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpa2_api_port.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpa_main.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpas_glue.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_common.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wps.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_wpa3.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_owe.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/esp_hostap.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/tls_mbedtls.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls-bignum.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls-rsa.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/crypto_mbedtls-ec.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/fastpsk.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/rc4.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/des-internal.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/esp_supplicant/src/crypto/fastpbkdf2.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/aes-wrap.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/aes-unwrap.c", "C:/esp/v5.5.4/esp-idf/components/wpa_supplicant/src/crypto/aes-ccm.c" ],
             "include_dirs": [ "include", "port/include", "esp_supplicant/include" ]
         }
@@ -3097,7 +3097,7 @@
             "alias": "idf::main",
             "target": "___idf_main",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/main",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/main",
             "lib": "__idf_main",
             "reqs": [ "ota_mgr", "driver", "esp_timer", "esp_netif", "esp_event", "nvs_flash", "mqtt_lib", "json", "joltwallet__littlefs", "sdcard", "ethernet", "wifi_lib", "file_manager", "machine_presence" ],
             "priv_reqs": [ "espressif__w6100", "joltwallet__littlefs" ],
@@ -3109,7 +3109,7 @@
             "alias": "idf::ethernet",
             "target": "___idf_ethernet",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ethernet",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ethernet",
             "lib": "__idf_ethernet",
             "reqs": [ "driver", "esp_netif", "esp_eth", "espressif__w6100", "esp_driver_spi" ],
             "priv_reqs": [],
@@ -3121,7 +3121,7 @@
             "alias": "idf::file_manager",
             "target": "___idf_file_manager",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/file_manager",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/file_manager",
             "lib": "__idf_file_manager",
             "reqs": [ "spiffs", "vfs", "fatfs", "esp_http_server", "joltwallet__littlefs" ],
             "priv_reqs": [],
@@ -3133,7 +3133,7 @@
             "alias": "idf::hmi_runtime",
             "target": "___idf_hmi_runtime",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/hmi_runtime",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/hmi_runtime",
             "lib": "__idf_hmi_runtime",
             "reqs": [ "driver" ],
             "priv_reqs": [],
@@ -3145,7 +3145,7 @@
             "alias": "idf::machine_presence",
             "target": "___idf_machine_presence",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/machine_presence",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/machine_presence",
             "lib": "__idf_machine_presence",
             "reqs": [ "mqtt_lib" ],
             "priv_reqs": [],
@@ -3157,7 +3157,7 @@
             "alias": "idf::mqtt_lib",
             "target": "___idf_mqtt_lib",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/mqtt_lib",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/mqtt_lib",
             "lib": "__idf_mqtt_lib",
             "reqs": [ "mqtt", "esp_app_format", "ethernet" ],
             "priv_reqs": [],
@@ -3169,7 +3169,7 @@
             "alias": "idf::ota_mgr",
             "target": "___idf_ota_mgr",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ota_mgr",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ota_mgr",
             "lib": "__idf_ota_mgr",
             "reqs": [ "esp_https_ota", "app_update", "esp_http_client", "esp-tls", "esp_app_format", "mqtt_lib", "json", "hmi_runtime" ],
             "priv_reqs": [],
@@ -3181,7 +3181,7 @@
             "alias": "idf::sdcard",
             "target": "___idf_sdcard",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/sdcard",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/sdcard",
             "lib": "__idf_sdcard",
             "reqs": [ "driver", "fatfs", "sdmmc", "esp_driver_spi", "esp_driver_sdspi" ],
             "priv_reqs": [],
@@ -3193,7 +3193,7 @@
             "alias": "idf::wifi_lib",
             "target": "___idf_wifi_lib",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/wifi_lib",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/wifi_lib",
             "lib": "__idf_wifi_lib",
             "reqs": [ "esp_wifi", "esp_netif", "esp_event", "esp_http_server", "esp_http_client" ],
             "priv_reqs": [],
@@ -3205,7 +3205,7 @@
             "alias": "idf::espressif__w6100",
             "target": "___idf_espressif__w6100",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__w6100",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__w6100",
             "lib": "__idf_espressif__w6100",
             "reqs": [ "espressif__wiznet_common" ],
             "priv_reqs": [ "esp_eth" ],
@@ -3217,7 +3217,7 @@
             "alias": "idf::espressif__wiznet_common",
             "target": "___idf_espressif__wiznet_common",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/espressif__wiznet_common",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/espressif__wiznet_common",
             "lib": "__idf_espressif__wiznet_common",
             "reqs": [],
             "priv_reqs": [ "esp_driver_spi", "esp_driver_gpio", "esp_eth", "esp_timer" ],
@@ -3229,7 +3229,7 @@
             "alias": "idf::joltwallet__littlefs",
             "target": "___idf_joltwallet__littlefs",
             "prefix": "idf",
-            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/managed_components/joltwallet__littlefs",
+            "dir": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/managed_components/joltwallet__littlefs",
             "lib": "__idf_joltwallet__littlefs",
             "reqs": [ "sdmmc", "esp_partition" ],
             "priv_reqs": [ "esptool_py", "spi_flash", "vfs" ],
@@ -3240,10 +3240,10 @@
     },
     "debug_prefix_map_gdbinit": "",
     "gdbinit_files": {
-        "01_symbols": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/gdbinit/symbols",
-        "02_prefix_map": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/gdbinit/prefix_map",
-        "03_py_extensions": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/gdbinit/py_extensions",
-        "04_connect": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/gdbinit/connect"
+        "01_symbols": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/gdbinit/symbols",
+        "02_prefix_map": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/gdbinit/prefix_map",
+        "03_py_extensions": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/gdbinit/py_extensions",
+        "04_connect": "D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/gdbinit/connect"
     },
     "debug_arguments_openocd": "-f board/esp32c6-builtin.cfg"
 }

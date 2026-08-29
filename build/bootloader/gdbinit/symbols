@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/build/bootloader/bootloader.elf
+file D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/build/bootloader/bootloader.elf

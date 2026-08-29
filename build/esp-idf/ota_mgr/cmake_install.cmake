@@ -1,4 +1,4 @@
-# Install script for directory: D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING/components/ota_mgr
+# Install script for directory: D:/__SHIVANI__/hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)/hmi_file_manager_integrated_MAIN_WORKING - Copy/components/ota_mgr
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

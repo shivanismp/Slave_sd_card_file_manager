@@ -1147,109 +1147,146 @@ bool send_max_pt_to_modbus(uint16_t value)
     return modbus_write_and_verify_single_reg(MODBUS_SLAVE_ID_CONTROL_CARD, value, HOLD_REG_ADDR_CFG_MAX_PT_VAL);
 }
 
-bool modbus_read_input_regs_11_22(void)
+static bool modbus_read_control_card_input_chunk(uint16_t first_reg,
+                                                 uint16_t reg_count,
+                                                 uint16_t *values)
 {
-    const bool dummy_data_enabled = true;
-    const uint16_t reg_count = 12;
     uint8_t rx_buf[MODBUS_1_UART_BUF_SIZE];
-    int len;
+    int len = 0;
 
-    len = modbus_read_input_registers(MODBUS_SLAVE_ID_CONTROL_CARD, rx_buf, INP_REG_ADDR_POT_PERCENT, reg_count);
+    _Static_assert(CONTROL_CARD_TELEMETRY_FIRST_REG ==
+                       (CONTROL_CARD_RAW_INPUT_LAST_REG + 1U),
+                   "Control-card input chunks are not contiguous");
+    _Static_assert((CONTROL_CARD_RAW_INPUT_REG_COUNT +
+                    CONTROL_CARD_TELEMETRY_REG_COUNT) ==
+                       CONTROL_CARD_INPUT_REG_COUNT,
+                   "Control-card input chunks do not cover registers 0..22");
 
-    if (len >= 29 &&
+    if (values == NULL || reg_count == 0U || reg_count > 125U)
+        return false;
+
+    len = modbus_read_input_registers(MODBUS_SLAVE_ID_CONTROL_CARD,
+                                      rx_buf,
+                                      first_reg,
+                                      reg_count);
+
+    if (len >= (int)(5U + (reg_count * 2U)) &&
         rx_buf[0] == MODBUS_SLAVE_ID_CONTROL_CARD &&
         rx_buf[1] == MODBUS_FUNC_READ_INP_REGS &&
-        rx_buf[2] == reg_count * 2ULL)
+        rx_buf[2] == (uint8_t)(reg_count * 2U))
     {
-        if (hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
+        for (uint16_t reg = 0U; reg < reg_count; ++reg)
         {
-            int i = 3;
-
-            /* Reg 11 */
-            hmi_data.power_percent = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-
-            /* Reg 12 */
-            hmi_data.line_1_v = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("L1 Value: %hd\n", hmi_data.line_1_v);
-
-            /* Reg 13 */
-            hmi_data.line_1_a = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("A1 Value: %hd\n", hmi_data.line_1_a);
-
-            /* Reg 14 */
-            hmi_data.line_2_v = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("L2 Value: %hd\n", hmi_data.line_2_v);
-
-            /* Reg 15 */
-            hmi_data.line_2_a = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("A2 Value: %hd\n", hmi_data.line_2_a);
-
-            /* Reg 16 */
-            hmi_data.line_3_v = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("L3 Value: %hd\n", hmi_data.line_3_v);
-
-            /* Reg 17 */
-            hmi_data.line_3_a = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("A3 Value: %hd\n", hmi_data.line_3_a);
-
-            /* Reg 18 */
-            hmi_data.avg_v = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("LAVG Value: %hd\n", hmi_data.avg_v);
-
-            /* Reg 19 */
-            hmi_data.avg_a = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("AAVG Value: %hd\n", hmi_data.avg_a);
-
-            /* Reg 20 */
-            hmi_data.pwm_freq = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("pwm_freq Value: %hd\n", hmi_data.pwm_freq);
-            // printf("pwm_freq Value: %u\n", (unsigned)hmi_data.pwm_freq);
-
-            /* Reg 21 */
-            hmi_data.avg_kw = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-            i += 2;
-            // printf("KW Value: %hd\n", hmi_data.avg_kw);
-
-            /* Reg 22 */
-            hmi_data.avg_pf = ((uint16_t)rx_buf[i] << 8) | rx_buf[i + 1];
-
-            if (hmi_data.avg_pf >= 998)
-                hmi_data.avg_pf -= 3;
-            // printf("PF Value: %hd\n", hmi_data.avg_pf);
-
-            hmi_data_unlock();
-        }
-
-        if (dummy_data_enabled)
-        {
-            hmi_data.line_1_v = 4300;
-            hmi_data.line_1_a = 250;
-            hmi_data.line_2_v = 4300;
-            hmi_data.line_2_a = 250;
-            hmi_data.line_3_v = 4300;
-            hmi_data.line_3_a = 250;
-            hmi_data.avg_v = 4300;
-            hmi_data.avg_a = 250;
-            hmi_data.pwm_freq = 1555;
-            hmi_data.avg_kw = 150;
-            hmi_data.avg_pf = 999;
+            uint16_t data_index = (uint16_t)(3U + (reg * 2U));
+            values[reg] =
+                ((uint16_t)rx_buf[data_index] << 8) |
+                rx_buf[data_index + 1U];
         }
 
         return true;
     }
 
-    ESP_LOGW(TAG_MODBUS_MASTER, "Input register read 11..22 failed, len=%d", len);
+    ESP_LOGW(TAG_MODBUS_MASTER,
+             "Input register chunk %u..%u failed, len=%d",
+             (unsigned)first_reg,
+             (unsigned)(first_reg + reg_count - 1U),
+             len);
     return false;
+}
+
+static bool modbus_read_input_regs_0_10(void)
+{
+    uint16_t values[CONTROL_CARD_RAW_INPUT_REG_COUNT];
+
+    _Static_assert(CONTROL_CARD_RAW_INPUT_REG_COUNT ==
+                       HMI_CONTROL_CARD_RAW_INPUT_COUNT,
+                   "Control-card raw input count mismatch");
+
+    if (!modbus_read_control_card_input_chunk(
+            CONTROL_CARD_RAW_INPUT_FIRST_REG,
+            CONTROL_CARD_RAW_INPUT_REG_COUNT,
+            values))
+    {
+        return false;
+    }
+
+    if (!hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
+        return false;
+
+    for (uint16_t reg = 0U;
+         reg < CONTROL_CARD_RAW_INPUT_REG_COUNT;
+         ++reg)
+    {
+        hmi_data.control_card_raw_input[reg] = values[reg];
+    }
+
+    hmi_data_unlock();
+    return true;
+}
+
+static bool modbus_read_input_regs_11_22(void)
+{
+    // const bool dummy_data_enabled = true;
+    const bool dummy_data_enabled = false;
+    uint16_t values[CONTROL_CARD_TELEMETRY_REG_COUNT];
+
+    if (!modbus_read_control_card_input_chunk(
+            CONTROL_CARD_TELEMETRY_FIRST_REG,
+            CONTROL_CARD_TELEMETRY_REG_COUNT,
+            values))
+    {
+        return false;
+    }
+
+    if (!hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
+        return false;
+
+    /* values[0] corresponds to control-card input register 11. */
+    hmi_data.power_percent = values[INP_REG_ADDR_POT_PERCENT -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.line_1_v      = values[INP_REG_LINE_1_V -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.line_1_a      = values[INP_REG_LINE_1_A -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.line_2_v      = values[INP_REG_LINE_2_V -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.line_2_a      = values[INP_REG_LINE_2_A -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.line_3_v      = values[INP_REG_LINE_3_V -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.line_3_a      = values[INP_REG_LINE_3_A -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.avg_v         = values[INP_REG_AVG_V -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.avg_a         = values[INP_REG_AVG_A -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.pwm_freq      = values[INP_REG_ADDR_CURRENT_FREQ_KHZ -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.avg_kw        = values[INP_REG_AVG_KW -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+    hmi_data.avg_pf        = values[INP_REG_AVG_PF -
+                                    CONTROL_CARD_TELEMETRY_FIRST_REG];
+
+    if (hmi_data.avg_pf >= 998U)
+        hmi_data.avg_pf -= 3U;
+
+    if (dummy_data_enabled)
+    {
+        hmi_data.line_1_v = 4300;
+        hmi_data.line_1_a = 250;
+        hmi_data.line_2_v = 4300;
+        hmi_data.line_2_a = 250;
+        hmi_data.line_3_v = 4300;
+        hmi_data.line_3_a = 250;
+        hmi_data.avg_v = 4300;
+        hmi_data.avg_a = 250;
+        hmi_data.pwm_freq = 1555;
+        hmi_data.avg_kw = 150;
+        hmi_data.avg_pf = 999;
+    }
+
+    hmi_data_unlock();
+    return true;
 }
 
 #ifdef _MACHINE_TEMPERATURE_CNTRL_
@@ -1407,9 +1444,17 @@ bool control_card_poll_once(void)
         return false;
 
     vTaskDelay(pdMS_TO_TICKS(5));
+    if (!modbus_read_input_regs_0_10())
+    {
+        ESP_LOGW(TAG_MODBUS_MASTER,
+                 "[CONTROL CARD] Failed to read input regs 0..10");
+    }
+    vTaskDelay(pdMS_TO_TICKS(5));
+
     if (!modbus_read_input_regs_11_22())
     {
-        ESP_LOGW(TAG_MODBUS_MASTER, "[CONTROL CARD] Failed to read input regs 11..22");
+        ESP_LOGW(TAG_MODBUS_MASTER,
+                 "[CONTROL CARD] Failed to read input regs 11..22");
     }
     vTaskDelay(pdMS_TO_TICKS(5));
 

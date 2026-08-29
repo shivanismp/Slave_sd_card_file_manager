@@ -162,6 +162,25 @@
 
 #define INP_REG_AVG_PF                          22
 
+/* Complete control-card input address span. It is read in two FC04 chunks. */
+#define CONTROL_CARD_INPUT_FIRST_REG             INP_REG_ADDR_POT_ADC
+#define CONTROL_CARD_INPUT_LAST_REG              INP_REG_AVG_PF
+#define CONTROL_CARD_INPUT_REG_COUNT             \
+    (CONTROL_CARD_INPUT_LAST_REG - CONTROL_CARD_INPUT_FIRST_REG + 1U)
+
+/* Raw diagnostic portion copied to virtual-slave input addresses 26..36. */
+#define CONTROL_CARD_RAW_INPUT_FIRST_REG         INP_REG_ADDR_POT_ADC
+#define CONTROL_CARD_RAW_INPUT_LAST_REG          INP_REG_ADDR_ON_TIME_HI
+#define CONTROL_CARD_RAW_INPUT_REG_COUNT         \
+    (CONTROL_CARD_RAW_INPUT_LAST_REG - CONTROL_CARD_RAW_INPUT_FIRST_REG + 1U)
+
+/* Existing telemetry chunk: control-card input registers 11..22. */
+#define CONTROL_CARD_TELEMETRY_FIRST_REG         INP_REG_ADDR_POT_PERCENT
+#define CONTROL_CARD_TELEMETRY_LAST_REG          INP_REG_AVG_PF
+#define CONTROL_CARD_TELEMETRY_REG_COUNT         \
+    (CONTROL_CARD_TELEMETRY_LAST_REG -             \
+     CONTROL_CARD_TELEMETRY_FIRST_REG + 1U)
+
 // --------------------------------------------------
 
 

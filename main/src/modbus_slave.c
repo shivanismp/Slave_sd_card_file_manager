@@ -277,32 +277,32 @@ void modbus_slave_sync_from_runtime(void)
     slave_input_regs[INP_ADDR_AUTO_POWER_PERCENT_FB]   = snap.auto_power_percent_fb;
     slave_input_regs[INP_ADDR_POWER_PERCENT]           = snap.power_percent;
     
-    // slave_input_regs[INP_ADDR_LINE_1_V]                = snap.line_1_v;
-    // slave_input_regs[INP_ADDR_LINE_1_A]                = snap.line_1_a;
-    // slave_input_regs[INP_ADDR_LINE_2_V]                = snap.line_2_v;
-    // slave_input_regs[INP_ADDR_LINE_2_A]                = snap.line_2_a;
-    // slave_input_regs[INP_ADDR_LINE_3_V]                = snap.line_3_v;
-    // slave_input_regs[INP_ADDR_LINE_3_A]                = snap.line_3_a;
-    // slave_input_regs[INP_ADDR_AVG_V]                   = snap.avg_v;
-    // slave_input_regs[INP_ADDR_AVG_A]                   = snap.avg_a;
-    // slave_input_regs[INP_ADDR_PWM_FREQ]                = snap.pwm_freq;
-    // slave_input_regs[INP_ADDR_AVG_KW]                  = snap.avg_kw;
-    // slave_input_regs[INP_ADDR_AVG_PF]                  = snap.avg_pf;
+    slave_input_regs[INP_ADDR_LINE_1_V]                = snap.line_1_v;
+    slave_input_regs[INP_ADDR_LINE_1_A]                = snap.line_1_a;
+    slave_input_regs[INP_ADDR_LINE_2_V]                = snap.line_2_v;
+    slave_input_regs[INP_ADDR_LINE_2_A]                = snap.line_2_a;
+    slave_input_regs[INP_ADDR_LINE_3_V]                = snap.line_3_v;
+    slave_input_regs[INP_ADDR_LINE_3_A]                = snap.line_3_a;
+    slave_input_regs[INP_ADDR_AVG_V]                   = snap.avg_v;
+    slave_input_regs[INP_ADDR_AVG_A]                   = snap.avg_a;
+    slave_input_regs[INP_ADDR_PWM_FREQ]                = snap.pwm_freq;
+    slave_input_regs[INP_ADDR_AVG_KW]                  = snap.avg_kw;
+    slave_input_regs[INP_ADDR_AVG_PF]                  = snap.avg_pf;
 
     // DUMMY DATA FOR TESTING
-    slave_input_regs[INP_ADDR_LINE_1_V]                = 4300;
-    slave_input_regs[INP_ADDR_LINE_1_A]                = 250;
-    slave_input_regs[INP_ADDR_LINE_2_V]                = 4300;
-    slave_input_regs[INP_ADDR_LINE_2_A]                = 250;
-    slave_input_regs[INP_ADDR_LINE_3_V]                = 4300;
-    slave_input_regs[INP_ADDR_LINE_3_A]                = 250;
-    slave_input_regs[INP_ADDR_AVG_V]                   = 4300;
-    slave_input_regs[INP_ADDR_AVG_A]                   = 250;
+    // slave_input_regs[INP_ADDR_LINE_1_V]                = 4300;
+    // slave_input_regs[INP_ADDR_LINE_1_A]                = 250;
+    // slave_input_regs[INP_ADDR_LINE_2_V]                = 4300;
+    // slave_input_regs[INP_ADDR_LINE_2_A]                = 250;
+    // slave_input_regs[INP_ADDR_LINE_3_V]                = 4300;
+    // slave_input_regs[INP_ADDR_LINE_3_A]                = 250;
+    // slave_input_regs[INP_ADDR_AVG_V]                   = 4300;
+    // slave_input_regs[INP_ADDR_AVG_A]                   = 250;
 
 
-    slave_input_regs[INP_ADDR_PWM_FREQ]                = 1555;
-    slave_input_regs[INP_ADDR_AVG_KW]                  = 150;
-    slave_input_regs[INP_ADDR_AVG_PF]                  = 999;
+    // slave_input_regs[INP_ADDR_PWM_FREQ]                = 1555;
+    // slave_input_regs[INP_ADDR_AVG_KW]                  = 150;
+    // slave_input_regs[INP_ADDR_AVG_PF]                  = 999;
 
     slave_input_regs[INP_ADDR_ERROR_BITS_LO]           = 0;
 
@@ -339,6 +339,19 @@ void modbus_slave_sync_from_runtime(void)
 
     slave_input_regs[INP_ADDR_COMM_STATUS]             = (uint16_t)(0x0003U | (g_modbus_hmi_online ? 0x0004U : 0U));
     slave_input_regs[INP_ADDR_LOCAL_AUTO_POWER]        = snap.auto_power_percent;
+
+    _Static_assert(INP_ADDR_CONTROL_CARD_RAW_COUNT ==
+                       HMI_CONTROL_CARD_RAW_INPUT_COUNT,
+                   "Virtual-slave raw input count mismatch");
+
+    /* Control-card input 0..10 -> virtual-slave input 26..36. */
+    for (uint16_t reg = 0U;
+         reg < INP_ADDR_CONTROL_CARD_RAW_COUNT;
+         ++reg)
+    {
+        slave_input_regs[INP_ADDR_CONTROL_CARD_RAW_FIRST + reg] =
+            snap.control_card_raw_input[reg];
+    }
 
     slave_input_regs[INP_ADDR_LOCAL_WIFI_RSSI_STATE]   = snap.wifi_rssi_state;
 
@@ -814,12 +827,12 @@ static int handle_fc04(const uint8_t *rx, uint8_t *tx)
     xSemaphoreTake(g_modbus_slave_mutex, portMAX_DELAY);
 
     /*
-     * Build an MQTT-only view with timestamp high/low at addresses 22/23.
+     * Build an MQTT-only view with timestamp high/low at addresses 37/38.
      * Save and restore the normal register values while holding the mutex, so
      * the physical Delta HMI continues to see its existing address map.
      */
-    uint16_t saved_reg_22 = slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_HI];
-    uint16_t saved_reg_23 = slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_LO];
+    uint16_t saved_time_hi = slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_HI];
+    uint16_t saved_time_lo = slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_LO];
     uint32_t unix_time = 0U;
     if (app_time_is_valid())
     {
@@ -844,8 +857,8 @@ static int handle_fc04(const uint8_t *rx, uint8_t *tx)
                                    MODBUS_SLAVE_NUM_INPUT_REGS,
                                    tx);
 
-    slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_HI] = saved_reg_22;
-    slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_LO] = saved_reg_23;
+    slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_HI] = saved_time_hi;
+    slave_input_regs[MQTT_INP_ADDR_UNIX_TIME_LO] = saved_time_lo;
     xSemaphoreGive(g_modbus_slave_mutex);
     return ret;
 }
@@ -1519,7 +1532,7 @@ static const delta_status_segment_t g_delta_status_segments[] =
      * ESP input register n -> Delta internal register $n
      */
     {0U,   0U,   24U},   /* Input 0–23   -> Delta $0–$23 */
-    {24U,  24U,  18U},   /* Input 24–41  -> Delta $24–$41 */
+    {24U,  24U,  18U},   /* Includes raw control-card inputs at $26–$36. */
 
     /*
      * Machine information strings.

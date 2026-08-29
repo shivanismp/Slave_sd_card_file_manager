@@ -1,6 +1,6 @@
 /* Automatically generated file; DO NOT EDIT */
 /* Espressif IoT Development Framework Linker Script */
-/* Generated from: D:\__SHIVANI__\hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)\hmi_file_manager_integrated_MAIN_WORKING\build\esp-idf\esp_system\ld\sections.ld.in */
+/* Generated from: D:\__SHIVANI__\hmi_file_manager_integrated_MAIN_WORKING_CLEANED (1)\hmi_file_manager_integrated_MAIN_WORKING - Copy\build\esp-idf\esp_system\ld\sections.ld.in */
 
 /*
  * SPDX-FileCopyrightText: 2022 Espressif Systems (Shanghai) CO LTD

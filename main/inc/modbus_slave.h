@@ -203,21 +203,45 @@
 
 #define INP_ADDR_LOCAL_AUTO_POWER        23
 
+/* Addresses 24 and 25 are reserved for future use. */
+#define INP_ADDR_RESERVED_24             24
+#define INP_ADDR_RESERVED_25             25
+
 /*
- * MQTT-only function-0x04 view:
- * response values 23 and 24 (zero-based addresses 22 and 23) contain the
- * uint32_t Unix timestamp, high word first. The normal Delta HMI meanings of
- * input addresses 22 and 23 remain unchanged outside the MQTT response.
+ * Raw control-card input registers 0..10.
+ *
+ * Control-card input 0  -> virtual-slave input 26
+ * Control-card input 10 -> virtual-slave input 36
  */
-#define MQTT_INP_ADDR_UNIX_TIME_HI       22
-#define MQTT_INP_ADDR_UNIX_TIME_LO       23
+#define INP_ADDR_CONTROL_CARD_RAW_FIRST  26
+#define INP_ADDR_CONTROL_CARD_POT_ADC    26
+#define INP_ADDR_CONTROL_CARD_CT_ADC     27
+#define INP_ADDR_CONTROL_CARD_PT_ADC     28
+#define INP_ADDR_CONTROL_CARD_DCC        29
+#define INP_ADDR_CONTROL_CARD_DCV        30
+#define INP_ADDR_CONTROL_CARD_ADC3       31
+#define INP_ADDR_CONTROL_CARD_ADC4       32
+#define INP_ADDR_CONTROL_CARD_ADC5       33
+#define INP_ADDR_CONTROL_CARD_PHASE      34
+#define INP_ADDR_CONTROL_CARD_ON_TIME_LO 35
+#define INP_ADDR_CONTROL_CARD_ON_TIME_HI 36
+#define INP_ADDR_CONTROL_CARD_RAW_LAST   36
+#define INP_ADDR_CONTROL_CARD_RAW_COUNT  \
+    (INP_ADDR_CONTROL_CARD_RAW_LAST - INP_ADDR_CONTROL_CARD_RAW_FIRST + 1U)
+
+/*
+ * MQTT-only function-0x04 view.
+ *
+ * The uint32_t Unix timestamp follows all live and raw values at addresses
+ * 37 and 38, high word first. These two array positions are temporarily
+ * replaced only while an MQTT FC04 response is constructed, then restored.
+ */
+#define MQTT_INP_ADDR_UNIX_TIME_HI       37
+#define MQTT_INP_ADDR_UNIX_TIME_LO       38
+#define MQTT_INP_REGISTER_COUNT          39U
 
 
-// 24 TO 41 FREE
-// .
-// .
-// .
-// .
+// 39 TO 41 FREE
 
 
 #define INP_ADDR_INFO_MODEL              42 // 15 chars allowed
