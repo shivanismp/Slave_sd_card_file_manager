@@ -5,6 +5,6 @@ cmake_minimum_required(VERSION 3.16)
 set(PROJECT_VER "3.0.0")
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
-project(hmi_file_manager_integrated_MAIN_WORKING)
+project(hmi_file_manager_integrated_MAIN_WORKING_CHUNKS_DATA)
 
 # littlefs_create_partition_image(storage littlefs FLASH_IN_PROJECT)

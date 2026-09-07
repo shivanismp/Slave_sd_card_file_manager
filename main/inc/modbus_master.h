@@ -23,15 +23,20 @@
 
 
 /*
- * Local change-history record layout (48 bytes total):
- *   words 0..21 = input registers 0..21
- *   words 22..23 = uint32_t Unix timestamp, high word first
+ * Local change-history record layout (78 bytes total).
+ * This matches the MQTT virtual input-register response:
+ *
+ *   words 0..23  = normal machine/runtime values
+ *   words 24..25 = reserved (zero)
+ *   words 26..36 = raw control-card input registers 0..10
+ *   word  37      = uint32_t Unix timestamp high word
+ *   word  38      = uint32_t Unix timestamp low word
  */
 #define MODBUS_LOCAL_BIN_START_REG               0U
-#define MODBUS_LOCAL_BIN_INPUT_REGISTER_COUNT    22U
+#define MODBUS_LOCAL_BIN_INPUT_REGISTER_COUNT    37U
 #define MODBUS_LOCAL_BIN_TIMESTAMP_REGISTER_COUNT 2U
-#define MODBUS_LOCAL_BIN_TIMESTAMP_HI_INDEX      22U
-#define MODBUS_LOCAL_BIN_TIMESTAMP_LO_INDEX      23U
+#define MODBUS_LOCAL_BIN_TIMESTAMP_HI_INDEX      37U
+#define MODBUS_LOCAL_BIN_TIMESTAMP_LO_INDEX      38U
 #define MODBUS_LOCAL_BIN_INPUT_START_INDEX       0U
 #define MODBUS_LOCAL_BIN_REGISTER_COUNT          \
     (MODBUS_LOCAL_BIN_TIMESTAMP_REGISTER_COUNT + \
@@ -45,7 +50,7 @@
  * One KB is 1024 bytes. The runtime setter can change this value at any time.
  */
 // #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  10U
-#define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  10U
+#define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  20U
 #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_MIN      1U
 #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_MAX      4096U
 #define MODBUS_LOCAL_BIN_SD_CHECK_PERIOD_MS       1000U
@@ -88,17 +93,21 @@
 
 // DISCRETE INPUTS (READ ONLY)
 // FUNCTION CODE: (02)
-#define DIS_INP_ADDR_ERROR_LM_BIT            0
-#define DIS_INP_ADDR_ERROR_PWM_TRIP_BIT      1
-#define DIS_INP_ADDR_ERROR_WF_BIT            2
-#define DIS_INP_ADDR_ERROR_OH_CL_BIT         3
-#define DIS_INP_ADDR_ERROR_OH_IG_BIT         4
-#define DIS_INP_ADDR_ERROR_EXT_1_BIT         5
-#define DIS_INP_ADDR_ERROR_EXT_2_BIT         6
-#define DIS_INP_ADDR_INP_TEMP_CUTOFF_BIT     7
-#define DIS_INP_ADDR_INP_HF_PT_TRIP_BIT      8
-#define DIS_INP_ADDR_INP_HF_CT_TRIP_BIT      9
-#define DIS_INP_ADDR_ERROR_PHASE_BIT         10
+#define DIS_INP_ADDR_ERROR_LM_BIT            0U
+#define DIS_INP_ADDR_ERROR_PWM_TRIP_BIT      1U
+#define DIS_INP_ADDR_ERROR_WF_BIT            2U
+#define DIS_INP_ADDR_ERROR_OH_CL_BIT         3U
+#define DIS_INP_ADDR_ERROR_OH_IG_BIT         4U
+#define DIS_INP_ADDR_ERROR_EXT_1_BIT         5U
+#define DIS_INP_ADDR_ERROR_EXT_2_BIT         6U
+#define DIS_INP_ADDR_INP_TEMP_CUTOFF_BIT     7U
+#define DIS_INP_ADDR_INP_HF_PT_TRIP_BIT      8U
+#define DIS_INP_ADDR_INP_HF_CT_TRIP_BIT      9U
+#define DIS_INP_ADDR_ERROR_PHASE_BIT         10U
+#define DIS_INP_ADDR_INVERTER_OPEN_LOOP_BIT  11U
+
+#define DIS_INP_TOTAL_BITS  DIS_INP_ADDR_INVERTER_OPEN_LOOP_BIT + 1U
+
 
 
 // HOLDING REGISTERS (READ/WRITE)

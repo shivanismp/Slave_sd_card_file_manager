@@ -289,24 +289,9 @@ void modbus_slave_sync_from_runtime(void)
     slave_input_regs[INP_ADDR_AVG_KW]                  = snap.avg_kw;
     slave_input_regs[INP_ADDR_AVG_PF]                  = snap.avg_pf;
 
-    // DUMMY DATA FOR TESTING
-    // slave_input_regs[INP_ADDR_LINE_1_V]                = 4300;
-    // slave_input_regs[INP_ADDR_LINE_1_A]                = 250;
-    // slave_input_regs[INP_ADDR_LINE_2_V]                = 4300;
-    // slave_input_regs[INP_ADDR_LINE_2_A]                = 250;
-    // slave_input_regs[INP_ADDR_LINE_3_V]                = 4300;
-    // slave_input_regs[INP_ADDR_LINE_3_A]                = 250;
-    // slave_input_regs[INP_ADDR_AVG_V]                   = 4300;
-    // slave_input_regs[INP_ADDR_AVG_A]                   = 250;
-
-
-    // slave_input_regs[INP_ADDR_PWM_FREQ]                = 1555;
-    // slave_input_regs[INP_ADDR_AVG_KW]                  = 150;
-    // slave_input_regs[INP_ADDR_AVG_PF]                  = 999;
-
     slave_input_regs[INP_ADDR_ERROR_BITS_LO]           = 0;
 
-    for (uint8_t i = 0; i < 11; i++)
+    for (size_t i = 0U; i < DIS_INP_TOTAL_BITS; i++)
     {
         if (snap.error_leds[i])
             slave_input_regs[INP_ADDR_ERROR_BITS_LO] |= (1U << i);
@@ -316,7 +301,7 @@ void modbus_slave_sync_from_runtime(void)
      * Discrete inputs = bit feedback
      * ----------------------- */
     memset(slave_disc_inputs, 0, sizeof(slave_disc_inputs));
-    for (uint8_t i = 0; i < 11; i++)
+    for (size_t i = 0U; i < DIS_INP_TOTAL_BITS; i++)
     {
         bit_set(slave_disc_inputs, i, (snap.error_leds[i] != 0U));
     }

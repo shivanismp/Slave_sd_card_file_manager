@@ -47,6 +47,11 @@
 #define MELTER_TEMP_HEAT_STEP 1
 #define MELTER_TEMP_COOL_STEP 1
 
+// ENERGY METER AND CONNECTED VALUES
+// const bool dummy_data_enabled = false;
+const bool dummy_data_enabled = true; // Enable dummy data for testing without a real energy meter
+
+
 // static thermo_ai_ctrl_t g_thermo_ai;
 // static thermo_ai_persist_t g_thermo_ai_ps;
 // static bool g_thermo_ai_ready = false;
@@ -72,9 +77,9 @@ static volatile bool updating_local_machine_state = false;
 // static adaptive_temp_pid_t g_adapt_pid;
 
 #define MODBUS_LOCAL_BIN_FILE_PATH \
-    LITTLEFS_BASE_PATH "/machine_binary_data.bin"
+    LITTLEFS_BASE_PATH "/machine_binary_data_39.bin"
 #define MODBUS_LOCAL_BIN_PENDING_PATH \
-    LITTLEFS_BASE_PATH "/machine_binary_pending.bin"
+    LITTLEFS_BASE_PATH "/machine_binary_pending_39.bin"
 #define MODBUS_LOCAL_BIN_SD_FILE_PATTERN \
     MQTT_FILE_PENDING_DIR "/M%07lu.BIN"
 #define MODBUS_LOCAL_BIN_SD_TEMP_PATTERN \
@@ -88,6 +93,14 @@ static volatile bool updating_local_machine_state = false;
     (MODBUS_LOCAL_BIN_INPUT_START_INDEX * sizeof(uint16_t))
 #define MODBUS_LOCAL_BIN_INPUT_DATA_SIZE \
     (MODBUS_LOCAL_BIN_INPUT_REGISTER_COUNT * sizeof(uint16_t))
+
+_Static_assert(MODBUS_LOCAL_BIN_REGISTER_COUNT == 39U,
+               "BIN record must contain 39 words");
+_Static_assert(MODBUS_LOCAL_BIN_RECORD_SIZE == 78U,
+               "BIN record must contain 78 bytes");
+_Static_assert((MODBUS_LOCAL_BIN_TIMESTAMP_LO_INDEX + 1U) ==
+                   MODBUS_LOCAL_BIN_REGISTER_COUNT,
+               "BIN timestamp must be the final two words");
 
 static uint8_t s_machine_last_record[MODBUS_LOCAL_BIN_RECORD_SIZE];
 static bool s_machine_last_record_valid = false;
@@ -404,7 +417,8 @@ static esp_err_t modbus_local_bin_copy_pending_to_sd(void)
 
     if (modbus_local_bin_file_size(MODBUS_LOCAL_BIN_PENDING_PATH,
                                    &pending_size) != ESP_OK ||
-        pending_size < MODBUS_LOCAL_BIN_RECORD_SIZE)
+        pending_size < MODBUS_LOCAL_BIN_RECORD_SIZE ||
+        (pending_size % MODBUS_LOCAL_BIN_RECORD_SIZE) != 0U)
     {
         return ESP_ERR_INVALID_SIZE;
     }
@@ -671,10 +685,7 @@ static void modbus_machine_record_put_timestamp(uint8_t *record,
         (uint16_t)(timestamp & 0xFFFFU));
 }
 
-/*
- * Build input registers 0..21 directly from the already-polled runtime
- * snapshot. Words 0..1 remain zero until the record is actually written.
- */
+/* Build virtual input registers 0..36 from the already-polled snapshot. */
 static void modbus_build_local_machine_record(
     const hmi_data_t *snap,
     uint8_t record[MODBUS_LOCAL_BIN_RECORD_SIZE])
@@ -701,7 +712,7 @@ static void modbus_build_local_machine_record(
     modbus_machine_record_put_input(record, INP_ADDR_AVG_KW, snap->avg_kw);
     modbus_machine_record_put_input(record, INP_ADDR_AVG_PF, snap->avg_pf);
 
-    for (size_t bit = 0; bit < 11U; bit++)
+    for (size_t bit = 0U; bit < DIS_INP_TOTAL_BITS; bit++)
     {
         if (snap->error_leds[bit] != 0U)
         {
@@ -734,6 +745,32 @@ static void modbus_build_local_machine_record(
         record,
         INP_ADDR_COMM_STATUS,
         (uint16_t)(0x0003U | (modbus_hmi_master_is_online() ? 0x0004U : 0U)));
+
+    modbus_machine_record_put_input(record,
+                                    INP_ADDR_LOCAL_SET_TEMP,
+                                    snap->melter_set_temp);
+    modbus_machine_record_put_input(record,
+                                    INP_ADDR_LOCAL_AUTO_POWER,
+                                    snap->auto_power_percent);
+
+    /* Words 24 and 25 remain zero because the record was memset above. */
+
+    _Static_assert(INP_ADDR_CONTROL_CARD_RAW_COUNT ==
+                       HMI_CONTROL_CARD_RAW_INPUT_COUNT,
+                   "BIN raw control-card input count mismatch");
+    _Static_assert(INP_ADDR_CONTROL_CARD_RAW_LAST <
+                       MODBUS_LOCAL_BIN_TIMESTAMP_HI_INDEX,
+                   "BIN raw inputs overlap timestamp");
+
+    for (uint16_t reg = 0U;
+         reg < INP_ADDR_CONTROL_CARD_RAW_COUNT;
+         ++reg)
+    {
+        modbus_machine_record_put_input(
+            record,
+            INP_ADDR_CONTROL_CARD_RAW_FIRST + reg,
+            snap->control_card_raw_input[reg]);
+    }
 }
 
 static void modbus_log_changed_machine_registers(const uint8_t *previous,
@@ -812,7 +849,7 @@ static void modbus_store_local_machine_record_if_changed(const hmi_data_t *snap)
     {
         modbus_log_changed_machine_registers(s_machine_last_record, current);
         ESP_LOGI(TAG_MODBUS_MASTER,
-                 "Changed timestamp + 22-register record appended; "
+                 "Changed 39-word timestamped BIN record appended; "
                  "active BIN=%u/%u "
                  "bytes",
                  (unsigned)active_size,
@@ -821,7 +858,7 @@ static void modbus_store_local_machine_record_if_changed(const hmi_data_t *snap)
     else
     {
         ESP_LOGI(TAG_MODBUS_MASTER,
-                 "Initial timestamp + 22-register record appended; "
+                 "Initial 39-word timestamped BIN record appended; "
                  "active BIN=%u/%u "
                  "bytes",
                  (unsigned)active_size,
@@ -1226,8 +1263,6 @@ static bool modbus_read_input_regs_0_10(void)
 
 static bool modbus_read_input_regs_11_22(void)
 {
-    // const bool dummy_data_enabled = true;
-    const bool dummy_data_enabled = false;
     uint16_t values[CONTROL_CARD_TELEMETRY_REG_COUNT];
 
     if (!modbus_read_control_card_input_chunk(
@@ -1590,7 +1625,7 @@ bool control_card_poll_once(void)
 
             if (read_discrete_inputs(raw))
             {
-                for (int i = 0; i < 11; i++)
+                for (size_t i = 0U; i < DIS_INP_TOTAL_BITS; i++)
                 {
                     snap.error_leds[i] = raw[i];
                 }
@@ -1598,7 +1633,7 @@ bool control_card_poll_once(void)
                 if (hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
                 {
 
-                    for (int i = 0; i < 11; i++)
+                    for (size_t i = 0U; i < DIS_INP_TOTAL_BITS; i++)
                     {
                         hmi_data.error_leds[i] = snap.error_leds[i];
                     }

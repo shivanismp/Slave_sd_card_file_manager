@@ -501,7 +501,7 @@ static uint16_t error_mask_from_snapshot(const hmi_data_t *snap)
     if (snap == NULL)
         return 0U;
 
-    for (i = 0U; i < 11U; i++)
+    for (i = 0U; i < 12U; i++)
     {
         if (snap->error_leds[i] != 0U)
             mask |= (uint16_t)(1U << i);

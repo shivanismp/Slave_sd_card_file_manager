@@ -74,7 +74,7 @@ typedef struct
 
     uint16_t wifi_rssi_state;
 
-    uint8_t error_leds[11];
+    uint8_t error_leds[12];
 
     char hmi_head_text[20];
     char machine_model[20];

@@ -52,5 +52,5 @@ const uint32_t modbus_hmi_master_task_stack_size_bytes = 4096 * 4;
 const UBaseType_t mqtt_file_uploader_task_priority = 4;
 const uint32_t mqtt_file_uploader_task_stack_size_bytes = 8U * 1024U;
 
-const UBaseType_t network_manager_task_priority = 5;
+const UBaseType_t network_manager_task_priority = 6;
 const uint32_t network_manager_task_stack_size_bytes = 6144 * 4;
