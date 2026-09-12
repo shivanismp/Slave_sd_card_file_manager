@@ -823,22 +823,6 @@ void app_main(void)
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
 
-    file_manager_config_t fm_cfg = FILE_MANAGER_DEFAULT_CONFIG();
-    fm_cfg.mount_point = LITTLEFS_BASE_PATH;
-    fm_cfg.partition_label = LITTLEFS_PART_LABEL;
-    fm_cfg.mount_spiffs = false;
-    fm_cfg.filesystem = FILE_MANAGER_FS_LITTLEFS;
-    fm_cfg.port = 8080;
-    fm_cfg.control_port = 32769;
-    fm_cfg.allow_mutation = true;
-    fm_cfg.sd_mount_point = SDCARD_BASE_PATH;
-    fm_cfg.sd_available = sdcard_is_mounted;
-    esp_err_t fm_err = file_manager_init(&fm_cfg);
-    if (fm_err != ESP_OK)
-    {
-        ESP_LOGE("APP", "File manager start failed: %s", esp_err_to_name(fm_err));
-    }
-
     esp_err_t eth_err = ethernet_init();
 
     if (eth_err != ESP_OK)
@@ -873,6 +857,22 @@ void app_main(void)
     {
         ESP_LOGE("APP",
                  "Failed to create network manager task");
+    }
+
+    file_manager_config_t fm_cfg = FILE_MANAGER_DEFAULT_CONFIG();
+    fm_cfg.mount_point = LITTLEFS_BASE_PATH;
+    fm_cfg.partition_label = LITTLEFS_PART_LABEL;
+    fm_cfg.mount_spiffs = false;
+    fm_cfg.filesystem = FILE_MANAGER_FS_LITTLEFS;
+    fm_cfg.port = 8080;
+    fm_cfg.control_port = 32769;
+    fm_cfg.allow_mutation = true;
+    fm_cfg.sd_mount_point = SDCARD_BASE_PATH;
+    fm_cfg.sd_available = sdcard_is_mounted;
+    esp_err_t fm_err = file_manager_init(&fm_cfg);
+    if (fm_err != ESP_OK)
+    {
+        ESP_LOGE("APP", "File manager start failed: %s", esp_err_to_name(fm_err));
     }
 
     while (1)

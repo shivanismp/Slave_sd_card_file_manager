@@ -842,9 +842,7 @@ esp_err_t file_manager_init(const file_manager_config_t *config)
         }
     }
     if (html_file_manager_enabled)
-    {
-
-   
+    {   
         if (cfg.server_handle) {
             s_server = cfg.server_handle;
             s_owns_server = false;

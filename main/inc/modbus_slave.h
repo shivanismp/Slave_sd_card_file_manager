@@ -6,6 +6,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <stdio.h>
+#include "machine_type_select.h"
 
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -106,15 +107,27 @@
 #define HOLD_ADDR_AUTO_POWER_PERCENT     10
 
 // SENSOR CARD and INTERNAL
+#ifdef _MACHINE_TEMPERATURE_CNTRL_
 #define HOLD_ADDR_MELTER_SET_TEMP            11
 #define HOLD_ADDR_TEMP_CNTRL_PID_AUTO_TUNE   12
 
 // PROGRESS BAR RANGES
+#define HOLD_ADDR_BAR_MELTER_TEMP_MIN        13
+#define HOLD_ADDR_BAR_MELTER_TEMP_MAX        14
+#endif
 
-#define HOLD_ADDR_BAR_MELTER_TEMP_MIN       13
-#define HOLD_ADDR_BAR_MELTER_TEMP_MAX       14
 
+#ifdef _MACHINE_TIMER_CNTRL_
+#define HOLD_ADDR_SET_TIME_SEC                11
+#define HOLD_ADDR_SET_TIME_MS                 12
 
+// PROGRESS BAR RANGE
+#define HOLD_ADDR_BAR_TIMER_MS_MIN            13
+
+#define HOLD_ADDR_RESERVED_14                 14
+#endif
+
+// PROGRESS BAR RANGES
 #define HOLD_ADDR_BAR_POWER_PERCENT_MIN     15
 #define HOLD_ADDR_BAR_POWER_PERCENT_MAX     16
 
@@ -194,7 +207,7 @@
 
 #define DELTA_HMI_PRIMARY_CMD_COUNT     13U
 
-#define DELTA_HMI_BAR_FIRST_INDEX       HOLD_ADDR_BAR_MELTER_TEMP_MIN
+#define DELTA_HMI_BAR_FIRST_INDEX       13U
 #define DELTA_HMI_BAR_LAST_INDEX        HOLD_ADDR_BAR_PF_MAX
 
 
@@ -223,7 +236,16 @@
 #define INP_ADDR_ERROR_BITS_LO           14
 
 // SENSOR CARD
-#define INP_ADDR_MELTER_TEMP             15
+#if defined(_MACHINE_TEMPERATURE_CNTRL_)
+    #define INP_ADDR_MELTER_TEMP         15
+    /* Unused only in temperature mode; keep their feedback values zero. */
+    #define INP_ADDR_RESERVED_16         16
+    #define INP_ADDR_RESERVED_17         17
+#elif defined(_MACHINE_TIMER_CNTRL_)
+    #define INP_ADDR_TIMER_SEC           15
+    #define INP_ADDR_TIMER_MS            16
+    #define INP_ADDR_JOB_COUNTER         17
+#endif
 
 #define INP_ADDR_CHILLER_TEMP            18
 #define INP_ADDR_IGBT_PLATE_TEMP         19
@@ -231,7 +253,13 @@
 
 #define INP_ADDR_COMM_STATUS             21
 
+#ifdef _MACHINE_TEMPERATURE_CNTRL_
 #define INP_ADDR_LOCAL_SET_TEMP          22
+#endif
+
+#ifdef _MACHINE_TIMER_CNTRL_
+#define INP_ADDR_RESERVED_22             22
+#endif
 
 #define INP_ADDR_LOCAL_AUTO_POWER        23
 
@@ -246,6 +274,7 @@
  * Control-card input 10 -> virtual-slave input 36
  */
 #define INP_ADDR_CONTROL_CARD_RAW_FIRST  26
+
 #define INP_ADDR_CONTROL_CARD_POT_ADC    26
 #define INP_ADDR_CONTROL_CARD_CT_ADC     27
 #define INP_ADDR_CONTROL_CARD_PT_ADC     28
@@ -257,6 +286,7 @@
 #define INP_ADDR_CONTROL_CARD_PHASE      34
 #define INP_ADDR_CONTROL_CARD_ON_TIME_LO 35
 #define INP_ADDR_CONTROL_CARD_ON_TIME_HI 36
+
 #define INP_ADDR_CONTROL_CARD_RAW_LAST   36
 #define INP_ADDR_CONTROL_CARD_RAW_COUNT  \
     (INP_ADDR_CONTROL_CARD_RAW_LAST - INP_ADDR_CONTROL_CARD_RAW_FIRST + 1U)

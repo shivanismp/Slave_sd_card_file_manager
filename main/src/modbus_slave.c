@@ -69,10 +69,23 @@ typedef struct
 
     volatile uint16_t auto_power_cmd;
 
+    #ifdef _MACHINE_TEMPERATURE_CNTRL_
     volatile uint16_t melter_set_temp_cmd;
     volatile uint16_t melter_temp_cntrl_pid_auto_tune_cmd;
     volatile bool melter_set_temp_dirty;
     volatile bool melter_temp_cntrl_pid_auto_tune_dirty;
+    #endif
+
+    #ifdef _MACHINE_TIMER_CNTRL_
+        volatile uint16_t timer_set_time_sec_cmd;
+        volatile uint16_t timer_set_time_ms_cmd;
+        volatile uint16_t timer_reset_count_cmd;
+
+        volatile bool timer_set_time_sec_dirty;
+        volatile bool timer_set_time_ms_dirty;
+        volatile bool timer_reset_count_dirty;
+    #endif
+
 
 } modbus_slave_broker_t;
 
@@ -629,8 +642,8 @@ void modbus_slave_apply_pending_writes(void)
         {
             if (power_percent == 0U)
             {
-                /* 0 means release manual override and let AI take back control */
-                hmi_data.auto_power_percent_force_from_mb_slave = false;
+                // /* 0 means release manual override and let AI take back control */
+                // hmi_data.auto_power_percent_force_from_mb_slave = false;
             }
             else
             {
