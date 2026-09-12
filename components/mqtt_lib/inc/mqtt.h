@@ -60,6 +60,8 @@ extern char mqtt_topic_ota_status[128];
 void mqtt_start_tls(void);
 bool mqtt_is_started(void);
 bool mqtt_is_connected(void);
+/* Incremented on every successful broker connection, including reconnects. */
+uint32_t mqtt_connection_generation(void);
 void mqtt_force_reconnect(void);
 // bool mqtt_publish_text(const char *topic, const char *payload, int qos, int retain);
 

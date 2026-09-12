@@ -85,6 +85,10 @@ typedef struct
     char wifi_ap_ssid[20];
     char wifi_ap_pass[20];
 
+    /* Active uplink: 40/20 display characters plus the C terminator. */
+    char sta_ssid[41];
+    char sta_ip[21];
+
 } hmi_data_t;
 
 extern volatile hmi_data_t hmi_data;

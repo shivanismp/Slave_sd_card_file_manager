@@ -2,6 +2,7 @@
 #include "hmi.h"
 #include "date_time.h"
 #include "modbus_master.h"
+#include "modbus_log_offsets.h"
 #include "modbus_slave.h"
 #include "esp_log_tags.h"
 #include "modbus_slave_register.h"
@@ -269,6 +270,16 @@ void modbus_slave_sync_from_runtime(void)
                                INP_ADDR_AP_PASS,
                                20,
                                snap.wifi_ap_pass);
+
+    modbus_put_ascii_1char_per_reg(slave_input_regs,
+                               INP_ADDR_STA_SSID,
+                               40U,
+                               snap.sta_ssid);
+
+    modbus_put_ascii_1char_per_reg(slave_input_regs,
+                               INP_ADDR_STA_IP,
+                               20U,
+                               snap.sta_ip);
 
     /* -----------------------
      * Input regs = merged feedback
@@ -792,6 +803,7 @@ static int handle_fc03(const uint8_t *rx, uint8_t *tx)
 
     int ret;
     xSemaphoreTake(g_modbus_slave_mutex, portMAX_DELAY);
+    modbus_log_offsets_get(&slave_holding_regs[HOLD_ADDR_LOG_OFFSET_FIRST]);
     ret = build_read_regs_response(rx[0],
                                    MODBUS_FUNC_READ_HOLD_REGS,
                                    start,
@@ -882,7 +894,20 @@ static int handle_fc06(const uint8_t *rx, uint8_t *tx)
         return build_exception(rx[0], rx[1], MODBUS_EX_ILLEGAL_ADDRESS, tx);
 
     xSemaphoreTake(g_modbus_slave_mutex, portMAX_DELAY);
-    modbus_slave_stage_holding_write(addr, value);
+    if (addr >= HOLD_ADDR_LOG_OFFSET_FIRST && addr <= HOLD_ADDR_LOG_OFFSET_LAST)
+    {
+        esp_err_t err = modbus_log_offsets_set(
+            addr - HOLD_ADDR_LOG_OFFSET_FIRST, 1U, &value);
+        if (err != ESP_OK)
+        {
+            xSemaphoreGive(g_modbus_slave_mutex);
+            ESP_LOGE(TAG_MODBUS_SLAVE, "BIN offset save failed: %s", esp_err_to_name(err));
+            return build_exception(rx[0], rx[1], 0x04U, tx); /* Device failure */
+        }
+        modbus_log_offsets_get(&slave_holding_regs[HOLD_ADDR_LOG_OFFSET_FIRST]);
+    }
+    else
+        modbus_slave_stage_holding_write(addr, value);
     xSemaphoreGive(g_modbus_slave_mutex);
 
     memcpy(tx, rx, 6);
@@ -952,11 +977,36 @@ static int handle_fc10(const uint8_t *rx, uint16_t rx_len, uint8_t *tx)
     if (rx_len < (uint16_t)(7U + byte_count + 2U))
         return build_exception(rx[0], rx[1], MODBUS_EX_ILLEGAL_VALUE, tx);
 
+    bool touches_offsets = start <= HOLD_ADDR_LOG_OFFSET_LAST &&
+                           (uint32_t)start + qty > HOLD_ADDR_LOG_OFFSET_FIRST;
+    /* Keep a persistent settings transaction separate from machine commands. */
+    if (touches_offsets && (start < HOLD_ADDR_LOG_OFFSET_FIRST ||
+        (uint32_t)start + qty > HOLD_ADDR_LOG_OFFSET_LAST + 1U))
+        return build_exception(rx[0], rx[1], MODBUS_EX_ILLEGAL_ADDRESS, tx);
+
     xSemaphoreTake(g_modbus_slave_mutex, portMAX_DELAY);
-    for (uint16_t i = 0; i < qty; i++)
+    if (touches_offsets)
     {
-        uint16_t value = ((uint16_t)rx[7 + i * 2] << 8) | rx[8 + i * 2];
-        modbus_slave_stage_holding_write(start + i, value);
+        uint16_t values[MODBUS_LOG_OFFSET_COUNT];
+        for (uint16_t i = 0U; i < qty; ++i)
+            values[i] = ((uint16_t)rx[7 + i * 2] << 8) | rx[8 + i * 2];
+        esp_err_t err = modbus_log_offsets_set(
+            start - HOLD_ADDR_LOG_OFFSET_FIRST, qty, values);
+        if (err != ESP_OK)
+        {
+            xSemaphoreGive(g_modbus_slave_mutex);
+            ESP_LOGE(TAG_MODBUS_SLAVE, "BIN offsets save failed: %s", esp_err_to_name(err));
+            return build_exception(rx[0], rx[1], 0x04U, tx);
+        }
+        modbus_log_offsets_get(&slave_holding_regs[HOLD_ADDR_LOG_OFFSET_FIRST]);
+    }
+    else
+    {
+        for (uint16_t i = 0; i < qty; i++)
+        {
+            uint16_t value = ((uint16_t)rx[7 + i * 2] << 8) | rx[8 + i * 2];
+            modbus_slave_stage_holding_write(start + i, value);
+        }
     }
     xSemaphoreGive(g_modbus_slave_mutex);
 
@@ -1580,6 +1630,11 @@ static const delta_status_segment_t g_delta_status_segments[] =
         INP_ADDR_AP_PASS,
         20U
     },
+
+    /* Active uplink. Split the 40-character SSID to fit values[24]. */
+    {INP_ADDR_STA_SSID,       INP_ADDR_STA_SSID,       20U},
+    {INP_ADDR_STA_SSID + 20U, INP_ADDR_STA_SSID + 20U, 20U},
+    {INP_ADDR_STA_IP,         INP_ADDR_STA_IP,         20U},
 };
 
 static esp_err_t modbus_hmi_write_status_segment(uint16_t segment_index,
@@ -1977,6 +2032,18 @@ static void modbus_slave_info_init_registers(void)
         20U,
         snap.wifi_ap_pass);
 
+    modbus_put_ascii_1char_per_reg(
+        slave_input_regs,
+        INP_ADDR_STA_SSID,
+        40U,
+        snap.sta_ssid);
+
+    modbus_put_ascii_1char_per_reg(
+        slave_input_regs,
+        INP_ADDR_STA_IP,
+        20U,
+        snap.sta_ip);
+
     xSemaphoreGive(g_modbus_slave_mutex);
 }
 
@@ -2065,6 +2132,13 @@ void app_modbus_slave(void)
     }
 
     modbus_slave_init_banks();
+    _Static_assert(HOLD_ADDR_LOG_OFFSET_COUNT == MODBUS_LOG_OFFSET_COUNT,
+                   "Logging offset holding map count mismatch");
+    _Static_assert(HOLD_ADDR_LOG_OFFSET_FIRST >= DELTA_HMI_CMD_REG_COUNT,
+                   "Logging offsets overlap Delta command registers");
+    _Static_assert(HOLD_ADDR_LOG_OFFSET_LAST < MODBUS_SLAVE_NUM_HOLDING_REGS,
+                   "Logging offsets exceed holding bank");
+    modbus_log_offsets_get(&slave_holding_regs[HOLD_ADDR_LOG_OFFSET_FIRST]);
     
     modbus_slave_bar_range_init_registers();
     modbus_slave_info_init_registers();

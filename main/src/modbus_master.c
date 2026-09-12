@@ -1,6 +1,8 @@
 #include "global.h"
 #include "modbus_master.h"
 #include "modbus_slave.h"
+#include "modbus_log_offsets.h"
+#include "nvs.h"
 #include "mqtt_file_uploader.h"
 // #include "profiles.h"
 
@@ -10,6 +12,7 @@
 // #include "adaptive_temp_pid.h"
 
 #include "event_log.h"
+#include "machine_status.h"
 #include "date_time.h"
 
 #include "esp_log_tags.h"
@@ -74,6 +77,9 @@ volatile bool modbus_check_discrete_input_flag = false;
 
 static volatile bool updating_local_machine_state = false;
 
+/* Owned by the Modbus polling task; reset before each control-card cycle. */
+static bool s_status_cycle_valid = false;
+
 // static adaptive_temp_pid_t g_adapt_pid;
 
 #define MODBUS_LOCAL_BIN_FILE_PATH \
@@ -101,6 +107,136 @@ _Static_assert(MODBUS_LOCAL_BIN_RECORD_SIZE == 78U,
 _Static_assert((MODBUS_LOCAL_BIN_TIMESTAMP_LO_INDEX + 1U) ==
                    MODBUS_LOCAL_BIN_REGISTER_COUNT,
                "BIN timestamp must be the final two words");
+_Static_assert(MQTT_INP_ADDR_UNIX_TIME_HI == MODBUS_LOCAL_BIN_TIMESTAMP_HI_INDEX &&
+               MQTT_INP_ADDR_UNIX_TIME_LO == MODBUS_LOCAL_BIN_TIMESTAMP_LO_INDEX &&
+               MODBUS_LOCAL_BIN_INPUT_START_INDEX == 0U,
+               "MQTT and BIN timestamp addresses must match");
+
+/* Persistent BIN logging offsets, indexed by control-card input address. */
+static const uint16_t s_log_offset_defaults[MODBUS_LOG_OFFSET_COUNT] = {
+    MODBUS_LOG_OFFSET_DEFAULT_POT_ADC,
+    MODBUS_LOG_OFFSET_DEFAULT_CT_ADC,
+    MODBUS_LOG_OFFSET_DEFAULT_PT_ADC,
+    MODBUS_LOG_OFFSET_DEFAULT_DCC,
+    MODBUS_LOG_OFFSET_DEFAULT_DCV,
+    MODBUS_LOG_OFFSET_DEFAULT_ADC3,
+    MODBUS_LOG_OFFSET_DEFAULT_ADC4,
+    MODBUS_LOG_OFFSET_DEFAULT_ADC5,
+    MODBUS_LOG_OFFSET_DEFAULT_PHASE,
+    MODBUS_LOG_OFFSET_DEFAULT_ON_TIME_LO,
+    MODBUS_LOG_OFFSET_DEFAULT_ON_TIME_HI,
+    MODBUS_LOG_OFFSET_DEFAULT_POT_PERCENT,
+    MODBUS_LOG_OFFSET_DEFAULT_LINE_1_V,
+    MODBUS_LOG_OFFSET_DEFAULT_LINE_1_A,
+    MODBUS_LOG_OFFSET_DEFAULT_LINE_2_V,
+    MODBUS_LOG_OFFSET_DEFAULT_LINE_2_A,
+    MODBUS_LOG_OFFSET_DEFAULT_LINE_3_V,
+    MODBUS_LOG_OFFSET_DEFAULT_LINE_3_A,
+    MODBUS_LOG_OFFSET_DEFAULT_AVG_V,
+    MODBUS_LOG_OFFSET_DEFAULT_AVG_A,
+    MODBUS_LOG_OFFSET_DEFAULT_FREQ,
+    MODBUS_LOG_OFFSET_DEFAULT_KW,
+    MODBUS_LOG_OFFSET_DEFAULT_PF
+};
+static uint16_t s_log_offsets[MODBUS_LOG_OFFSET_COUNT];
+static SemaphoreHandle_t s_log_offsets_mutex = NULL;
+static bool s_log_offsets_persisted = false;
+
+static esp_err_t modbus_log_offsets_save(const uint16_t *values)
+{
+    /* Versioned, fixed-size blob; NVS supplies integrity checking. */
+    uint16_t blob[3U + MODBUS_LOG_OFFSET_COUNT] = {
+        0x4C54U, 1U, MODBUS_LOG_OFFSET_COUNT
+    };
+    memcpy(blob + 3U, values, sizeof(s_log_offsets));
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open("bin_offsets", NVS_READWRITE, &handle);
+    if (err != ESP_OK)
+        return err;
+    err = nvs_set_blob(handle, "cfg_v1", blob, sizeof(blob));
+    if (err == ESP_OK)
+        err = nvs_commit(handle);
+    nvs_close(handle);
+    return err;
+}
+
+esp_err_t modbus_log_offsets_init(void)
+{
+    /* Called once by app_modbus_master(), before either Modbus task starts. */
+    if (s_log_offsets_mutex != NULL)
+        return ESP_ERR_INVALID_STATE;
+    memcpy(s_log_offsets, s_log_offset_defaults, sizeof(s_log_offsets));
+    s_log_offsets_mutex = xSemaphoreCreateMutex();
+    if (s_log_offsets_mutex == NULL)
+        return ESP_ERR_NO_MEM;
+
+    uint16_t blob[3U + MODBUS_LOG_OFFSET_COUNT];
+    size_t length = sizeof(blob);
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open("bin_offsets", NVS_READONLY, &handle);
+    if (err == ESP_OK)
+    {
+        err = nvs_get_blob(handle, "cfg_v1", blob, &length);
+        nvs_close(handle);
+    }
+    if (err == ESP_ERR_NVS_NOT_FOUND)
+    {
+        err = modbus_log_offsets_save(s_log_offsets);
+        s_log_offsets_persisted = (err == ESP_OK);
+        return err;
+    }
+    if (err != ESP_OK)
+        return err; /* Use defaults in RAM, report failure to the caller. */
+    if (length != sizeof(blob) || blob[0] != 0x4C54U ||
+        blob[1] != 1U || blob[2] != MODBUS_LOG_OFFSET_COUNT)
+        return ESP_ERR_INVALID_SIZE;
+
+    memcpy(s_log_offsets, blob + 3U, sizeof(s_log_offsets));
+    s_log_offsets_persisted = true;
+    return ESP_OK;
+}
+
+void modbus_log_offsets_get(uint16_t out[MODBUS_LOG_OFFSET_COUNT])
+{
+    if (out == NULL)
+        return;
+    if (s_log_offsets_mutex == NULL)
+    {
+        memcpy(out, s_log_offset_defaults, sizeof(s_log_offset_defaults));
+        return;
+    }
+    xSemaphoreTake(s_log_offsets_mutex, portMAX_DELAY);
+    memcpy(out, s_log_offsets, sizeof(s_log_offsets));
+    xSemaphoreGive(s_log_offsets_mutex);
+}
+
+esp_err_t modbus_log_offsets_set(uint16_t first, uint16_t count,
+                                 const uint16_t *values)
+{
+    if (values == NULL || count == 0U || first >= MODBUS_LOG_OFFSET_COUNT ||
+        count > MODBUS_LOG_OFFSET_COUNT - first)
+        return ESP_ERR_INVALID_ARG;
+    if (s_log_offsets_mutex == NULL)
+        return ESP_ERR_INVALID_STATE;
+
+    uint16_t candidate[MODBUS_LOG_OFFSET_COUNT];
+    xSemaphoreTake(s_log_offsets_mutex, portMAX_DELAY);
+    memcpy(candidate, s_log_offsets, sizeof(candidate));
+    memcpy(candidate + first, values, count * sizeof(uint16_t));
+    esp_err_t err = ESP_OK;
+    if (!s_log_offsets_persisted ||
+        memcmp(candidate, s_log_offsets, sizeof(candidate)) != 0)
+    {
+        err = modbus_log_offsets_save(candidate);
+        if (err == ESP_OK)
+        {
+            memcpy(s_log_offsets, candidate, sizeof(candidate));
+            s_log_offsets_persisted = true;
+        }
+    }
+    xSemaphoreGive(s_log_offsets_mutex);
+    return err;
+}
 
 static uint8_t s_machine_last_record[MODBUS_LOCAL_BIN_RECORD_SIZE];
 static bool s_machine_last_record_valid = false;
@@ -773,11 +909,114 @@ static void modbus_build_local_machine_record(
     }
 }
 
+/* Control-card FC04 address -> virtual input/BIN word. */
+static const uint8_t s_control_input_bin_reg[MODBUS_LOG_OFFSET_COUNT] = {
+    [INP_REG_ADDR_POT_ADC] = INP_ADDR_CONTROL_CARD_POT_ADC,
+    [INP_REG_ADDR_CT_ADC] = INP_ADDR_CONTROL_CARD_CT_ADC,
+    [INP_REG_ADDR_PT_ADC] = INP_ADDR_CONTROL_CARD_PT_ADC,
+    [INP_REG_ADDR_DCC] = INP_ADDR_CONTROL_CARD_DCC,
+    [INP_REG_ADDR_DCV] = INP_ADDR_CONTROL_CARD_DCV,
+    [INP_REG_ADDR_ADC3] = INP_ADDR_CONTROL_CARD_ADC3,
+    [INP_REG_ADDR_ADC4] = INP_ADDR_CONTROL_CARD_ADC4,
+    [INP_REG_ADDR_ADC5] = INP_ADDR_CONTROL_CARD_ADC5,
+    [INP_REG_ADDR_HF_PT_CT_PHASE_ANGLE] = INP_ADDR_CONTROL_CARD_PHASE,
+    [INP_REG_ADDR_ON_TIME_LO] = INP_ADDR_CONTROL_CARD_ON_TIME_LO,
+    [INP_REG_ADDR_ON_TIME_HI] = INP_ADDR_CONTROL_CARD_ON_TIME_HI,
+    [INP_REG_ADDR_POT_PERCENT] = INP_ADDR_POWER_PERCENT,
+    [INP_REG_LINE_1_V] = INP_ADDR_LINE_1_V,
+    [INP_REG_LINE_1_A] = INP_ADDR_LINE_1_A,
+    [INP_REG_LINE_2_V] = INP_ADDR_LINE_2_V,
+    [INP_REG_LINE_2_A] = INP_ADDR_LINE_2_A,
+    [INP_REG_LINE_3_V] = INP_ADDR_LINE_3_V,
+    [INP_REG_LINE_3_A] = INP_ADDR_LINE_3_A,
+    [INP_REG_AVG_V] = INP_ADDR_AVG_V,
+    [INP_REG_AVG_A] = INP_ADDR_AVG_A,
+    [INP_REG_ADDR_CURRENT_FREQ_KHZ] = INP_ADDR_PWM_FREQ,
+    [INP_REG_AVG_KW] = INP_ADDR_AVG_KW,
+    [INP_REG_AVG_PF] = INP_ADDR_AVG_PF
+};
+_Static_assert(INP_REG_AVG_PF + 1U == MODBUS_LOG_OFFSET_COUNT,
+               "Control-card log offset count mismatch");
+
+static bool modbus_machine_record_exceeds_offsets(
+    const uint8_t *previous, const uint8_t *current,
+    const uint16_t offsets[MODBUS_LOG_OFFSET_COUNT])
+{
+    bool mapped[MODBUS_LOCAL_BIN_REGISTER_COUNT] = {false};
+    for (size_t input = 0U; input < MODBUS_LOG_OFFSET_COUNT; ++input)
+    {
+        size_t reg = s_control_input_bin_reg[input];
+        size_t index = MODBUS_LOCAL_BIN_INPUT_START_INDEX + reg;
+        mapped[reg] = true;
+        if (input == INP_REG_ADDR_ON_TIME_LO ||
+            input == INP_REG_ADDR_ON_TIME_HI)
+            continue; /* Compare the complete 32-bit counter below. */
+        uint16_t step = offsets[input];
+        if (step == 0U)
+            continue; /* Stored in snapshots but cannot trigger one. */
+        uint32_t old_value = modbus_machine_record_get(previous, index);
+        uint32_t new_value = modbus_machine_record_get(current, index);
+        uint32_t difference = (new_value >= old_value)
+            ? new_value - old_value : old_value - new_value;
+        if (difference >= step)
+            return true;
+    }
+
+    uint32_t time_step = ((uint32_t)offsets[INP_REG_ADDR_ON_TIME_HI] << 16) |
+                         offsets[INP_REG_ADDR_ON_TIME_LO];
+    if (time_step != 0U)
+    {
+        size_t hi = MODBUS_LOCAL_BIN_INPUT_START_INDEX + INP_ADDR_CONTROL_CARD_ON_TIME_HI;
+        size_t lo = MODBUS_LOCAL_BIN_INPUT_START_INDEX + INP_ADDR_CONTROL_CARD_ON_TIME_LO;
+        uint32_t old_time = ((uint32_t)modbus_machine_record_get(previous, hi) << 16) |
+                            modbus_machine_record_get(previous, lo);
+        uint32_t new_time = ((uint32_t)modbus_machine_record_get(current, hi) << 16) |
+                            modbus_machine_record_get(current, lo);
+        uint32_t difference = (new_time >= old_time)
+            ? new_time - old_time : old_time - new_time;
+        if (difference >= time_step)
+            return true;
+    }
+
+    /* Machine state, faults, sensors and local setpoints keep exact comparison.
+     * Explicitly ignore Unix time: changing 37/38 must NEVER trigger a record.
+     */
+    for (size_t reg = 0U; reg < MODBUS_LOCAL_BIN_REGISTER_COUNT; ++reg)
+    {
+        if (reg == MQTT_INP_ADDR_UNIX_TIME_HI ||
+            reg == MQTT_INP_ADDR_UNIX_TIME_LO)
+        {
+            continue;
+        }
+
+        size_t index = MODBUS_LOCAL_BIN_INPUT_START_INDEX + reg;
+        if (!mapped[reg] && modbus_machine_record_get(previous, index) !=
+                            modbus_machine_record_get(current, index))
+            return true;
+    }
+    return false;
+}
+
+static bool modbus_machine_record_has_loggable_change(const uint8_t *previous,
+                                                       const uint8_t *current)
+{
+    uint16_t offsets[MODBUS_LOG_OFFSET_COUNT];
+    modbus_log_offsets_get(offsets);
+    return modbus_machine_record_exceeds_offsets(previous, current, offsets);
+}
+
 static void modbus_log_changed_machine_registers(const uint8_t *previous,
                                                  const uint8_t *current)
 {
-    for (size_t reg = 0; reg < MODBUS_LOCAL_BIN_INPUT_REGISTER_COUNT; reg++)
+    for (size_t reg = 0; reg < MODBUS_LOCAL_BIN_REGISTER_COUNT; reg++)
     {
+        /* Timestamp is metadata, not a changed measurement to report. */
+        if (reg == MQTT_INP_ADDR_UNIX_TIME_HI ||
+            reg == MQTT_INP_ADDR_UNIX_TIME_LO)
+        {
+            continue;
+        }
+
         size_t record_index = MODBUS_LOCAL_BIN_INPUT_START_INDEX + reg;
         uint16_t old_value = modbus_machine_record_get(previous, record_index);
         uint16_t new_value = modbus_machine_record_get(current, record_index);
@@ -807,9 +1046,8 @@ static void modbus_store_local_machine_record_if_changed(const hmi_data_t *snap)
     modbus_build_local_machine_record(snap, current);
 
     if (s_machine_last_record_valid &&
-        memcmp(current + MODBUS_LOCAL_BIN_INPUT_DATA_OFFSET,
-               s_machine_last_record + MODBUS_LOCAL_BIN_INPUT_DATA_OFFSET,
-               MODBUS_LOCAL_BIN_INPUT_DATA_SIZE) == 0)
+        !modbus_machine_record_has_loggable_change(s_machine_last_record,
+                                                   current))
     {
         return;
     }
@@ -1472,6 +1710,9 @@ bool control_card_poll_once(void)
 {
     static uint8_t rx_buf[MODBUS_1_UART_BUF_SIZE];
     int len = 0;
+    s_status_cycle_valid = false;
+    bool status_state_fresh = false;
+    bool status_errors_fresh = false;
     uint16_t crc;
     TickType_t now;
     hmi_data_t snap;
@@ -1496,15 +1737,20 @@ bool control_card_poll_once(void)
     memset(rx_buf, 0, sizeof(rx_buf));
     len = modbus_read_holding_registers(MODBUS_SLAVE_ID_CONTROL_CARD, rx_buf, HOLD_REG_ADDR_MACHINE_TRIGGER, 1);
 
-    if (len >= 7 &&
+    /* A status must never be published from a truncated/corrupt state read. */
+    if (len == 7 &&
         rx_buf[0] == MODBUS_SLAVE_ID_CONTROL_CARD &&
-        rx_buf[1] == MODBUS_FUNC_READ_HOLD_REGS)
+        rx_buf[1] == MODBUS_FUNC_READ_HOLD_REGS &&
+        rx_buf[2] == 2U &&
+        modbus_crc16(rx_buf, 5) ==
+            ((uint16_t)rx_buf[5] | ((uint16_t)rx_buf[6] << 8)))
     {
         uint16_t mstate = ((uint16_t)rx_buf[3] << 8) | rx_buf[4];
         snap.machine_state_fb = (MACHINE_TRIGGER_ENUM)mstate;
         if (hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
         {
             hmi_data.machine_state_fb = snap.machine_state_fb;
+            status_state_fresh = true;
 
 #ifdef _MACHINE_TIMER_CNTRL_
 
@@ -1621,7 +1867,7 @@ bool control_card_poll_once(void)
          * 4) DISCRETE INPUTS
          * ========================================================= */
         {
-            uint8_t raw[11];
+            uint8_t raw[DIS_INP_TOTAL_BITS] = {0};
 
             if (read_discrete_inputs(raw))
             {
@@ -1638,6 +1884,7 @@ bool control_card_poll_once(void)
                         hmi_data.error_leds[i] = snap.error_leds[i];
                     }
 
+                    status_errors_fresh = true;
                     hmi_data_unlock();
                 }
             }
@@ -1652,6 +1899,8 @@ bool control_card_poll_once(void)
     modbus_send_timer_expired_off_if_needed();
 #endif
 
+    /* Send after the main loop refreshes the complete 39-register snapshot. */
+    s_status_cycle_valid = status_state_fresh && status_errors_fresh;
     return true;
 }
 
@@ -1888,6 +2137,20 @@ void modbus_master_task(void *arg)
             hmi_data_t log_snap;
             if (hmi_data_get_snapshot(&log_snap, HMI_DATA_SNAPSHOT_TIMEOUT))
             {
+                /* STATUS uses the same canonical register mapping as the BIN
+                 * record. It is independent of storage offsets and file I/O.
+                 * Inputs and sensor data have been refreshed by this point.
+                 */
+                if (s_status_cycle_valid)
+                {
+                    uint8_t status_registers[MODBUS_LOCAL_BIN_RECORD_SIZE];
+                    modbus_build_local_machine_record(&log_snap, status_registers);
+                    modbus_machine_record_put_timestamp(
+                        status_registers, modbus_local_bin_get_unix_timestamp());
+                    machine_status_publish_if_changed(status_registers,
+                                                      sizeof(status_registers));
+                }
+
                 /* 5) Persist the local snapshot only when any register changes. */
                 modbus_store_local_machine_record_if_changed(&log_snap);
                 event_log_process_snapshot(&log_snap);
@@ -1899,51 +2162,52 @@ void modbus_master_task(void *arg)
     }
 }
 
-bool read_discrete_inputs(uint8_t out[11])
+bool read_discrete_inputs(uint8_t out[DIS_INP_TOTAL_BITS])
 {
-    uint8_t tx[8];
-    uint8_t rx[8];
+    enum {
+        DATA_BYTES = (DIS_INP_TOTAL_BITS + 7U) / 8U,
+        RESPONSE_SIZE = 5U + DATA_BYTES
+    };
+    _Static_assert(DIS_INP_TOTAL_BITS <= 16U,
+                   "Error bitmask must fit its uint16_t register");
+    _Static_assert(sizeof(((hmi_data_t *)0)->error_leds) >= DIS_INP_TOTAL_BITS,
+                   "HMI error array is smaller than discrete input count");
 
+    if (out == NULL)
+        return false;
+
+    uint8_t tx[8];
+    uint8_t rx[RESPONSE_SIZE];
     tx[0] = MODBUS_SLAVE_ID_CONTROL_CARD;
     tx[1] = MODBUS_FUNC_READ_DISC_INP;
     tx[2] = 0x00;
     tx[3] = 0x00;
-    tx[4] = 0x00;
-    tx[5] = 0x0B; // 11 inputs
+    /* Read all error bits, including inverter-open-loop at index 11. */
+    tx[4] = (uint8_t)((DIS_INP_TOTAL_BITS >> 8) & 0xFFU);
+    tx[5] = (uint8_t)(DIS_INP_TOTAL_BITS & 0xFFU);
 
     uint16_t crc = modbus_crc16(tx, 6);
-    tx[6] = crc & 0xFF;
-    tx[7] = (crc >> 8) & 0xFF;
+    tx[6] = (uint8_t)(crc & 0xFFU);
+    tx[7] = (uint8_t)((crc >> 8) & 0xFFU);
 
     uart_flush_input(MODBUS_1_UART_PORT_NUM);
     uart_write_bytes(MODBUS_1_UART_PORT_NUM, (const char *)tx, sizeof(tx));
 
-    int len = uart_read_bytes(MODBUS_1_UART_PORT_NUM,
-                              rx,
-                              sizeof(rx),
+    int len = uart_read_bytes(MODBUS_1_UART_PORT_NUM, rx, sizeof(rx),
                               pdMS_TO_TICKS(200));
-    if (len < 7)
-    {
+    if (len != (int)sizeof(rx))
         return false;
-    }
-
-    if (rx[0] != MODBUS_SLAVE_ID_CONTROL_CARD || rx[1] != 0x02 || rx[2] < 2)
-    {
+    if (rx[0] != MODBUS_SLAVE_ID_CONTROL_CARD ||
+        rx[1] != MODBUS_FUNC_READ_DISC_INP || rx[2] != DATA_BYTES)
         return false;
-    }
 
-    uint16_t resp_crc = (uint16_t)rx[len - 1] << 8 | rx[len - 2];
+    uint16_t resp_crc = ((uint16_t)rx[len - 1] << 8) | rx[len - 2];
     if (modbus_crc16(rx, len - 2) != resp_crc)
-    {
         return false;
-    }
 
-    for (int i = 0; i < 11; i++)
-    {
-        int byte_idx = 3 + (i / 8);
-        int bit_idx = i % 8;
-        out[i] = (rx[byte_idx] >> bit_idx) & 0x01;
-    }
+    /* Publish only a complete, validated response. Never synthesize bit 11. */
+    for (size_t i = 0U; i < DIS_INP_TOTAL_BITS; ++i)
+        out[i] = (uint8_t)((rx[3U + i / 8U] >> (i % 8U)) & 0x01U);
 
     return true;
 }
@@ -2062,6 +2326,14 @@ void dummy_temp_test_task(void *arg)
 
 void app_modbus_master(void)
 {
+    esp_err_t offsets_err = modbus_log_offsets_init();
+    if (offsets_err != ESP_OK)
+        ESP_LOGE(TAG_MODBUS_MASTER,
+                 "BIN offsets load/save failed (%s); using defaults in RAM",
+                 esp_err_to_name(offsets_err));
+    else
+        ESP_LOGI(TAG_MODBUS_MASTER, "Persistent BIN offsets ready");
+
     // esp_log_level_set(TAG_MODBUS_MASTER, ESP_LOG_NONE);
     esp_log_level_set(TEMP_SIM, ESP_LOG_NONE);
     esp_log_level_set(TAG_CUT_DECISION, ESP_LOG_NONE);

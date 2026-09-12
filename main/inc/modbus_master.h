@@ -49,8 +49,8 @@
  * LittleFS -> SD archive configuration.
  * One KB is 1024 bytes. The runtime setter can change this value at any time.
  */
-// #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  10U
-#define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  20U
+#define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  10U
+// #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_DEFAULT  20U
 #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_MIN      1U
 #define MODBUS_LOCAL_BIN_SD_THRESHOLD_KB_MAX      4096U
 #define MODBUS_LOCAL_BIN_SD_CHECK_PERIOD_MS       1000U
@@ -106,7 +106,7 @@
 #define DIS_INP_ADDR_ERROR_PHASE_BIT         10U
 #define DIS_INP_ADDR_INVERTER_OPEN_LOOP_BIT  11U
 
-#define DIS_INP_TOTAL_BITS  DIS_INP_ADDR_INVERTER_OPEN_LOOP_BIT + 1U
+#define DIS_INP_TOTAL_BITS  (DIS_INP_ADDR_INVERTER_OPEN_LOOP_BIT + 1U)
 
 
 
@@ -281,7 +281,7 @@ int modbus_read_input_registers(uint8_t slave_id,
                                 uint16_t start_reg_addr,
                                 uint16_t reg_count);
 
-bool read_discrete_inputs(uint8_t out[11]);
+bool read_discrete_inputs(uint8_t out[DIS_INP_TOTAL_BITS]);
 
 bool send_machine_trigger_to_modbus(uint16_t value);
 bool send_control_mode_to_modbus(uint16_t value);

@@ -5,6 +5,8 @@
 #include "wifi_mgr.h"
 
 #include "esp_log.h"
+#include "esp_netif.h"
+#include "esp_wifi.h"
 
 #define MODBUS_NETWORK_STATE_DISCONNECTED   0U
 #define MODBUS_NETWORK_STATE_FULL           4U
@@ -129,37 +131,67 @@ bool file_read_melter_set_temp(void)
 // }
 
 
-static uint8_t hmi_get_network_state(void)
+static uint8_t hmi_get_network_state(char *ssid, size_t ssid_size,
+                                     char *ip, size_t ip_size)
 {
-    if (ethernet_has_ip())
+    esp_netif_t *netif = NULL;
+    esp_netif_ip_info_t ip_info = {0};
+    uint8_t state = MODBUS_NETWORK_STATE_DISCONNECTED;
+
+    ssid[0] = '\0';
+    ip[0] = '\0';
+
+    /* Match network_manager_task(): LAN with an IP takes priority. */
+    if (ethernet_is_link_up() && ethernet_has_ip())
     {
-        return MODBUS_NETWORK_LAN_STATE_CONNECTED;
+        state = MODBUS_NETWORK_LAN_STATE_CONNECTED;
+        snprintf(ssid, ssid_size, "LAN");
+        /* Default key used by ESP_NETIF_DEFAULT_ETH(). */
+        netif = esp_netif_get_handle_from_ifkey("ETH_DEF");
     }
-    else if(wifi_mgr_is_connected())
+    else if (wifi_mgr_is_connected())
     {
-        return MODBUS_NETWORK_STATE_FULL;
+        wifi_ap_record_t ap_info = {0};
+
+        state = MODBUS_NETWORK_STATE_FULL;
+        if (esp_wifi_sta_get_ap_info(&ap_info) == ESP_OK)
+        {
+            /* Wi-Fi SSIDs contain at most 32 bytes; bound the read. */
+            snprintf(ssid, ssid_size, "%.*s", 32,
+                     (const char *)ap_info.ssid);
+        }
+        netif = esp_netif_get_handle_from_ifkey("WIFI_STA_DEF");
     }
 
-    return MODBUS_NETWORK_STATE_DISCONNECTED;
+    /* Never use the SoftAP IP or the other interface's cached address. */
+    if (netif != NULL && esp_netif_is_netif_up(netif) &&
+        esp_netif_get_ip_info(netif, &ip_info) == ESP_OK &&
+        ip_info.ip.addr != 0U)
+    {
+        snprintf(ip, ip_size, IPSTR, IP2STR(&ip_info.ip));
+    }
+
+    return state;
 }
 
 static void update_network_icon_modbus(void)
 {
-    uint8_t state = hmi_get_network_state();
-    static uint8_t previous_state = UINT8_MAX;
-
-    if (state == previous_state)
-        return;
+    char ssid[sizeof(hmi_data.sta_ssid)] = {0};
+    char ip[sizeof(hmi_data.sta_ip)] = {0};
+    uint8_t state = hmi_get_network_state(ssid, sizeof(ssid),
+                                          ip, sizeof(ip));
 
     /*
-     * Update the cached state only after the shared HMI data was written.
-     * If the mutex is temporarily unavailable, the next task cycle retries.
+     * Refresh even if the icon did not change: DHCP or the connected SSID
+     * can change on the same interface. Publish the three fields together.
+     * A failed lock is retried on the next task cycle.
      */
     if (hmi_data_lock(HMI_DATA_LOCK_SHORT_TIMEOUT))
     {
         hmi_data.wifi_rssi_state = state;
+        memcpy((void *)hmi_data.sta_ssid, ssid, sizeof(ssid));
+        memcpy((void *)hmi_data.sta_ip, ip, sizeof(ip));
         hmi_data_unlock();
-        previous_state = state;
     }
 }
 

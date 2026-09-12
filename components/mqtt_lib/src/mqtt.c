@@ -1,3 +1,4 @@
+#include <stdatomic.h>
 #include "mqtt.h"
 
 #include <esp_app_desc.h>
@@ -53,6 +54,14 @@ mqtt_topic_list_t g_mqtt_topics;
 static EventGroupHandle_t s_mqtt_ev = NULL;
 static const int MQTT_CONNECTED_BIT = BIT0;
 static esp_mqtt_client_handle_t s_client = NULL;
+
+/* Cross-task connection counter: does not take the presence observer slot. */
+static _Atomic uint32_t s_connection_generation = 0;
+uint32_t mqtt_connection_generation(void)
+{
+    return atomic_load_explicit(&s_connection_generation, memory_order_relaxed);
+}
+
 
 #define MQTT_PUBLISHED_RING_SIZE 32
 
@@ -510,6 +519,7 @@ static void mqtt_event_handler(void *handler_args,
 
     case MQTT_EVENT_CONNECTED:
     {
+        atomic_fetch_add_explicit(&s_connection_generation, 1U, memory_order_relaxed);
         ESP_LOGI(TAG_MQTT, "AWS IoT MQTT connected");
 
         // char payload[64];

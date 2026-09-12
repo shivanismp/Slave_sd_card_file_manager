@@ -160,6 +160,38 @@
 
 
 
+/* ESP-local BIN logging thresholds; MQTT virtual server only.
+ * FC03 reads, FC06/FC10 writes and commits to NVS before success response.
+ * Control-card input i -> holding register (39 + i), zero-based wire address.
+ * These are NOT Delta $339..$361 and are NOT forwarded to the control card.
+ */
+#define HOLD_ADDR_LOG_OFFSET_FIRST 39U
+#define HOLD_ADDR_LOG_OFFSET_COUNT 23U
+#define HOLD_ADDR_LOG_OFFSET_LAST  61U
+#define HOLD_ADDR_LOG_OFFSET_POT_ADC      39U
+#define HOLD_ADDR_LOG_OFFSET_CT_ADC       40U
+#define HOLD_ADDR_LOG_OFFSET_PT_ADC       41U
+#define HOLD_ADDR_LOG_OFFSET_DCC          42U
+#define HOLD_ADDR_LOG_OFFSET_DCV          43U
+#define HOLD_ADDR_LOG_OFFSET_ADC3         44U
+#define HOLD_ADDR_LOG_OFFSET_ADC4         45U
+#define HOLD_ADDR_LOG_OFFSET_ADC5         46U
+#define HOLD_ADDR_LOG_OFFSET_PHASE        47U
+#define HOLD_ADDR_LOG_OFFSET_ON_TIME_LO   48U
+#define HOLD_ADDR_LOG_OFFSET_ON_TIME_HI   49U
+#define HOLD_ADDR_LOG_OFFSET_POT_PERCENT  50U
+#define HOLD_ADDR_LOG_OFFSET_LINE_1_V     51U
+#define HOLD_ADDR_LOG_OFFSET_LINE_1_A     52U
+#define HOLD_ADDR_LOG_OFFSET_LINE_2_V     53U
+#define HOLD_ADDR_LOG_OFFSET_LINE_2_A     54U
+#define HOLD_ADDR_LOG_OFFSET_LINE_3_V     55U
+#define HOLD_ADDR_LOG_OFFSET_LINE_3_A     56U
+#define HOLD_ADDR_LOG_OFFSET_AVG_V        57U
+#define HOLD_ADDR_LOG_OFFSET_AVG_A        58U
+#define HOLD_ADDR_LOG_OFFSET_FREQ         59U
+#define HOLD_ADDR_LOG_OFFSET_KW           60U
+#define HOLD_ADDR_LOG_OFFSET_PF           61U
+
 #define DELTA_HMI_PRIMARY_CMD_COUNT     13U
 
 #define DELTA_HMI_BAR_FIRST_INDEX       HOLD_ADDR_BAR_MELTER_TEMP_MIN
@@ -263,6 +295,8 @@
 #define INP_ADDR_AP_SSID              149 // 20 chars allowed
 #define INP_ADDR_AP_PASS              169 // 20 chars allowed
 
+#define INP_ADDR_STA_SSID            189 // 40 chars allowed
+#define INP_ADDR_STA_IP              229 // 20 chars allowed
 
 
 

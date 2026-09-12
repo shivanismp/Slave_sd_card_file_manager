@@ -301,7 +301,7 @@ class ConfigHandler(http.server.SimpleHTTPRequestHandler):
         write_with_backup(os.path.join(MQTT_DIR, "mqtt_ser.txt"), serial_no)
         write_with_backup(os.path.join(MQTT_DIR, "mqtt_aws_endpoint.txt"), AWS_ENDPOINT)
 
-        topics = [f"{serial_no}/MBM/REQ", f"{serial_no}/MBM/RES", f"{serial_no}/MBM/STAT", f"{serial_no}/MBM/TELEMETRY"]
+        topics = [f"{serial_no}/MBM/REQ", f"{serial_no}/MBM/RES", f"{serial_no}/MBM/STAT", f"{serial_no}/MBM/TELEMETRY", f"{serial_no}/MBM/STATUS"]
         write_with_backup(os.path.join(MQTT_DIR, "topics.txt"), "\n".join(topics))
 
         if aws_generate == "Yes":
@@ -343,6 +343,47 @@ class ConfigHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Content-type", "text/html")
         self.end_headers()
         self.wfile.write(response.encode())
+# ===================================================================================================================
+# Update existing topic files without using the HTML form.
+serial_path = os.path.join(MQTT_DIR, "mqtt_ser.txt")
+topics_path = os.path.join(MQTT_DIR, "topics.txt")
+backup_path = os.path.join(MQTT_DIR, "topics.bak")
+
+if os.path.isfile(serial_path):
+    with open(serial_path, "r", encoding="utf-8") as f:
+        existing_serial = f.read().strip()
+
+    # Use the backup if topics.txt is missing.
+    source_path = (
+        topics_path if os.path.isfile(topics_path) else backup_path
+    )
+
+    if existing_serial and os.path.isfile(source_path):
+        with open(source_path, "r", encoding="utf-8") as f:
+            existing_topics = [
+                line.strip() for line in f if line.strip()
+            ]
+
+        status_topic = f"{existing_serial}/MBM/STATUS"
+
+        if status_topic not in existing_topics:
+            existing_topics.append(status_topic)
+
+        # Writes both topics.txt and topics.bak.
+        write_with_backup(
+            topics_path,
+            "\n".join(existing_topics) + "\n"
+        )
+
+        print("STATUS topic:", status_topic)
+        print("Updated file:", os.path.abspath(topics_path))
+    else:
+        print("Topic update skipped: empty serial or no topic files.")
+else:
+    print("Serial file not found:", os.path.abspath(serial_path))
+
+
+# ===================================================================================================================
 
 
 # ====================== START SERVER ======================
