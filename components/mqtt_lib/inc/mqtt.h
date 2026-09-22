@@ -44,12 +44,11 @@ typedef void (*mqtt_connection_observer_t)(bool connected, void *context);
 typedef bool (*mqtt_update_busy_fn_t)(void);
 typedef bool (*mqtt_update_request_fn_t)(const char *json, size_t len);
 
-extern char mqtt_aws_endpoint[128];
+extern char mqtt_broker_host[128];          // was mqtt_aws_endpoint
 extern char mqtt_serial_no[20];
-
-extern char aws_root_ca[4096];
-extern char hmi_card_test_cert[4096];
-extern char hmi_card_test_private[4096];
+extern char shapet_root_ca[4096];           // was aws_root_ca
+extern char device_cert[4096];            // was hmi_card_test_cert
+extern char device_private_key[4096];     // was hmi_card_test_private
 
 extern char mqtt_topic_mbm_req[128];
 extern char mqtt_topic_mbm_res[128];

@@ -36,12 +36,12 @@ static bool s_nx_rx_active = false;
 
 mqtt_modbus_slave_t mqtt_modbus_slave;
 
-char mqtt_aws_endpoint[128];
+char mqtt_broker_host[128];
 char mqtt_serial_no[20];
 
-char aws_root_ca[4096];
-char hmi_card_test_cert[4096];
-char hmi_card_test_private[4096];
+char shapet_root_ca[4096];
+char device_cert[4096];
+char device_private_key[4096];
 
 char mqtt_topic_mbm_req[128];
 char mqtt_topic_mbm_res[128];
@@ -709,7 +709,7 @@ void mqtt_start_tls(void)
     // }
 
     char uri[160];
-    snprintf(uri, sizeof(uri), "mqtts://%s:8883", mqtt_aws_endpoint);
+    snprintf(uri, sizeof(uri), "mqtts://%s:8883", mqtt_broker_host);
 
     // char payload[64];
     // snprintf(payload, sizeof(payload), "{\"state\":\"offline\",\"version\":\"%s\"}", 
@@ -739,6 +739,11 @@ void mqtt_start_tls(void)
         .session.last_will.qos = s_last_will_qos,
         .session.last_will.retain = s_last_will_retain,
 
+        // .session.last_will.topic = mqtt_topic_ota_status,
+        // .session.last_will.msg = "{\"state\":\"offline\"}",
+        // .session.last_will.qos = 1,
+        // .session.last_will.retain = 1,
+
         // .session.last_will.qos = 1,
         // .session.last_will.retain = 1,
         // .session.last_will.retain = 0,
@@ -746,10 +751,10 @@ void mqtt_start_tls(void)
         .credentials.client_id = mqtt_serial_no,
         // .credentials.client_id = "bfdgfkgsdklgflksdglkwdgslkglwdglkj5",
 
-        .broker.verification.certificate = aws_root_ca,
+        .broker.verification.certificate = shapet_root_ca,
 
-        .credentials.authentication.certificate = hmi_card_test_cert,
-        .credentials.authentication.key = hmi_card_test_private,
+        .credentials.authentication.certificate = device_cert,
+        .credentials.authentication.key = device_private_key,
     };
 
     s_client = esp_mqtt_client_init(&cfg);

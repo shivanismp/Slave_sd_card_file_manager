@@ -1045,12 +1045,11 @@ static void modbus_store_local_machine_record_if_changed(const hmi_data_t *snap)
 
     modbus_build_local_machine_record(snap, current);
 
-    if (s_machine_last_record_valid &&
-        !modbus_machine_record_has_loggable_change(s_machine_last_record,
-                                                   current))
-    {
-        return;
-    }
+    // if (s_machine_last_record_valid &&
+    //     !modbus_machine_record_has_loggable_change(s_machine_last_record, current))
+    // {
+    //     return;
+    // }
 
     int64_t now_us = esp_timer_get_time();
     if (now_us < s_machine_write_retry_after_us)

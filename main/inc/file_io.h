@@ -4,8 +4,8 @@
 #include "global.h"
 #include "mqtt.h"
 
-#define MQTT_ROOT_CA_FILE_PATH                      "/littlefs/mqtt/certs/AmazonRootCA1.pem"
-#define MQTT_ROOT_CA_FILE_BACKUP_PATH               "/littlefs/mqtt/certs/AmazonRootCA1.bak"
+#define MQTT_ROOT_CA_FILE_PATH                      "/littlefs/mqtt/certs/ShapetRootCA.pem"
+#define MQTT_ROOT_CA_FILE_BACKUP_PATH               "/littlefs/mqtt/certs/ShapetRootCA.bak"
 
 #define MQTT_DEVICE_CERT_FILE_PATH                  "/littlefs/mqtt/certs/device.crt"
 #define MQTT_DEVICE_CERT_FILE_BACKUP_PATH           "/littlefs/mqtt/certs/device.bak"
@@ -23,10 +23,10 @@
 #define MQTT_SERIAL_MAX_LEN            (MQTT_SERIAL_GEN_LEN + 1)
 
 /* AWS endpoint */
-#define MQTT_AWS_ENDPOINT_FILE_PATH         "/littlefs/mqtt/mqtt_aws_endpoint.txt"
-#define MQTT_AWS_ENDPOINT_FILE_BACKUP_PATH  "/littlefs/mqtt/mqtt_aws_endpoint.bak"
-#define MQTT_AWS_ENDPOINT_MAX_LEN           128
-#define MQTT_AWS_ENDPOINT_MIN_LEN           8
+#define mqtt_broker_host_FILE_PATH         "/littlefs/mqtt/mqtt_broker_host.txt"
+#define mqtt_broker_host_FILE_BACKUP_PATH  "/littlefs/mqtt/mqtt_broker_host.bak"
+#define mqtt_broker_host_MAX_LEN           128
+#define mqtt_broker_host_MIN_LEN           8
 
 #define MQTT_TOPICS_FILE_PATH          "/littlefs/mqtt/topics.txt"
 #define MQTT_TOPICS_FILE_BACKUP_PATH   "/littlefs/mqtt/topics.bak"
@@ -34,7 +34,7 @@
 
 
 bool load_or_restore_mqtt_serial_no(char *out, size_t out_size);
-bool load_or_restore_mqtt_aws_endpoint(char *out, size_t out_size);
+bool load_or_restore_mqtt_broker_host(char *out, size_t out_size);
 bool mqtt_load_certs_from_littlefs(char *root_ca,
                                    size_t root_ca_size,
                                    char *device_cert,
