@@ -297,11 +297,11 @@ bool load_or_restore_mqtt_serial_no(char *out, size_t out_size)
     return false;
 }
 
-bool load_or_restore_mqtt_aws_endpoint(char *out, size_t out_size)
+bool load_or_restore_mqtt_broker_host(char *out, size_t out_size)
 {
-    char buf_main[MQTT_AWS_ENDPOINT_MAX_LEN];
-    char buf_backup[MQTT_AWS_ENDPOINT_MAX_LEN];
-    char verify_buf[MQTT_AWS_ENDPOINT_MAX_LEN];
+    char buf_main[mqtt_broker_host_MAX_LEN];
+    char buf_backup[mqtt_broker_host_MAX_LEN];
+    char verify_buf[mqtt_broker_host_MAX_LEN];
 
     if (out == NULL || out_size < 2U)
     {
@@ -314,11 +314,11 @@ bool load_or_restore_mqtt_aws_endpoint(char *out, size_t out_size)
     memset(buf_backup, 0, sizeof(buf_backup));
     memset(verify_buf, 0, sizeof(verify_buf));
 
-    if (file_read_string(MQTT_AWS_ENDPOINT_FILE_PATH, buf_main, sizeof(buf_main)))
+    if (file_read_string(mqtt_broker_host_FILE_PATH, buf_main, sizeof(buf_main)))
     {
         if (string_is_valid(buf_main,
-                            MQTT_AWS_ENDPOINT_MIN_LEN,
-                            MQTT_AWS_ENDPOINT_MAX_LEN - 1U))
+                            mqtt_broker_host_MIN_LEN,
+                            mqtt_broker_host_MAX_LEN - 1U))
         {
             strncpy(out, buf_main, out_size - 1U);
             out[out_size - 1U] = '\0';
@@ -331,16 +331,16 @@ bool load_or_restore_mqtt_aws_endpoint(char *out, size_t out_size)
     }
     else
     {
-        ESP_LOGW(TAG_FILE_IO, "Main AWS endpoint not readable: %s", MQTT_AWS_ENDPOINT_FILE_PATH);
+        ESP_LOGW(TAG_FILE_IO, "Main AWS endpoint not readable: %s", mqtt_broker_host_FILE_PATH);
     }
 
-    if (file_read_string(MQTT_AWS_ENDPOINT_FILE_BACKUP_PATH, buf_backup, sizeof(buf_backup)))
+    if (file_read_string(mqtt_broker_host_FILE_BACKUP_PATH, buf_backup, sizeof(buf_backup)))
     {
         if (string_is_valid(buf_backup,
-                            MQTT_AWS_ENDPOINT_MIN_LEN,
-                            MQTT_AWS_ENDPOINT_MAX_LEN - 1U))
+                            mqtt_broker_host_MIN_LEN,
+                            mqtt_broker_host_MAX_LEN - 1U))
         {
-            if (!file_write_and_verify(MQTT_AWS_ENDPOINT_FILE_PATH,
+            if (!file_write_and_verify(mqtt_broker_host_FILE_PATH,
                                        buf_backup,
                                        verify_buf,
                                        sizeof(verify_buf)))
@@ -360,7 +360,7 @@ bool load_or_restore_mqtt_aws_endpoint(char *out, size_t out_size)
     }
     else
     {
-        ESP_LOGW(TAG_FILE_IO, "Backup AWS endpoint not readable: %s", MQTT_AWS_ENDPOINT_FILE_BACKUP_PATH);
+        ESP_LOGW(TAG_FILE_IO, "Backup AWS endpoint not readable: %s", mqtt_broker_host_FILE_BACKUP_PATH);
     }
 
     ESP_LOGE(TAG_FILE_IO, "No valid AWS endpoint found in main or backup");

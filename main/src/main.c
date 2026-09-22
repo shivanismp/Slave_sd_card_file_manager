@@ -43,7 +43,7 @@ char machine_capacity[50];
 
 static volatile bool mqtt_read_certs_ok = false;
 static volatile bool mqtt_serial_read_ok = false;
-static volatile bool mqtt_aws_endpoint_read_ok = false;
+static volatile bool mqtt_broker_host_read_ok = false;
 static volatile bool mqtt_topics_read_ok = false;
 
 #define EXT_WD_PIN GPIO_NUM_0
@@ -84,7 +84,7 @@ static void call_functions_on_network_connect(bool network_changed)
 
     if (!(mqtt_read_certs_ok &&
           mqtt_serial_read_ok &&
-          mqtt_aws_endpoint_read_ok &&
+          mqtt_broker_host_read_ok &&
           mqtt_topics_read_ok))
     {
         ESP_LOGE("APP", "MQTT configuration is incomplete");
@@ -493,12 +493,12 @@ static bool start_network_services(void)
              "MQTT prerequisites: certs=%d serial=%d endpoint=%d topics=%d",
              mqtt_read_certs_ok,
              mqtt_serial_read_ok,
-             mqtt_aws_endpoint_read_ok,
+             mqtt_broker_host_read_ok,
              mqtt_topics_read_ok);
 
     if (!(mqtt_read_certs_ok &&
           mqtt_serial_read_ok &&
-          mqtt_aws_endpoint_read_ok &&
+          mqtt_broker_host_read_ok &&
           mqtt_topics_read_ok))
     {
         ESP_LOGE("APP", "MQTT not started: configuration is incomplete");
@@ -514,7 +514,7 @@ static bool start_network_services(void)
     {
         ESP_LOGI("APP",
                  "Starting MQTT client: endpoint=%s client_id=%s",
-                 mqtt_aws_endpoint,
+                 mqtt_broker_host,
                  mqtt_serial_no);
 
         mqtt_start_tls();
@@ -693,20 +693,20 @@ void app_main(void)
                  "%s/OTA_STATUS", mqtt_serial_no);
     }
 
-    if (!load_or_restore_mqtt_aws_endpoint(mqtt_aws_endpoint, sizeof(mqtt_aws_endpoint)))
+    if (!load_or_restore_mqtt_broker_host(mqtt_broker_host, sizeof(mqtt_broker_host)))
     {
         ESP_LOGE("APP", "4. MQTT aws endpoint missing or corrupted in LittleFS");
-        mqtt_aws_endpoint_read_ok = false;
+        mqtt_broker_host_read_ok = false;
     }
     else
     {
-        ESP_LOGI("APP", "4. MQTT endpoint ok: %s", mqtt_aws_endpoint);
-        mqtt_aws_endpoint_read_ok = true;
+        ESP_LOGI("APP", "4. MQTT endpoint ok: %s", mqtt_broker_host);
+        mqtt_broker_host_read_ok = true;
     }
 
-    if (!mqtt_load_certs_from_littlefs(aws_root_ca, sizeof(aws_root_ca),
-                                       hmi_card_test_cert, sizeof(hmi_card_test_cert),
-                                       hmi_card_test_private, sizeof(hmi_card_test_private)))
+    if (!mqtt_load_certs_from_littlefs(shapet_root_ca, sizeof(shapet_root_ca),
+                                       device_cert, sizeof(device_cert),
+                                       device_private_key, sizeof(device_private_key)))
     {
         ESP_LOGE("APP", "5. MQTT certs missing or corrupted in LittleFS");
         mqtt_read_certs_ok = false;
